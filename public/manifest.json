@@ -1,0 +1,64 @@
+{
+  "name": "Ari's Eternal Flowers",
+  "short_name": "Ari's Flowers",
+  "description": "Ramos de flores eternas hechos a mano. Regalos que permanecen, momentos que perduran.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdf9f5",
+  "theme_color": "#6d1f3a",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["shopping", "lifestyle", "gifts"],
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver colección",
+      "short_name": "Colección",
+      "description": "Explora los ramos eternos disponibles",
+      "url": "/#coleccion",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Crear mi ramo",
+      "short_name": "Crear",
+      "description": "Personaliza tu ramo ideal",
+      "url": "/#personalizar",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Contactar por WhatsApp",
+      "short_name": "WhatsApp",
+      "description": "Escríbenos directamente",
+      "url": "/#contacto",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}
