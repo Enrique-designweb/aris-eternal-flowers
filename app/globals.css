@@ -1648,3 +1648,188 @@ img {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* =========================================
+   PÉTALOS CAYENDO — Fondo global
+   ========================================= */
+
+.petals-bg {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 3;
+}
+
+.petal-fall {
+  background: radial-gradient(circle at 30% 30%, #f0b5be, #a34a63 70%);
+  border-radius: 150% 0 150% 0;
+  opacity: 0;
+  position: absolute;
+  top: -10vh;
+  animation: petal-fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes petal-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+  }
+
+  10% {
+    opacity: 0.4;
+  }
+
+  90% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(80px, 115vh, 0) rotate(540deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petals-bg {
+    display: none;
+  }
+}
+
+/* =========================================
+   NAV DESKTOP
+   ========================================= */
+
+.hero-nav-desktop {
+  align-items: center;
+  display: none;
+  gap: 28px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.hero-nav-desktop a {
+  color: var(--color-burgundy);
+  position: relative;
+  transition: color 200ms ease;
+}
+
+.hero-nav-desktop a::after {
+  background: var(--color-gold);
+  bottom: -6px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-smooth);
+  width: 100%;
+}
+
+.hero-nav-desktop a:hover {
+  color: var(--color-wine);
+}
+
+.hero-nav-desktop a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 900px) {
+  .hero-nav-desktop {
+    display: flex;
+  }
+}
+
+/* =========================================
+   HERO MINIMAL (sin flor animada)
+   ========================================= */
+
+.hero-content-minimal {
+  min-height: 70svh;
+  justify-content: center;
+  padding: 40px 0 60px;
+}
+
+/* =========================================
+   CATEGORÍAS CON IMÁGENES REALES
+   ========================================= */
+
+.category-card {
+  align-items: flex-end;
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  display: flex;
+  isolation: isolate;
+  min-height: 220px;
+  overflow: hidden;
+  padding: 22px;
+  position: relative;
+  transition: transform 450ms var(--ease-smooth);
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+}
+
+.category-card::before {
+  background: linear-gradient(
+    180deg,
+    rgba(42, 32, 35, 0) 0%,
+    rgba(42, 32, 35, 0) 35%,
+    rgba(42, 32, 35, 0.72) 78%,
+    rgba(42, 32, 35, 0.92) 100%
+  );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.category-card .category-image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  transition: transform 800ms var(--ease-smooth);
+  width: 100%;
+  z-index: 1;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.1);
+}
+
+.category-card .category-content {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+
+.category-card .category-icon {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.category-card .category-name {
+  color: white;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+@media (min-width: 700px) {
+  .category-card {
+    min-height: 260px;
+  }
+
+  .category-card .category-name {
+    font-size: 1.7rem;
+  }
+}

@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Heart,
   Mail,
-  Menu,
   MessageCircle,
   Send,
   ShoppingBag,
@@ -14,7 +13,7 @@ import { CustomizerButton } from "../components/customizer";
 import { ScrollEffects } from "../components/scroll-effects";
 
 /* =========================================
-   MARCA — Constantes reales
+   MARCA
    ========================================= */
 
 const BRAND = {
@@ -74,16 +73,93 @@ function InstagramIcon({ size = 20 }: { size?: number }) {
 }
 
 /* =========================================
+   PÉTALOS CAYENDO
+   ========================================= */
+
+const PETALS = [
+  { left: "4%", delay: "0s", duration: "14s", size: 14 },
+  { left: "11%", delay: "3.5s", duration: "17s", size: 10 },
+  { left: "18%", delay: "7s", duration: "13s", size: 16 },
+  { left: "26%", delay: "1.5s", duration: "16s", size: 12 },
+  { left: "33%", delay: "9s", duration: "18s", size: 15 },
+  { left: "40%", delay: "5s", duration: "15s", size: 11 },
+  { left: "48%", delay: "11s", duration: "19s", size: 13 },
+  { left: "55%", delay: "2s", duration: "14s", size: 14 },
+  { left: "62%", delay: "8s", duration: "17s", size: 10 },
+  { left: "70%", delay: "4s", duration: "15s", size: 16 },
+  { left: "77%", delay: "10s", duration: "18s", size: 12 },
+  { left: "84%", delay: "6s", duration: "16s", size: 13 },
+  { left: "90%", delay: "12s", duration: "14s", size: 11 },
+  { left: "96%", delay: "0.5s", duration: "17s", size: 15 },
+];
+
+function PetalsBackground() {
+  return (
+    <div aria-hidden="true" className="petals-bg">
+      {PETALS.map((petal, i) => (
+        <span
+          key={i}
+          className="petal-fall"
+          style={{
+            left: petal.left,
+            width: petal.size,
+            height: petal.size,
+            animationDelay: petal.delay,
+            animationDuration: petal.duration,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/* =========================================
    DATA
    ========================================= */
 
 const categories = [
-  { icon: "🌹", name: "Rosas", slug: "rosas" },
-  { icon: "🌻", name: "Girasoles", slug: "girasoles" },
-  { icon: "🌷", name: "Tulipanes", slug: "tulipanes" },
-  { icon: "💡", name: "Lámparas", slug: "lamparas" },
-  { icon: "🎄", name: "Navidad", slug: "navidad" },
-  { icon: "💝", name: "Personalizados", slug: "personalizados" },
+  {
+    image: "/galeria/roses-fuchsia-butterfly.jpg",
+    alt: "Rosas eternas hechas a mano",
+    icon: "🌹",
+    name: "Rosas",
+    slug: "rosas",
+  },
+  {
+    image: "/galeria/sunflowers-limpiapipas.jpg",
+    alt: "Girasoles tejidos a mano en limpiapipas",
+    icon: "🌻",
+    name: "Girasoles",
+    slug: "girasoles",
+  },
+  {
+    image: "/galeria/lily-pink-limpiapipas.jpg",
+    alt: "Tulipanes y lirios tejidos a mano",
+    icon: "🌷",
+    name: "Tulipanes",
+    slug: "tulipanes",
+  },
+  {
+    image: "/galeria/lamp-lotus-blue-1.jpg",
+    alt: "Lámpara floral con forma de loto",
+    icon: "💡",
+    name: "Lámparas",
+    slug: "lamparas",
+  },
+  {
+    image: "/galeria/christmas-tree-limpiapipas.jpg",
+    alt: "Árbol de Navidad tejido a mano",
+    icon: "🎄",
+    name: "Navidad",
+    slug: "navidad",
+  },
+  {
+    image: "/galeria/harry-potter.jpg",
+    alt: "Ramo temático personalizado",
+    icon: "💝",
+    name: "Personalizados",
+    slug: "personalizados",
+  },
 ];
 
 const offers = [
@@ -204,472 +280,453 @@ const faqs = [
 ];
 
 /* =========================================
-   FLOR ANIMADA
-   ========================================= */
-
-function FlowerAnimation() {
-  return (
-    <div aria-hidden="true" className="flower-stage">
-      <div className="flower-ground" />
-
-      <div className="flower">
-        <div className="flower-stem" />
-
-        <div className="flower-leaf left" />
-        <div className="flower-leaf right" />
-
-        <div className="flower-head">
-          <div className="petal petal-1" />
-          <div className="petal petal-2" />
-          <div className="petal petal-3" />
-          <div className="petal petal-4" />
-          <div className="petal petal-5" />
-
-          <div className="flower-center" />
-        </div>
-      </div>
-
-      <span className="sparkle sparkle-1">✦</span>
-      <span className="sparkle sparkle-2">✧</span>
-      <span className="sparkle sparkle-3">✦</span>
-    </div>
-  );
-}
-
-/* =========================================
    HOME
    ========================================= */
 
 export default function Home() {
   return (
-    <main>
-      <ScrollEffects />
+    <>
+      <PetalsBackground />
 
-      {/* =====================================
-          HERO
-          ===================================== */}
+      <main>
+        <ScrollEffects />
 
-      <section className="hero">
-        <div className="container">
-          <header className="hero-header">
-            <Link aria-label={BRAND.name} className="brand" href="/">
-              <div className="brand-mark">A</div>
+        {/* =====================================
+            HERO
+            ===================================== */}
 
-              <div className="brand-name">
-                Ari&apos;s Eternal
-                <span>Flowers</span>
+        <section className="hero">
+          <div className="container">
+            <header className="hero-header">
+              <Link aria-label={BRAND.name} className="brand" href="/">
+                <div className="brand-mark">A</div>
+
+                <div className="brand-name">
+                  Ari&apos;s Eternal
+                  <span>Flowers</span>
+                </div>
+              </Link>
+
+              <nav
+                aria-label="Navegación principal"
+                className="hero-nav-desktop"
+              >
+                <a href="#coleccion">Colección</a>
+                <a href="#galeria">Galería</a>
+                <a href="#personalizar">Crear</a>
+                <a href="#contacto">Contacto</a>
+              </nav>
+            </header>
+
+            <div className="hero-content hero-content-minimal">
+              <div className="hero-copy">
+                <span className="eyebrow">
+                  Hecho a mano · Hecho con amor
+                </span>
+
+                <h1 className="hero-title">
+                  Flores que
+                  <span>permanecen.</span>
+                </h1>
+
+                <p className="hero-description">
+                  Ramos eternos y regalos personalizados creados
+                  para convertir momentos especiales en recuerdos
+                  que nunca se marchitan.
+                </p>
               </div>
-            </Link>
 
-            <button
-              aria-label="Abrir menú"
-              className="button button-secondary"
-              type="button"
-            >
-              <Menu size={20} />
-            </button>
-          </header>
+              <div className="hero-actions">
+                <a className="button button-primary" href="#coleccion">
+                  Ver colección
+                  <ArrowRight size={18} />
+                </a>
 
-          <div className="hero-content">
-            <div className="hero-copy">
-              <span className="eyebrow">
-                Hecho a mano · Hecho con amor
-              </span>
+                <CustomizerButton variant="secondary">
+                  Crear mi ramo
+                  <Heart size={18} />
+                </CustomizerButton>
+              </div>
+            </div>
+          </div>
+        </section>
 
-              <h1 className="hero-title">
-                Flores que
-                <span>permanecen.</span>
-              </h1>
+        {/* =====================================
+            CATEGORÍAS
+            ===================================== */}
 
-              <p className="hero-description">
-                Ramos eternos y regalos personalizados creados
-                para convertir momentos especiales en recuerdos
-                que nunca se marchitan.
-              </p>
+        <section className="section" id="coleccion">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Nuestra colección</span>
+
+              <h2 className="section-title">
+                Un regalo para
+                <br />
+                cada ocasión.
+              </h2>
             </div>
 
-            <FlowerAnimation />
+            <div className="category-grid">
+              {categories.map((category) => (
+                <a
+                  className="category-card"
+                  href="#galeria"
+                  key={category.slug}
+                >
+                  <Image
+                    alt={category.alt}
+                    className="category-image"
+                    fill
+                    sizes="(max-width: 700px) 50vw, 33vw"
+                    src={category.image}
+                  />
 
-            <div className="hero-actions">
-              <a className="button button-primary" href="#coleccion">
-                Ver colección
-                <ArrowRight size={18} />
-              </a>
+                  <div className="category-content">
+                    <div className="category-icon">{category.icon}</div>
+                    <h3 className="category-name">{category.name}</h3>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
 
-              <CustomizerButton variant="secondary">
-                Crear mi ramo
-                <Heart size={18} />
+        {/* =====================================
+            STORY
+            ===================================== */}
+
+        <section className="story">
+          <div className="container">
+            <div className="story-inner">
+              <span className="story-eyebrow">
+                Regala algo que permanezca
+              </span>
+
+              <h2 className="story-quote">
+                Las flores tradicionales
+                <br />
+                desaparecen.
+                <br />
+                <em>Las historias no.</em>
+              </h2>
+
+              <div className="story-divider" />
+
+              <p className="story-text">
+                Creamos flores eternas hechas a mano para que ese
+                momento especial pueda permanecer contigo mucho
+                más tiempo. Cada ramo es único, como la persona
+                que lo recibe.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================
+            OFERTAS
+            ===================================== */}
+
+        <section className="section">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Ofertas especiales</span>
+
+              <h2 className="section-title">
+                Packs pensados
+                <br />
+                para sorprender.
+              </h2>
+            </div>
+
+            <div className="offers-grid">
+              {offers.map((offer) => (
+                <article className="offer-card" key={offer.name}>
+                  <span className="offer-badge">{offer.badge}</span>
+
+                  <div className="offer-visual">
+                    <Image
+                      alt={offer.name}
+                      className="offer-image"
+                      fill
+                      sizes="(max-width: 700px) 100vw, 380px"
+                      src={offer.image}
+                    />
+                  </div>
+
+                  <div className="offer-body">
+                    <h3 className="offer-name">{offer.name}</h3>
+
+                    <p className="offer-desc">{offer.desc}</p>
+
+                    <div className="offer-price">
+                      <span className="now">{offer.priceNow}</span>
+                      <span className="was">{offer.priceWas}</span>
+                    </div>
+
+                    <a
+                      className="button button-primary"
+                      href={whatsappUrl(offer.waMessage)}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      Comprar ahora
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================
+            GALERÍA
+            ===================================== */}
+
+        <section className="section" id="galeria">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Galería</span>
+
+              <h2 className="section-title">
+                Creaciones
+                <br />
+                que hablan por sí solas.
+              </h2>
+            </div>
+
+            <div className="gallery-grid">
+              {galleryItems.map((item) => (
+                <div
+                  className={`gallery-item ${item.cls}`}
+                  key={item.caption}
+                >
+                  <Image
+                    alt={item.alt}
+                    className="gallery-image"
+                    fill
+                    sizes="(max-width: 700px) 50vw, 25vw"
+                    src={item.src}
+                  />
+
+                  <span className="caption">{item.caption}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================
+            PERSONALIZAR
+            ===================================== */}
+
+        <section className="section" id="personalizar">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">
+                Hecho especialmente para ti
+              </span>
+
+              <h2 className="section-title">
+                Tú imaginas.
+                <br />
+                Nosotros creamos.
+              </h2>
+            </div>
+
+            <p className="hero-description">
+              Cuéntanos qué tienes en mente, elige colores, flores y
+              detalles, y envíanos una imagen de referencia para crear
+              un ramo único. Como nuestros ramos temáticos de Hot
+              Wheels o Harry Potter.
+            </p>
+
+            <div className="mt-6.5">
+              <CustomizerButton variant="primary">
+                <Sparkles size={18} />
+                Personalizar mi ramo
               </CustomizerButton>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* =====================================
-          CATEGORÍAS
-          ===================================== */}
+        {/* =====================================
+            FAQ
+            ===================================== */}
 
-      <section className="section" id="coleccion">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">Nuestra colección</span>
+        <section className="section" id="faq">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Preguntas frecuentes</span>
 
-            <h2 className="section-title">
-              Un regalo para
-              <br />
-              cada ocasión.
-            </h2>
+              <h2 className="section-title">
+                Todo lo que
+                <br />
+                quieres saber.
+              </h2>
+            </div>
+
+            <div className="faq-list">
+              {faqs.map((faq) => (
+                <details className="faq-item" key={faq.q}>
+                  <summary>{faq.q}</summary>
+
+                  <p className="faq-answer">{faq.a}</p>
+                </details>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="category-grid">
-            {categories.map((category) => (
+        {/* =====================================
+            CONTACTO
+            ===================================== */}
+
+        <section className="contact-section" id="contacto">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">¿Tienes una idea?</span>
+
+              <h2 className="section-title">Hablemos.</h2>
+            </div>
+
+            <p className="hero-description">
+              Escríbenos por el canal que prefieras. Te responderemos
+              lo antes posible para ayudarte a crear el regalo
+              perfecto.
+            </p>
+
+            <div className="contact-grid">
               <a
-                className="category-card"
-                href="#galeria"
-                key={category.slug}
+                className="contact-card"
+                href={whatsappUrl()}
+                rel="noopener noreferrer"
+                target="_blank"
               >
-                <div className="category-content">
-                  <div className="category-icon">{category.icon}</div>
-
-                  <h3 className="category-name">{category.name}</h3>
-                </div>
+                <span className="contact-icon">
+                  <MessageCircle size={22} />
+                </span>
+                <span className="contact-label">WhatsApp</span>
+                <span className="contact-meta">Respuesta rápida</span>
               </a>
-            ))}
+
+              <a className="contact-card" href={`sms:${BRAND.sms}`}>
+                <span className="contact-icon">
+                  <Send size={22} />
+                </span>
+                <span className="contact-label">SMS</span>
+                <span className="contact-meta">Mensaje directo</span>
+              </a>
+
+              <a className="contact-card" href={`mailto:${BRAND.email}`}>
+                <span className="contact-icon">
+                  <Mail size={22} />
+                </span>
+                <span className="contact-label">Email</span>
+                <span className="contact-meta">Gmail</span>
+              </a>
+
+              <a
+                className="contact-card"
+                href={BRAND.facebook}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span className="contact-icon">
+                  <FacebookIcon size={22} />
+                </span>
+                <span className="contact-label">Facebook</span>
+                <span className="contact-meta">Síguenos</span>
+              </a>
+
+              <a
+                className="contact-card"
+                href={BRAND.instagram}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <span className="contact-icon">
+                  <InstagramIcon size={22} />
+                </span>
+                <span className="contact-label">Instagram</span>
+                <span className="contact-meta">@ari_eternalflowers</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* =====================================
-          STORY
-          ===================================== */}
+        {/* =====================================
+            FOOTER
+            ===================================== */}
 
-      <section className="story">
-        <div className="container">
-          <div className="story-inner">
-            <span className="story-eyebrow">
-              Regala algo que permanezca
-            </span>
+        <footer className="footer">
+          <div className="container">
+            <div className="brand-mark">A</div>
 
-            <h2 className="story-quote">
-              Las flores tradicionales
-              <br />
-              desaparecen.
-              <br />
-              <em>Las historias no.</em>
-            </h2>
+            <div className="footer-name">Ari&apos;s Eternal Flowers</div>
 
-            <div className="story-divider" />
+            <p className="footer-tagline">
+              Flores que permanecen. Momentos que perduran.
+            </p>
 
-            <p className="story-text">
-              Creamos flores eternas hechas a mano para que ese
-              momento especial pueda permanecer contigo mucho
-              más tiempo. Cada ramo es único, como la persona
-              que lo recibe.
+            <nav className="footer-links">
+              <Link href="/">Inicio</Link>
+              <a href="#coleccion">Colección</a>
+              <a href="#galeria">Galería</a>
+              <a href="#personalizar">Personalizados</a>
+              <a href="#faq">FAQ</a>
+              <a href="#contacto">Contacto</a>
+            </nav>
+
+            <div className="footer-divider" />
+
+            <p className="footer-copy">
+              © {new Date().getFullYear()} Ari&apos;s Eternal Flowers.
+              Todos los derechos reservados.
             </p>
           </div>
-        </div>
-      </section>
+        </footer>
 
-      {/* =====================================
-          OFERTAS
-          ===================================== */}
+        {/* =====================================
+            WHATSAPP FLOAT
+            ===================================== */}
 
-      <section className="section">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">Ofertas especiales</span>
-
-            <h2 className="section-title">
-              Packs pensados
-              <br />
-              para sorprender.
-            </h2>
-          </div>
-
-          <div className="offers-grid">
-            {offers.map((offer) => (
-              <article className="offer-card" key={offer.name}>
-                <span className="offer-badge">{offer.badge}</span>
-
-                <div className="offer-visual">
-                  <Image
-                    alt={offer.name}
-                    className="offer-image"
-                    fill
-                    sizes="(max-width: 700px) 100vw, 380px"
-                    src={offer.image}
-                  />
-                </div>
-
-                <div className="offer-body">
-                  <h3 className="offer-name">{offer.name}</h3>
-
-                  <p className="offer-desc">{offer.desc}</p>
-
-                  <div className="offer-price">
-                    <span className="now">{offer.priceNow}</span>
-                    <span className="was">{offer.priceWas}</span>
-                  </div>
-
-                  <a
-                    className="button button-primary"
-                    href={whatsappUrl(offer.waMessage)}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Comprar ahora
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          GALERÍA
-          ===================================== */}
-
-      <section className="section" id="galeria">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">Galería</span>
-
-            <h2 className="section-title">
-              Creaciones
-              <br />
-              que hablan por sí solas.
-            </h2>
-          </div>
-
-          <div className="gallery-grid">
-            {galleryItems.map((item) => (
-              <div
-                className={`gallery-item ${item.cls}`}
-                key={item.caption}
-              >
-                <Image
-                  alt={item.alt}
-                  className="gallery-image"
-                  fill
-                  sizes="(max-width: 700px) 50vw, 25vw"
-                  src={item.src}
-                />
-
-                <span className="caption">{item.caption}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          PERSONALIZAR
-          ===================================== */}
-
-      <section className="section" id="personalizar">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">Hecho especialmente para ti</span>
-
-            <h2 className="section-title">
-              Tú imaginas.
-              <br />
-              Nosotros creamos.
-            </h2>
-          </div>
-
-          <p className="hero-description">
-            Cuéntanos qué tienes en mente, elige colores, flores y
-            detalles, y envíanos una imagen de referencia para crear un
-            ramo único. Como nuestros ramos temáticos de Hot Wheels o
-            Harry Potter.
-          </p>
-
-          <div className="mt-6.5">
-            <CustomizerButton variant="primary">
-              <Sparkles size={18} />
-              Personalizar mi ramo
-            </CustomizerButton>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          FAQ
-          ===================================== */}
-
-      <section className="section" id="faq">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">Preguntas frecuentes</span>
-
-            <h2 className="section-title">
-              Todo lo que
-              <br />
-              quieres saber.
-            </h2>
-          </div>
-
-          <div className="faq-list">
-            {faqs.map((faq) => (
-              <details className="faq-item" key={faq.q}>
-                <summary>{faq.q}</summary>
-
-                <p className="faq-answer">{faq.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          CONTACTO
-          ===================================== */}
-
-      <section className="contact-section" id="contacto">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">¿Tienes una idea?</span>
-
-            <h2 className="section-title">Hablemos.</h2>
-          </div>
-
-          <p className="hero-description">
-            Escríbenos por el canal que prefieras. Te responderemos lo
-            antes posible para ayudarte a crear el regalo perfecto.
-          </p>
-
-          <div className="contact-grid">
-            <a
-              className="contact-card"
-              href={whatsappUrl()}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span className="contact-icon">
-                <MessageCircle size={22} />
-              </span>
-              <span className="contact-label">WhatsApp</span>
-              <span className="contact-meta">Respuesta rápida</span>
-            </a>
-
-            <a className="contact-card" href={`sms:${BRAND.sms}`}>
-              <span className="contact-icon">
-                <Send size={22} />
-              </span>
-              <span className="contact-label">SMS</span>
-              <span className="contact-meta">Mensaje directo</span>
-            </a>
-
-            <a className="contact-card" href={`mailto:${BRAND.email}`}>
-              <span className="contact-icon">
-                <Mail size={22} />
-              </span>
-              <span className="contact-label">Email</span>
-              <span className="contact-meta">Gmail</span>
-            </a>
-
-            <a
-              className="contact-card"
-              href={BRAND.facebook}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span className="contact-icon">
-                <FacebookIcon size={22} />
-              </span>
-              <span className="contact-label">Facebook</span>
-              <span className="contact-meta">Síguenos</span>
-            </a>
-
-            <a
-              className="contact-card"
-              href={BRAND.instagram}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <span className="contact-icon">
-                <InstagramIcon size={22} />
-              </span>
-              <span className="contact-label">Instagram</span>
-              <span className="contact-meta">@ari_eternalflowers</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          FOOTER
-          ===================================== */}
-
-      <footer className="footer">
-        <div className="container">
-          <div className="brand-mark">A</div>
-
-          <div className="footer-name">Ari&apos;s Eternal Flowers</div>
-
-          <p className="footer-tagline">
-            Flores que permanecen. Momentos que perduran.
-          </p>
-
-          <nav className="footer-links">
-            <Link href="/">Inicio</Link>
-            <a href="#coleccion">Colección</a>
-            <a href="#galeria">Galería</a>
-            <a href="#personalizar">Personalizados</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contacto">Contacto</a>
-          </nav>
-
-          <div className="footer-divider" />
-
-          <p className="footer-copy">
-            © {new Date().getFullYear()} Ari&apos;s Eternal Flowers.
-            Todos los derechos reservados.
-          </p>
-        </div>
-      </footer>
-
-      {/* =====================================
-          WHATSAPP FLOAT
-          ===================================== */}
-
-      <a
-        aria-label="Contactar por WhatsApp"
-        className="whatsapp-float"
-        href={whatsappUrl()}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <MessageCircle size={24} />
-      </a>
-
-      {/* =====================================
-          MOBILE NAV
-          ===================================== */}
-
-      <nav aria-label="Navegación principal" className="mobile-nav">
-        <Link className="mobile-nav-item active" href="/">
-          <Heart size={20} />
-          Inicio
-        </Link>
-
-        <a className="mobile-nav-item" href="#coleccion">
-          <ShoppingBag size={20} />
-          Tienda
+        <a
+          aria-label="Contactar por WhatsApp"
+          className="whatsapp-float"
+          href={whatsappUrl()}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <MessageCircle size={24} />
         </a>
 
-        <a className="mobile-nav-item" href="#personalizar">
-          <Sparkles size={20} />
-          Crear
-        </a>
+        {/* =====================================
+            MOBILE NAV
+            ===================================== */}
 
-        <a className="mobile-nav-item" href="#contacto">
-          <MessageCircle size={20} />
-          Contacto
-        </a>
-      </nav>
-    </main>
+        <nav aria-label="Navegación principal" className="mobile-nav">
+          <Link className="mobile-nav-item active" href="/">
+            <Heart size={20} />
+            Inicio
+          </Link>
+
+          <a className="mobile-nav-item" href="#coleccion">
+            <ShoppingBag size={20} />
+            Tienda
+          </a>
+
+          <a className="mobile-nav-item" href="#personalizar">
+            <Sparkles size={20} />
+            Crear
+          </a>
+
+          <a className="mobile-nav-item" href="#contacto">
+            <MessageCircle size={20} />
+            Contacto
+          </a>
+        </nav>
+      </main>
+    </>
   );
 }
