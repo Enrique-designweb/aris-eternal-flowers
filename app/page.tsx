@@ -31,7 +31,7 @@ const whatsappUrl = (text = BRAND.whatsappText) =>
   `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(text)}`;
 
 /* =========================================
-   ICONOS DE MARCA (SVG inline)
+   ICONOS DE MARCA
    ========================================= */
 
 function FacebookIcon({ size = 20 }: { size?: number }) {
@@ -194,6 +194,26 @@ const offers = [
       "Hola 💡 Me interesa la lámpara Flower Night (flor de loto). ¿Tienen más colores?",
   },
   {
+    image: "/galeria/roses-purple-butterfly.jpg",
+    badge: "Nuevo",
+    name: "Lavender Dreams",
+    desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino, perfecto para sorprender.",
+    priceNow: "$4,000",
+    priceWas: "",
+    waMessage:
+      "Hola 💜 Me interesa el ramo Lavender Dreams (rosas violeta con mariposas). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-lime-crown.jpg",
+    badge: "Nuevo",
+    name: "Lime Queen",
+    desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno que no pasa desapercibido.",
+    priceNow: "$4,000",
+    priceWas: "",
+    waMessage:
+      "Hola 💚 Me interesa el ramo Lime Queen (rosas verde limón con corona dorada). ¿Está disponible?",
+  },
+  {
     image: "/galeria/roses-orange-butterfly.jpg",
     badge: "Promo",
     name: "Sunset Butterfly",
@@ -229,9 +249,29 @@ const offers = [
     name: "Golden Sunrise",
     desc: "Ramo de rosas amarillas con espigas blancas y mariposas doradas. Un regalo luminoso y lleno de energía.",
     priceNow: "$8,000",
-    priceWas: "$6,500",
+    priceWas: "",
     waMessage:
       "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-yellow-sunflower.jpg",
+    badge: "Destacado",
+    name: "Sunflower Glow",
+    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos mundos.",
+    priceNow: "$7,000",
+    priceWas: "$8,500",
+    waMessage:
+      "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-red-passion.jpg",
+    badge: "Premium",
+    name: "Red Passion",
+    desc: "Ramo de rosas rojas intensas con mariposa calada dorada y corona de perlas. Un clásico romántico que nunca falla.",
+    priceNow: "$8,000",
+    priceWas: "",
+    waMessage:
+      "Hola ❤️ Me interesa el ramo Red Passion (rosas rojas con mariposa y corona). ¿Está disponible?",
   },
   {
     image: "/galeria/roses-coral-butterfly.jpg",
@@ -244,6 +284,16 @@ const offers = [
       "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?",
   },
   {
+    image: "/galeria/roses-yellow-foami-50.jpg",
+    badge: "Edición limitada",
+    name: "Yellow Fifty",
+    desc: "Ramo XL de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
+    priceNow: "$10,000",
+    priceWas: "",
+    waMessage:
+      "Hola 💛 Me interesa el ramo Yellow Fifty (50 rosas amarillas de foami). ¿Está disponible?",
+  },
+  {
     image: "/galeria/lily-pink-limpiapipas.jpg",
     badge: "Económico",
     name: "Pink Lily",
@@ -252,16 +302,6 @@ const offers = [
     priceWas: "$3,500",
     waMessage:
       "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?",
-  },
-  {
-    image: "/galeria/roses-yellow-sunflower.jpg",
-    badge: "Destacado",
-    name: "Sunflower Glow",
-    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos munods.",
-    priceNow: "$7,000",
-    priceWas: "$8,500",
-    waMessage:
-      "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?",
   },
 ];
 
@@ -273,9 +313,15 @@ const galleryItems = [
     cls: "tall",
   },
   {
-    src: "/galeria/sunflowers-limpiapipas.jpg",
-    caption: "Sunny Day",
-    alt: "Ramo de girasoles tejidos a mano en limpiapipas con mariposa dorada",
+    src: "/galeria/roses-red-passion.jpg",
+    caption: "Red Passion",
+    alt: "Ramo de rosas rojas con mariposa dorada y corona de perlas",
+    cls: "",
+  },
+  {
+    src: "/galeria/roses-purple-butterfly.jpg",
+    caption: "Lavender Dreams",
+    alt: "Ramo de rosas violeta con mariposas decorativas",
     cls: "",
   },
   {
@@ -285,40 +331,127 @@ const galleryItems = [
     cls: "",
   },
   {
+    src: "/galeria/roses-white-crown.jpg",
+    caption: "White Queen",
+    alt: "Ramo de rosas blancas con corona dorada y mariposa",
+    cls: "tall",
+  },
+  {
+    src: "/galeria/roses-orange-butterfly.jpg",
+    caption: "Sunset Butterfly",
+    alt: "Ramo de rosas naranjas con mariposa dorada",
+    cls: "",
+  },
+  {
+    src: "/galeria/roses-yellow-butterfly.jpg",
+    caption: "Golden Sunrise",
+    alt: "Ramo de rosas amarillas con espigas blancas y mariposas",
+    cls: "",
+  },
+  {
+    src: "/galeria/roses-yellow-sunflower.jpg",
+    caption: "Sunflower Glow",
+    alt: "Ramo de rosas amarillas con centro de girasol",
+    cls: "tall",
+  },
+  {
+    src: "/galeria/roses-coral-butterfly.jpg",
+    caption: "Coral Aurora",
+    alt: "Ramo de rosas coral con mariposas doradas",
+    cls: "",
+  },
+  {
+    src: "/galeria/roses-lime-crown.jpg",
+    caption: "Lime Queen",
+    alt: "Ramo de rosas verde limón con corona dorada",
+    cls: "",
+  },
+  {
+    src: "/galeria/roses-yellow-foami-50.jpg",
+    caption: "Yellow Fifty",
+    alt: "Ramo XL de 50 rosas amarillas de foami",
+    cls: "tall",
+  },
+  {
+    src: "/galeria/sunflowers-limpiapipas.jpg",
+    caption: "Sunny Day",
+    alt: "Ramo de girasoles tejidos en limpiapipas",
+    cls: "",
+  },
+  {
+    src: "/galeria/lily-pink-limpiapipas.jpg",
+    caption: "Pink Lily",
+    alt: "Ramo de tulipanes rosados tejidos en limpiapipas",
+    cls: "",
+  },
+  {
     src: "/galeria/lamp-lotus-blue-1.jpg",
     caption: "Lámpara Loto",
-    alt: "Lámpara con forma de flor de loto azul tejida a mano",
+    alt: "Lámpara con forma de flor de loto azul",
     cls: "tall",
+  },
+  {
+    src: "/galeria/lamp-lotus-blue-2.jpg",
+    caption: "Lámpara Loto II",
+    alt: "Variante de lámpara flor de loto",
+    cls: "",
   },
   {
     src: "/galeria/harry-potter.jpg",
     caption: "Harry Potter",
-    alt: "Ramo temático Harry Potter con rosas rojas y doradas",
+    alt: "Ramo temático Harry Potter",
     cls: "",
   },
   {
-    src: "/galeria/roses-red-butterfly.jpg",
-    caption: "Red Passion",
-    alt: "Ramo de rosas rojas con mariposa dorada y corona de perlas",
+    src: "/galeria/hotwheels-black.jpg",
+    caption: "Hot Wheels",
+    alt: "Ramo temático Hot Wheels",
     cls: "",
   },
   {
     src: "/galeria/christmas-tree-limpiapipas.jpg",
     caption: "Árbol Navideño",
-    alt: "Árbol de Navidad tejido a mano en limpiapipas",
+    alt: "Árbol de Navidad tejido a mano",
     cls: "tall",
   },
+];
+
+const testimonials = [
   {
-    src: "/galeria/hotwheels-black.jpg",
-    caption: "Hot Wheels",
-    alt: "Ramo temático Hot Wheels con rosas azules y papel negro",
-    cls: "",
+    name: "Lucia Medina",
+    text: "Preciosos, me encantaron todos los detalles.",
   },
   {
-    src: "/galeria/roses-white-crown.jpg",
-    caption: "White Queen",
-    alt: "Ramo de rosas blancas con corona dorada y mariposa",
-    cls: "",
+    name: "Maritza Martínez Calderón",
+    text: "Están muy lindas, felicitaciones por tan bello trabajo.",
+  },
+  {
+    name: "Guillermo Hernández Rojo",
+    text: "Es arte de una artista. Las manos de una artista.",
+  },
+  {
+    name: "Aniole Gómez",
+    text: "Todas las flores que haces me gustan. ¡Bellas!",
+  },
+  {
+    name: "Enrique Hernández González",
+    text: "Una obra de arte, sin duda alguna.",
+  },
+  {
+    name: "Dayani Gómez Reyes",
+    text: "Me fascina. ¡Guau! Cada vez me sorprendes más.",
+  },
+  {
+    name: "Ileana González",
+    text: "Hermoso trabajo, lindo y bello. Sigue así.",
+  },
+  {
+    name: "Ramón González",
+    text: "Felicidades por tu arte. Se nota el amor en cada pieza.",
+  },
+  {
+    name: "Cliente verificada",
+    text: "De veras una belleza de trabajo. Lo que han de crear tus manos de artista. Súper complacida con el resultado final. ¡Gracias miles!",
   },
 ];
 
@@ -337,7 +470,7 @@ const faqs = [
   },
   {
     q: "¿Cuánto demora un pedido personalizado?",
-    a: "Los pedidos personalizados toman entre 3 y 7 días hábiles dependiendo de la complejidad. Te confirmaremos el tiempo exacto al recibir tu solicitud.",
+    a: "Todos nuestros ramos se elaboran por encargo. Los pedidos personalizados toman entre 3 y 7 días hábiles dependiendo de la complejidad. Te confirmaremos el tiempo exacto al recibir tu solicitud.",
   },
   {
     q: "¿Hacen entregas?",
@@ -383,6 +516,7 @@ export default function Home() {
               >
                 <a href="#coleccion">Colección</a>
                 <a href="#galeria">Galería</a>
+                <a href="#sobre-ari">Sobre Ari</a>
                 <a href="#personalizar">Crear</a>
                 <a href="#contacto">Contacto</a>
               </nav>
@@ -524,7 +658,8 @@ export default function Home() {
                 mano: rosas en todos los colores, girasoles tejidos,
                 tulipanes artesanales y lámparas florales. Cada ramo
                 incluye la posibilidad de personalizar colores,
-                tamaño y dedicatoria. Precios en pesos cubanos (CUP).
+                tamaño y dedicatoria. <strong>Todos se elaboran por
+                encargo.</strong> Precios en pesos cubanos (CUP).
               </p>
             </div>
 
@@ -586,9 +721,9 @@ export default function Home() {
               </h2>
 
               <p className="section-lead">
-                Explora nuestra galería de creaciones reales: ramos de
-                rosas eternas con mariposas metálicas y coronas de
-                perlas, girasoles tejidos a mano en limpiapipas,
+                Explora nuestra galería de creaciones reales: ramos
+                de rosas eternas con mariposas metálicas y coronas
+                de perlas, girasoles tejidos a mano en limpiapipas,
                 lámparas florales con luz LED, ramos temáticos
                 inspirados en Hot Wheels o Harry Potter, y arbolitos
                 navideños artesanales. Cada ramo es único, como la
@@ -618,6 +753,116 @@ export default function Home() {
         </section>
 
         {/* =====================================
+            TESTIMONIOS
+            ===================================== */}
+
+        <section className="section testimonials-section" id="testimonios">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">Lo que dicen</span>
+
+              <h2 className="section-title">
+                Clientes
+                <br />
+                que ya confiaron.
+              </h2>
+
+              <p className="section-lead">
+                Reseñas reales de personas que ya recibieron sus
+                ramos eternos hechos a mano.
+              </p>
+            </div>
+
+            <div className="testimonials-grid">
+              {testimonials.map((testimonial) => (
+                <article className="testimonial-card" key={testimonial.name}>
+                  <div className="testimonial-stars">★★★★★</div>
+
+                  <p className="testimonial-text">
+                    &ldquo;{testimonial.text}&rdquo;
+                  </p>
+
+                  <div>
+                    <span className="testimonial-author">
+                      {testimonial.name}
+                    </span>
+                    <span className="testimonial-role">
+                      Cliente verificado
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================
+            SOBRE ARI
+            ===================================== */}
+
+        <section className="section about-section" id="sobre-ari">
+          <div className="container">
+            <div className="about-inner">
+              <div className="about-content">
+                <span className="eyebrow">Sobre Ari</span>
+
+                <h2 className="section-title">
+                  Detrás de cada ramo
+                  <br />
+                  hay una artista.
+                </h2>
+
+                <p className="about-text">
+                  Soy <strong>Ariadna</strong>, creadora
+                  de Ari&apos;s Eternal Flowers desde Santa Clara,
+                  Villa Clara, Cuba. Comencé este proyecto en junio
+                  de este año, aunque la idea llevaba tiempo rondando
+                  mi cabeza — desde niña me han encantado las
+                  manualidades, la pintura y el dibujo. Tanto que
+                  decidí formarme en la carrera de Educación
+                  Artística, donde adquirí conocimientos y
+                  experiencias sobre el arte que hoy aplico en cada
+                  creación.
+                </p>
+
+                <p className="about-text">
+                  Trabajo con foami, limpiapipas, cintas de satín,               mariposas metálicas y coronas decorativas. Me
+                  inspira la naturaleza, el arte y las personas. Lo
+                  que más me gusta es la emoción y la sorpresa en el
+                  rostro de quien recibe un ramo — esa reacción es
+                  la razón de todo lo que hago.
+                </p>
+
+                <p className="about-quote">
+                  Cada ramo es hecho con amor.
+                </p>
+
+                <div className="about-highlights">
+                  <div className="about-highlight">
+                    <span className="about-highlight-icon">🎨</span>
+                    <span className="about-highlight-label">
+                      Educación Artística
+                    </span>
+                  </div>
+                  <div className="about-highlight">
+                    <span className="about-highlight-icon">🌸</span>
+                    <span className="about-highlight-label">
+                      100% Hecho a mano
+                    </span>
+                  </div>
+                  <div className="about-highlight">
+                    <span className="about-highlight-icon">📍</span>
+                    <span className="about-highlight-label">
+                      Santa Clara, Cuba
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================
             PERSONALIZAR
             ===================================== */}
 
@@ -635,8 +880,8 @@ export default function Home() {
               </h2>
 
               <p className="section-lead">
-                Cuéntanos qué tienes en mente, elige colores, flores y
-                detalles, y envíanos una imagen de referencia para
+                Cuéntanos qué tienes en mente, elige colores, flores
+                y detalles, y envíanos una imagen de referencia para
                 crear un ramo único. Como nuestros ramos temáticos de
                 Hot Wheels, Harry Potter o composiciones totalmente
                 personalizadas.
@@ -700,9 +945,9 @@ export default function Home() {
 
               <p className="section-lead">
                 Escríbenos por WhatsApp, SMS, email o redes sociales.
-                Te responderemos lo antes posible para ayudarte a crear
-                el regalo perfecto, con atención personalizada y envío
-                cuidado.
+                Te responderemos lo antes posible para ayudarte a
+                crear el regalo perfecto, con atención personalizada
+                y envío cuidado.
               </p>
             </div>
 
@@ -784,6 +1029,8 @@ export default function Home() {
               <a href="#coleccion">Colección</a>
               <a href="#ofertas">Ofertas</a>
               <a href="#galeria">Galería</a>
+              <a href="#testimonios">Testimonios</a>
+              <a href="#sobre-ari">Sobre Ari</a>
               <a href="#personalizar">Personalizados</a>
               <a href="#faq">FAQ</a>
               <a href="#contacto">Contacto</a>

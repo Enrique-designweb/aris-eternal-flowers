@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
+import { ServiceWorker } from "../components/service-worker";
+import "./globals.css";
 
 /* =========================================
    FUENTES
@@ -33,7 +34,7 @@ const SITE_DESCRIPTION =
   "Ramos de flores eternas hechos a mano: rosas, girasoles, tulipanes, lámparas florales y creaciones personalizadas. Regalos que permanecen, momentos que perduran. Envíos locales y personalización a pedido.";
 
 /* =========================================
-   METADATA PRINCIPAL
+   METADATA
    ========================================= */
 
 export const metadata: Metadata = {
@@ -71,23 +72,16 @@ export const metadata: Metadata = {
   category: "shopping",
   applicationName: SITE_NAME,
 
-  /* ---------- PWA ---------- */
   manifest: "/manifest.json",
 
-  /* ---------- Verificación de Google Search Console ---------- */
   verification: {
     google: "7OZCOLgyHGKF0eIENsW6WJs8Vz29Cyx3YBF-15gJtTs",
   },
 
-  /* ---------- Iconos ---------- */
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      {
-        url: "/favicon-96x96.png",
-        sizes: "96x96",
-        type: "image/png",
-      },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
       { url: "/favicon.svg", type: "image/svg+xml" },
       {
         url: "/web-app-manifest-192x192.png",
@@ -109,14 +103,12 @@ export const metadata: Metadata = {
     ],
   },
 
-  /* ---------- Apple / iOS ---------- */
   appleWebApp: {
     capable: true,
     title: "Ari's Eternal Flowers",
     statusBarStyle: "default",
   },
 
-  /* ---------- Open Graph (Facebook, WhatsApp, Pinterest) ---------- */
   openGraph: {
     type: "website",
     locale: "es_CU",
@@ -134,7 +126,6 @@ export const metadata: Metadata = {
     ],
   },
 
-  /* ---------- Twitter / X ---------- */
   twitter: {
     card: "summary_large_image",
     title: `${SITE_NAME} | Flores que permanecen`,
@@ -142,7 +133,6 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 
-  /* ---------- Control de robots ---------- */
   robots: {
     index: true,
     follow: true,
@@ -155,12 +145,10 @@ export const metadata: Metadata = {
     },
   },
 
-  /* ---------- Alternates ---------- */
   alternates: {
     canonical: SITE_URL,
   },
 
-  /* ---------- Otros ---------- */
   formatDetection: {
     telephone: true,
     email: true,
@@ -169,7 +157,7 @@ export const metadata: Metadata = {
 };
 
 /* =========================================
-   VIEWPORT (mobile-first)
+   VIEWPORT
    ========================================= */
 
 export const viewport: Viewport = {
@@ -198,6 +186,7 @@ export default function RootLayout({
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         {children}
         <Analytics />
+        <ServiceWorker />
       </body>
     </html>
   );
