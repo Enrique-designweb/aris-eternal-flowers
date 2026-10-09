@@ -73,6 +73,11 @@ export const metadata: Metadata = {
   /* ---------- PWA ---------- */
   manifest: "/manifest.json",
 
+  /* ---------- Verificación de Google Search Console ---------- */
+  verification: {
+    google: "7OZCOLgyHGKF0eIENsW6WJs8Vz29Cyx3YBF-15gJtTs",
+  },
+
   /* ---------- Iconos ---------- */
   icons: {
     icon: [

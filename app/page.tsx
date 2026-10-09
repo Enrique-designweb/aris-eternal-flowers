@@ -168,8 +168,8 @@ const offers = [
     badge: "Top ventas",
     name: "Romantic Pack",
     desc: "Ramo de rosas eternas con mariposa metálica y corona de perlas. Incluye tarjeta personalizada escrita a mano.",
-    priceNow: "$7,000",
-    priceWas: "$10,000",
+    priceNow: "$12,000",
+    priceWas: "$15,000",
     waMessage:
       "Hola 🌹 Me interesa el Romantic Pack (rosas eternas con mariposa y corona). ¿Está disponible?",
   },
