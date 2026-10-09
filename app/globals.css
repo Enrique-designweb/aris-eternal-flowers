@@ -1833,3 +1833,22 @@ img {
     font-size: 1.7rem;
   }
 }
+
+/* =========================================
+   PÁRRAFOS SEO — Secciones
+   ========================================= */
+
+.section-lead {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin: 14px 0 32px;
+  max-width: 680px;
+}
+
+@media (min-width: 700px) {
+  .section-lead {
+    font-size: 1rem;
+    margin: 18px 0 40px;
+  }
+}

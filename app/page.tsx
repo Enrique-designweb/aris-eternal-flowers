@@ -98,8 +98,8 @@ function PetalsBackground() {
     <div aria-hidden="true" className="petals-bg">
       {PETALS.map((petal, i) => (
         <span
-          key={i}
           className="petal-fall"
+          key={i}
           style={{
             left: petal.left,
             width: petal.size,
@@ -167,17 +167,17 @@ const offers = [
     image: "/galeria/roses-fuchsia-butterfly.jpg",
     badge: "Top ventas",
     name: "Romantic Pack",
-    desc: "Ramo de rosas eternas con mariposa metálica y corona de perlas. Incluye tarjeta personalizada escrita a mano.",
-    priceNow: "$12,000",
-    priceWas: "$15,000",
+    desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Un detalle romántico y elegante para sorprender a esa persona especial.",
+    priceNow: "$7,000",
+    priceWas: "$10,000",
     waMessage:
-      "Hola 🌹 Me interesa el Romantic Pack (rosas eternas con mariposa y corona). ¿Está disponible?",
+      "Hola 🌹 Me interesa el Romantic Pack (rosas fucsia con mariposa y corona). ¿Está disponible?",
   },
   {
     image: "/galeria/sunflowers-limpiapipas.jpg",
     badge: "Favorito",
     name: "Sunshine Pack",
-    desc: "Ramo de girasoles tejidos a mano en limpiapipas, con mariposa dorada y detalles florales.",
+    desc: "Ramo de girasoles tejidos a mano en limpiapipas, con mariposa dorada y espigas blancas decorativas.",
     priceNow: "$4,000",
     priceWas: "$5,000",
     waMessage:
@@ -187,11 +187,81 @@ const offers = [
     image: "/galeria/lamp-lotus-blue-1.jpg",
     badge: "Nuevo",
     name: "Flower Night",
-    desc: "Lámpara flor de loto tejida a mano con luz LED cálida. Ilumina y decora tu espacio.",
+    desc: "Lámpara flor de loto tejida a mano con luz LED cálida. Ilumina y decora tu espacio con un toque artesanal.",
     priceNow: "$1,500",
     priceWas: "$3,000",
     waMessage:
       "Hola 💡 Me interesa la lámpara Flower Night (flor de loto). ¿Tienen más colores?",
+  },
+  {
+    image: "/galeria/roses-orange-butterfly.jpg",
+    badge: "Promo",
+    name: "Sunset Butterfly",
+    desc: "Ramo de rosas naranjas con mariposa dorada calada. Un detalle cálido y elegante para sorprender.",
+    priceNow: "$5,000",
+    priceWas: "$6,500",
+    waMessage:
+      "Hola 🧡 Me interesa el ramo Sunset Butterfly (rosas naranjas con mariposa dorada). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-blue-crown.jpg",
+    badge: "Premium",
+    name: "Blue Royale",
+    desc: "Ramo de rosas azules con mariposas y corona plateada. Elegancia y distinción en cada detalle.",
+    priceNow: "$7,000",
+    priceWas: "$9,500",
+    waMessage:
+      "Hola 💙 Me interesa el ramo Blue Royale (rosas azules con corona plateada). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-white-crown.jpg",
+    badge: "Especial",
+    name: "White Love",
+    desc: "Ramo de rosas blancas con papel Love personalizado, corona dorada y mariposa calada. Romántico y delicado.",
+    priceNow: "$7,000",
+    priceWas: "$8,500",
+    waMessage:
+      "Hola 🤍 Me interesa el ramo White Love (rosas blancas con papel Love). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-yellow-butterfly.jpg",
+    badge: "Edición limitada",
+    name: "Golden Sunrise",
+    desc: "Ramo de rosas amarillas con espigas blancas y mariposas doradas. Un regalo luminoso y lleno de energía.",
+    priceNow: "$8,000",
+    priceWas: "$6,500",
+    waMessage:
+      "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-coral-butterfly.jpg",
+    badge: "Nuevo",
+    name: "Coral Aurora",
+    desc: "Ramo de rosas coral con mariposas doradas y corona decorativa. Un color cálido y sofisticado.",
+    priceNow: "$6,500",
+    priceWas: "$7,500",
+    waMessage:
+      "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/lily-pink-limpiapipas.jpg",
+    badge: "Económico",
+    name: "Pink Lily",
+    desc: "Ramo de tulipanes rosados tejidos a mano en limpiapipas. Delicado, duradero y perfecto para cualquier ocasión.",
+    priceNow: "$2,500",
+    priceWas: "$3,500",
+    waMessage:
+      "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?",
+  },
+  {
+    image: "/galeria/roses-yellow-sunflower.jpg",
+    badge: "Destacado",
+    name: "Sunflower Glow",
+    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos munods.",
+    priceNow: "$7,000",
+    priceWas: "$8,500",
+    waMessage:
+      "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?",
   },
 ];
 
@@ -275,7 +345,7 @@ const faqs = [
   },
   {
     q: "¿Cómo puedo pagar?",
-    a: "Aceptamos transferencia bancaria, pagos móviles y efectivo contra entrega en zonas habilitadas. Te compartimos los detalles al confirmar tu pedido.",
+    a: "Aceptamos transferencia bancaria y efectivo contra entrega en zonas habilitadas. Te compartimos los detalles al confirmar tu pedido.",
   },
 ];
 
@@ -365,6 +435,17 @@ export default function Home() {
                 <br />
                 cada ocasión.
               </h2>
+
+              <p className="section-lead">
+                En Ari&apos;s Eternal Flowers creamos ramos eternos
+                hechos a mano con materiales de alta durabilidad:
+                rosas eternas, girasoles tejidos en limpiapipas,
+                tulipanes, lámparas florales, arbolitos navideños y
+                creaciones personalizadas. Cada pieza es única,
+                pensada para regalar en cumpleaños, aniversarios,
+                San Valentín, Día de las Madres o cualquier ocasión
+                especial.
+              </p>
             </div>
 
             <div className="category-grid">
@@ -427,16 +508,24 @@ export default function Home() {
             OFERTAS
             ===================================== */}
 
-        <section className="section">
+        <section className="section" id="ofertas">
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Ofertas especiales</span>
 
               <h2 className="section-title">
-                Packs pensados
+                Ramos eternos
                 <br />
                 para sorprender.
               </h2>
+
+              <p className="section-lead">
+                Descubre nuestra selección de ramos eternos hechos a
+                mano: rosas en todos los colores, girasoles tejidos,
+                tulipanes artesanales y lámparas florales. Cada ramo
+                incluye la posibilidad de personalizar colores,
+                tamaño y dedicatoria. Precios en pesos cubanos (CUP).
+              </p>
             </div>
 
             <div className="offers-grid">
@@ -461,7 +550,9 @@ export default function Home() {
 
                     <div className="offer-price">
                       <span className="now">{offer.priceNow}</span>
-                      <span className="was">{offer.priceWas}</span>
+                      {offer.priceWas && (
+                        <span className="was">{offer.priceWas}</span>
+                      )}
                     </div>
 
                     <a
@@ -493,6 +584,16 @@ export default function Home() {
                 <br />
                 que hablan por sí solas.
               </h2>
+
+              <p className="section-lead">
+                Explora nuestra galería de creaciones reales: ramos de
+                rosas eternas con mariposas metálicas y coronas de
+                perlas, girasoles tejidos a mano en limpiapipas,
+                lámparas florales con luz LED, ramos temáticos
+                inspirados en Hot Wheels o Harry Potter, y arbolitos
+                navideños artesanales. Cada ramo es único, como la
+                persona que lo recibe.
+              </p>
             </div>
 
             <div className="gallery-grid">
@@ -532,14 +633,15 @@ export default function Home() {
                 <br />
                 Nosotros creamos.
               </h2>
-            </div>
 
-            <p className="hero-description">
-              Cuéntanos qué tienes en mente, elige colores, flores y
-              detalles, y envíanos una imagen de referencia para crear
-              un ramo único. Como nuestros ramos temáticos de Hot
-              Wheels o Harry Potter.
-            </p>
+              <p className="section-lead">
+                Cuéntanos qué tienes en mente, elige colores, flores y
+                detalles, y envíanos una imagen de referencia para
+                crear un ramo único. Como nuestros ramos temáticos de
+                Hot Wheels, Harry Potter o composiciones totalmente
+                personalizadas.
+              </p>
+            </div>
 
             <div className="mt-6.5">
               <CustomizerButton variant="primary">
@@ -564,6 +666,13 @@ export default function Home() {
                 <br />
                 quieres saber.
               </h2>
+
+              <p className="section-lead">
+                Resolvemos las dudas más frecuentes sobre nuestras
+                flores eternas: durabilidad, personalización, colores
+                disponibles, tiempos de entrega, envíos locales y
+                métodos de pago.
+              </p>
             </div>
 
             <div className="faq-list">
@@ -588,13 +697,14 @@ export default function Home() {
               <span className="eyebrow">¿Tienes una idea?</span>
 
               <h2 className="section-title">Hablemos.</h2>
-            </div>
 
-            <p className="hero-description">
-              Escríbenos por el canal que prefieras. Te responderemos
-              lo antes posible para ayudarte a crear el regalo
-              perfecto.
-            </p>
+              <p className="section-lead">
+                Escríbenos por WhatsApp, SMS, email o redes sociales.
+                Te responderemos lo antes posible para ayudarte a crear
+                el regalo perfecto, con atención personalizada y envío
+                cuidado.
+              </p>
+            </div>
 
             <div className="contact-grid">
               <a
@@ -672,6 +782,7 @@ export default function Home() {
             <nav className="footer-links">
               <Link href="/">Inicio</Link>
               <a href="#coleccion">Colección</a>
+              <a href="#ofertas">Ofertas</a>
               <a href="#galeria">Galería</a>
               <a href="#personalizar">Personalizados</a>
               <a href="#faq">FAQ</a>

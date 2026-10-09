@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌸 Ari's Eternal Flowers
 
-## Getting Started
+Sitio web y tienda online de ramos de flores eternas hechos a mano. Un proyecto artesanal con foco en la experiencia móvil y la conversión directa a WhatsApp.
 
-First, run the development server:
+🔗 **Sitio en producción:** [aris-eternal-flowers.vercel.app](https://aris-eternal-flowers.vercel.app)
+
+---
+
+## ✨ Sobre el proyecto
+
+Tienda digital para **Ari's Eternal Flowers**, negocio de ramos y creaciones florales hechas a mano con materiales de alta durabilidad: rosas eternas, girasoles tejidos, tulipanes, lámparas florales, arbolitos navideños en limpiapipas y ramos temáticos personalizados.
+
+El sitio está diseñado para ser rápido, elegante y mobile-first, con **conversión directa a WhatsApp** — el canal por donde llegan la mayoría de los clientes.
+
+---
+
+## 🎨 Características
+
+- 🌸 **Hero minimalista** con pétalos cayendo de fondo
+- 🎨 **Pétalos cayendo** globales (respetando `prefers-reduced-motion`)
+- 💐 **Formulario personalizado** multi-paso con GSAP (tipo de flor, colores, tamaño, ocasión, referencia, dedicatoria)
+- 📱 **PWA instalable** en Android y iOS
+- 🖼️ **Galería masonry** con fotos reales de las creaciones
+- 🔥 **9 ofertas** con CTA a WhatsApp prellenado por producto
+- ❓ **FAQ** con `<details>` nativo (sin JavaScript)
+- 📞 **Contacto multi-canal**: WhatsApp, SMS, Email, Facebook, Instagram
+- 🎬 **Animaciones GSAP + ScrollTrigger** en todas las secciones
+- ♿ **Accesible**: respeta `prefers-reduced-motion`, aria labels, foco visible
+- 🔍 **SEO completo**: metadata, Open Graph, Twitter Cards, sitemap, robots
+- 📊 **Vercel Analytics** para métricas de visitas
+
+---
+
+## 🛠️ Stack
+
+- **Framework:** Next.js 16 (App Router + Turbopack)
+- **Lenguaje:** TypeScript
+- **Estilos:** Tailwind CSS 4 + CSS custom properties
+- **Animaciones:** GSAP + ScrollTrigger
+- **Iconos:** Lucide React
+- **Tipografías:** Cormorant Garamond (display) + DM Sans (body) vía `next/font`
+- **Analytics:** Vercel Analytics
+- **Deploy:** Vercel
+
+---
+
+## 📁 Estructura
+
+aris-eternal-flowers/
+├── app/
+│ ├── layout.tsx # Metadata, fuentes, Analytics
+│ ├── page.tsx # Landing principal
+│ ├── globals.css # Design tokens + estilos
+│ ├── robots.ts # Genera /robots.txt
+│ └── sitemap.ts # Genera /sitemap.xml
+├── components/
+│ ├── customizer.tsx # Formulario personalizado multi-paso
+│ └── scroll-effects.tsx # Animaciones GSAP de scroll
+├── public/
+│ ├── galeria/ # 15 fotos de las creaciones
+│ ├── manifest.json # PWA
+│ └── og-image.jpg # Imagen para compartir
+└── package.json
+
+🚀 Cómo ejecutar en local
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Servidor de desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Lint
+npm run lint
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Build de producción
+npm run build
+Abre http://localhost:3000.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+.
 
-## Learn More
+📞 Contacto
+🌐 Sitio: aris-eternal-flowers.vercel.app
 
-To learn more about Next.js, take a look at the following resources:
+💬 WhatsApp: +53 5 5693604
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📷 Instagram: @ari_eternalflowers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📘 Facebook: Ari's Eternal Flowers
 
-## Deploy on Vercel
+✉️ Email: ariadnapazgonzalez@gmail.com
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+💐 Sobre Ari's Eternal Flowers
+Ramos y creaciones florales hechos a mano con materiales de alta durabilidad. Cada pieza se elabora de forma artesanal y única, pensada para regalar y conservar durante años.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Flores que permanecen. Momentos que perduran.
+
+© 2026 Ari's Eternal Flowers. Todos los derechos reservados.
+
+
