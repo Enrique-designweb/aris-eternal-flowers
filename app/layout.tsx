@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 /* =========================================
    FUENTES
@@ -196,6 +197,7 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
