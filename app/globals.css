@@ -1725,46 +1725,47 @@ img {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
 /* =========================================
    CINEMATIC BANNER (Brand Palette)
    ========================================= */
 
 .cinematic-banner {
-  height: 85vh;
-  min-height: 600px;
-  max-height: 800px;
+  height: 100svh; /* Altura completa de pantalla en móvil */
+  min-height: 650px;
+  max-height: 900px;
   overflow: hidden;
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .cinematic-bg {
   inset: 0;
   opacity: 0;
   position: absolute;
-  transition: opacity 1.5s ease-in-out, transform 8s linear;
+  transition: opacity 2s ease-in-out, transform 10s linear;
   transform: scale(1);
 }
 
 .cinematic-bg.active {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.1); /* Zoom lento cinematográfico */
 }
 
 /* Fondos Estacionales */
-.bg-spring { background: radial-gradient(circle at 50% 50%, var(--color-old-rose) 0%, var(--color-burgundy) 100%); }
-.bg-summer { background: radial-gradient(circle at 50% 50%, var(--color-gold) 0%, var(--color-ink) 100%); }
-.bg-autumn { background: radial-gradient(circle at 50% 50%, var(--color-wine) 0%, var(--color-ink) 100%); }
-.bg-winter { background: radial-gradient(circle at 50% 50%, #4d3b41 0%, #161014 100%); }
-.bg-eternal { background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #14060a 100%); }
+.bg-spring { background: radial-gradient(circle at 50% 50%, #8c4560 0%, #1c0e13 100%); }
+.bg-summer { background: radial-gradient(circle at 50% 50%, #b8853e 0%, #1c140a 100%); }
+.bg-autumn { background: radial-gradient(circle at 50% 50%, #8a3b2a 0%, #140806 100%); }
+.bg-winter { background: radial-gradient(circle at 50% 50%, #3b4a52 0%, #0a0f12 100%); }
+.bg-eternal { background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #0d0407 100%); }
 
 .cinematic-overlay {
   background: linear-gradient(
-    to top,
-    rgba(42, 32, 35, 0.95) 0%,
-    rgba(42, 32, 35, 0.4) 50%,
-    rgba(42, 32, 35, 0.7) 100%
+    to bottom,
+    rgba(14, 8, 10, 0.3) 0%,
+    rgba(14, 8, 10, 0.8) 60%,
+    rgba(14, 8, 10, 0.95) 100%
   );
   inset: 0;
   pointer-events: none;
@@ -1781,7 +1782,7 @@ img {
 }
 
 .cinematic-petal {
-  background: radial-gradient(circle at 30% 30%, var(--color-old-rose), var(--color-wine) 70%);
+  background: radial-gradient(circle at 30% 30%, #f0b5be, #a34a63 70%);
   border-radius: 150% 0 150% 0;
   opacity: 0;
   position: absolute;
@@ -1795,61 +1796,59 @@ img {
 .petal-4 { left: 55%; width: 12px; height: 12px; animation-duration: 12s; animation-delay: 4s; }
 .petal-5 { left: 70%; width: 14px; height: 14px; animation-duration: 7s; animation-delay: 0.5s; }
 .petal-6 { left: 85%; width: 16px; height: 16px; animation-duration: 11s; animation-delay: 3s; }
-.petal-7 { left: 15%; width: 12px; height: 12px; animation-duration: 9s; animation-delay: 5s; }
-.petal-8 { left: 60%; width: 20px; height: 20px; animation-duration: 13s; animation-delay: 1.5s; }
-.petal-9 { left: 90%; width: 10px; height: 10px; animation-duration: 8s; animation-delay: 4.5s; }
-.petal-10 { left: 35%; width: 14px; height: 14px; animation-duration: 10s; animation-delay: 2.5s; }
-.petal-11 { left: 75%; width: 16px; height: 16px; animation-duration: 11s; animation-delay: 6s; }
-.petal-12 { left: 5%; width: 12px; height: 12px; animation-duration: 9s; animation-delay: 3.5s; }
 
 @keyframes fall-cinematic {
   0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.6; }
-  90% { opacity: 0.6; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- Layout para el Banner --- */
+/* --- FLOR DE FONDO --- */
+.cinematic-flower-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  max-width: 400px;
+  height: 80vw;
+  max-height: 400px;
+  z-index: 1;
+  opacity: 0.6; /* Se ve detrás del texto */
+  pointer-events: none;
+}
+
+/* --- LAYOUT Y TEXTOS --- */
 .cinematic-content-layout {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-end;
-  padding-bottom: 60px;
   position: relative;
   z-index: 10;
-}
-
-.cinematic-left {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
-
-/* AHORA LA FLOR SE MUESTRA EN MÓVIL */
-.cinematic-right {
-  display: flex; 
-  width: 100%;
-  height: 250px;
-  align-items: center;
-  justify-content: center;
-  order: -1; /* Mueve la flor ARRIBA del texto en móvil */
-  margin-bottom: 20px;
+  margin-top: auto; /* Empuja el contenido hacia abajo */
+  padding-bottom: 60px;
 }
 
 .cinematic-text-box {
-  display: grid;
+  position: relative;
+  min-height: 260px; /* Evita que el layout salte entre slides */
   margin-bottom: 24px;
-  max-width: 650px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
+/* FIX: El texto anterior ya no se superpone */
 .cinematic-slide-content {
-  grid-area: 1 / 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px);
-  transition: all 0.8s ease-in-out;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cinematic-slide-content.active {
@@ -1869,7 +1868,7 @@ img {
 .cinematic-title {
   color: var(--color-white);
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(2.8rem, 9vw, 4.5rem);
   font-weight: 500;
   line-height: 1.05;
   margin: 12px 0;
@@ -1939,116 +1938,103 @@ img {
   width: 24px;
 }
 
-/* En Escritorio: Texto a la izquierda, Flor a la derecha */
 @media (min-width: 900px) {
   .cinematic-content-layout {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 0;
+    width: 55%; /* En escritorio, el texto va a la izquierda */
   }
-
-  .cinematic-left {
-    width: 55%;
-    justify-content: center;
-  }
-
-  .cinematic-right {
-    width: 45%;
-    height: 80%;
-    order: 0; /* Quita el orden para que se ponga a la derecha */
-    margin-bottom: 0;
-  }
-  
-  .cinematic-slide-content {
-    position: relative; 
+  .cinematic-flower-bg {
+    left: 75%; /* La flor se mueve a la derecha */
+    opacity: 0.9;
   }
 }
 
 /* =========================================
-   FLOR ANIMADA SVG (Ciclo de vida)
+   EL CICLO DE VIDA REAL (Animaciones CSS)
    ========================================= */
 
-.flower-container {
-  height: 100%;
+.flower-scene {
   width: 100%;
-  max-width: 300px;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  height: 100%;
+  transition: all 2s ease-in-out;
 }
 
 .blooming-svg {
   width: 100%;
-  height: auto;
+  height: 100%;
   overflow: visible;
 }
 
+/* El tallo por defecto está oculto/arrugado */
 .stem {
   stroke-dasharray: 250;
   stroke-dashoffset: 250;
-  transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: stroke-dashoffset 2s ease-out, transform 2s ease-in-out;
+  transform-origin: bottom center;
 }
 
-.flower-container.animate .stem {
-  stroke-dashoffset: 0;
-}
-
-.leaf {
+/* Las hojas y pétalos están ocultos */
+.leaf, .petal {
   opacity: 0;
-  transform: scale(0);
-  transform-origin: center;
-  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 1.5s ease-in-out;
 }
 
-.flower-container.animate .leaf-left {
+/* --- PRIMAVERA (Crecimiento) --- */
+.season-0 .stem {
+  stroke-dashoffset: 0; /* El tallo crece */
+}
+.season-0 .leaf {
+  opacity: 1;
+}
+.season-0 .petal {
   opacity: 1;
   transform: scale(1);
-  transition-delay: 1s;
+}
+.season-0 .p-front { transform: scale(1) rotate(0deg); }
+.season-0 .p-back { transform: scale(1) rotate(0deg); }
+
+/* --- VERANO (Máximo esplendor) --- */
+.season-1 .stem { stroke-dashoffset: 0; }
+.season-1 .leaf { opacity: 1; }
+.season-1 .petal { opacity: 1; transform: scale(1.05); }
+.season-1 .flower-head {
+  animation: breathe 3s ease-in-out infinite alternate;
 }
 
-.flower-container.animate .leaf-right {
-  opacity: 1;
-  transform: scale(1);
-  transition-delay: 1.3s;
+@keyframes breathe {
+  0% { transform: translate(150px, 190px) scale(1); }
+  100% { transform: translate(150px, 190px) scale(1.03); }
 }
 
-.petal {
-  opacity: 0;
-  transform: scale(0);
-  transform-origin: 0px 0px;
-  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+/* --- OTOÑO (Cambio de color) --- */
+.season-2 .stem { stroke-dashoffset: 0; stroke: #5c4028; }
+.season-2 .leaf { opacity: 1; fill: #8c5a2b; }
+.season-2 .petal { opacity: 1; transform: scale(0.95); fill: #b85c38; } /* Pétalos se tornan marrones */
+
+/* --- INVIERNO (Muerte y caída) --- */
+.season-3 .stem { 
+  stroke-dashoffset: 0; 
+  stroke: #2b2b2b; 
+  transform: rotate(15deg); /* El tallo se dobla por el peso */
+}
+.season-3 .leaf { 
+  opacity: 0; 
+  transform: translateY(20px) rotate(45deg); /* Caen las hojas */
+}
+.season-3 .petal { 
+  opacity: 0; 
+  transform: translateY(60px) scale(0.5); /* Caen los pétalos */
+}
+.season-3 .flower-center { opacity: 0; }
+
+/* --- ETERNO (Resurrección Dorada) --- */
+.season-4 .stem { stroke-dashoffset: 0; stroke: var(--color-gold); transform: rotate(0deg); }
+.season-4 .leaf { opacity: 1; fill: var(--color-gold); }
+.season-4 .petal { opacity: 1; transform: scale(1.1); fill: url(#petalGold); } /* Pétalos dorados */
+.season-4 .flower-head {
+  animation: float-eternal 4s ease-in-out infinite alternate;
 }
 
-.flower-container.animate .petal-bg-1 { opacity: 0.8; transform: scale(1); transition-delay: 1.5s; }
-.flower-container.animate .petal-bg-2 { opacity: 0.8; transform: scale(1); transition-delay: 1.6s; }
-.flower-container.animate .petal-bg-3 { opacity: 0.8; transform: scale(1); transition-delay: 1.7s; }
-
-.flower-container.animate .petal-fg-1 { opacity: 1; transform: scale(1); transition-delay: 2.0s; }
-.flower-container.animate .petal-fg-2 { opacity: 1; transform: scale(1); transition-delay: 2.1s; }
-.flower-container.animate .petal-fg-3 { opacity: 1; transform: scale(1); transition-delay: 2.2s; }
-
-.flower-center {
-  opacity: 0;
-  transform: scale(0);
-  transform-origin: center;
-  transition: all 0.8s ease-out;
-}
-
-.flower-container.animate .flower-center {
-  opacity: 1;
-  transform: scale(1);
-  transition-delay: 2.5s;
-}
-
-.flower-container.animate .flower-head {
-  animation: sway 4s ease-in-out infinite alternate;
-  animation-delay: 3.5s;
-}
-
-@keyframes sway {
-  0% { transform: translate(150px, 190px) rotate(-2deg); }
-  100% { transform: translate(150px, 190px) rotate(2deg); }
+@keyframes float-eternal {
+  0% { transform: translate(150px, 180px); }
+  100% { transform: translate(150px, 190px); }
 }
