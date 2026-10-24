@@ -1730,10 +1730,9 @@ img {
    ========================================= */
 
 .cinematic-banner {
-  /* Altura reducida para que no ocupe toda la pantalla en móvil */
-  height: 80svh; 
-  min-height: 550px;
-  max-height: 750px;
+  height: 85svh; 
+  min-height: 600px;
+  max-height: 800px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -1751,10 +1750,10 @@ img {
 
 .cinematic-bg.active {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.1); 
 }
 
-/* Fondos Estacionales (Ligeramente iluminados) */
+/* Fondos Estacionales */
 .bg-spring { background: radial-gradient(circle at 50% 50%, #8c4560 0%, #1c0e13 100%); }
 .bg-summer { background: radial-gradient(circle at 50% 50%, #b8853e 0%, #1c140a 100%); }
 .bg-autumn { background: radial-gradient(circle at 50% 50%, #8a3b2a 0%, #140806 100%); }
@@ -1762,7 +1761,6 @@ img {
 .bg-eternal { background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #0d0407 100%); }
 
 .cinematic-overlay {
-  /* Overlay un poco más suave en el centro para que la flor brille */
   background: linear-gradient(
     to bottom,
     rgba(14, 8, 10, 0.4) 0%,
@@ -1775,7 +1773,6 @@ img {
   z-index: 2;
 }
 
-/* Pétalos cayendo */
 .cinematic-petals {
   inset: 0;
   overflow: hidden;
@@ -1807,21 +1804,22 @@ img {
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- FLOR DE FONDO (Más iluminada) --- */
+/* --- JARDÍN DE LIRIOS (Fondo) --- */
 .cinematic-flower-bg {
   position: absolute;
-  top: 50%;
+  bottom: 0; /* Pegado a la base del banner */
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  max-width: 450px;
-  height: 90vw;
-  max-height: 450px;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: 80%;
   z-index: 1;
-  opacity: 0.9; /* Antes 0.6, ahora resalta más */
-  filter: brightness(1.2); /* Subimos el brillo base */
+  opacity: 0.85;
   pointer-events: none;
   transition: all 2s ease-in-out;
+  /* Difuminado en la parte inferior para que se integre con el fondo */
+  mask-image: linear-gradient(to top, transparent 0%, black 20%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
 }
 
 /* --- LAYOUT Y TEXTOS --- */
@@ -1950,20 +1948,22 @@ img {
     width: 55%;
   }
   .cinematic-flower-bg {
-    left: 70%;
-    opacity: 1;
-    filter: brightness(1.3);
+    left: 75%;
+    transform: translateX(-50%);
+    height: 95%;
   }
 }
 
 /* =========================================
-   EL CICLO DE VIDA REAL (Animaciones CSS)
+   EL CICLO DE VIDA DEL JARDÍN (Animaciones)
    ========================================= */
 
 .flower-scene {
   width: 100%;
   height: 100%;
-  transition: all 2s ease-in-out;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .blooming-svg {
@@ -1972,18 +1972,24 @@ img {
   overflow: visible;
 }
 
-/* El tallo */
+/* Tallos */
 .stem {
-  stroke-dasharray: 250;
-  stroke-dashoffset: 250;
-  transition: stroke-dashoffset 2s ease-out, transform 2s ease-in-out;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 2s ease-out, transform 2s ease-in-out, stroke 2s ease;
   transform-origin: bottom center;
 }
 
-/* Las hojas y pétalos */
+/* Hojas y Pétalos */
 .leaf, .petal {
   opacity: 0;
   transition: all 1.5s ease-in-out;
+  transform-origin: center;
+}
+
+/* Los pétalos se abren desde el centro de su propia flor */
+.lily .petal {
+  transform-origin: 0px 0px;
 }
 
 /* --- PRIMAVERA (Crecimiento) --- */
@@ -1992,43 +1998,52 @@ img {
 .season-0 .petal { opacity: 1; transform: scale(1); }
 .season-0 .p-front { transform: scale(1) rotate(0deg); }
 .season-0 .p-back { transform: scale(1) rotate(0deg); }
-.season-0 .cinematic-flower-bg { filter: brightness(1.2) drop-shadow(0 0 15px rgba(232, 28, 94, 0.5)); }
+.season-0 .flower-center { opacity: 1; transform: scale(1); }
+.season-0 .cinematic-flower-bg { filter: brightness(1.2) drop-shadow(0 0 20px rgba(232, 28, 94, 0.4)); }
 
 /* --- VERANO (Máximo esplendor) --- */
 .season-1 .stem { stroke-dashoffset: 0; }
-.season-1 .leaf { opacity: 1; }
+.season-1 .leaf { opacity: 1; transform: scale(1.05); }
 .season-1 .petal { opacity: 1; transform: scale(1.05); }
-.season-1 .flower-head { animation: breathe 3s ease-in-out infinite alternate; }
-.season-1 .cinematic-flower-bg { filter: brightness(1.3) drop-shadow(0 0 25px rgba(255, 182, 193, 0.7)); }
+.season-1 .flower-center { opacity: 1; }
+.season-1 .lily-center .flower-head { animation: breathe-center 3s ease-in-out infinite alternate; }
+.season-1 .lily-left .flower-head { animation: breathe-side 3s ease-in-out infinite alternate 0.5s; }
+.season-1 .lily-right .flower-head { animation: breathe-side 3s ease-in-out infinite alternate 0.8s; }
+.season-1 .cinematic-flower-bg { filter: brightness(1.4) drop-shadow(0 0 35px rgba(255, 182, 193, 0.6)); }
 
-@keyframes breathe {
-  0% { transform: translate(150px, 190px) scale(1); }
-  100% { transform: translate(150px, 190px) scale(1.03); }
+@keyframes breathe-center {
+  0% { transform: translate(200px, 220px) scale(1); }
+  100% { transform: translate(200px, 220px) scale(1.02); }
+}
+@keyframes breathe-side {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
 }
 
 /* --- OTOÑO (Cambio de color) --- */
 .season-2 .stem { stroke-dashoffset: 0; stroke: #5c4028; }
 .season-2 .leaf { opacity: 1; fill: #8c5a2b; }
 .season-2 .petal { opacity: 1; transform: scale(0.95); fill: #b85c38; }
-.season-2 .cinematic-flower-bg { filter: brightness(1.1) sepia(0.4) drop-shadow(0 0 15px rgba(184, 92, 56, 0.5)); }
+.season-2 .flower-center { opacity: 1; filter: sepia(1); }
+.season-2 .cinematic-flower-bg { filter: brightness(1.1) sepia(0.4) drop-shadow(0 0 20px rgba(184, 92, 56, 0.5)); }
 
 /* --- INVIERNO (Muerte y caída) --- */
-.season-3 .stem { stroke-dashoffset: 0; stroke: #2b2b2b; transform: rotate(15deg); }
-.season-3 .leaf { opacity: 0; transform: translateY(20px) rotate(45deg); }
-.season-3 .petal { opacity: 0; transform: translateY(60px) scale(0.5); }
+.season-3 .stem { stroke-dashoffset: 0; stroke: #2b2b2b; transform: rotate(10deg); }
+.season-3 .lily-right .stem { transform: rotate(-12deg); }
+.season-3 .leaf { opacity: 0; transform: translateY(30px) rotate(45deg); }
+.season-3 .petal { opacity: 0; transform: translateY(80px) scale(0.4); }
 .season-3 .flower-center { opacity: 0; }
-/* Oscurecemos un poco la flor en invierno */
-.season-3 .cinematic-flower-bg { filter: brightness(0.6) grayscale(0.8); }
+.season-3 .cinematic-flower-bg { filter: brightness(0.5) grayscale(1); }
 
 /* --- ETERNO (Resurrección Dorada) --- */
 .season-4 .stem { stroke-dashoffset: 0; stroke: var(--color-gold); transform: rotate(0deg); }
 .season-4 .leaf { opacity: 1; fill: var(--color-gold); }
 .season-4 .petal { opacity: 1; transform: scale(1.1); fill: url(#petalGold); }
-.season-4 .flower-head { animation: float-eternal 4s ease-in-out infinite alternate; }
-/* Súper resplandor dorado */
-.season-4 .cinematic-flower-bg { filter: brightness(1.5) drop-shadow(0 0 35px rgba(245, 197, 24, 0.9)); }
+.season-4 .flower-center { opacity: 1; filter: brightness(1.5); }
+.season-4 .lily-center .flower-head { animation: float-eternal 4s ease-in-out infinite alternate; }
+.season-4 .cinematic-flower-bg { filter: brightness(1.6) drop-shadow(0 0 45px rgba(245, 197, 24, 0.8)); }
 
 @keyframes float-eternal {
-  0% { transform: translate(150px, 180px); }
-  100% { transform: translate(150px, 190px); }
+  0% { transform: translate(200px, 210px); }
+  100% { transform: translate(200px, 220px); }
 }
