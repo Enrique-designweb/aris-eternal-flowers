@@ -161,13 +161,6 @@ const categories = [
     name: "Personalizados",
     slug: "personalizados",
   },
-  {
-    image: "/galeria/flores-individuales.jpeg",
-    alt: "Flores individuales hechas a mano",
-    icon: "🌸",
-    name: "Individuales",
-    slug: "individuales",
-  }
 ];
 
 const offers = [
@@ -175,41 +168,34 @@ const offers = [
   // 🌹 NUEVAS FLORES INDIVIDUALES 🌻
   // ==========================================
   {
-    image: "/galeria/rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-limpiapipa.jpg")
+    image: "/galeria/rosa-limpiapipa.jpg", // Asegúrate de que este sea el nombre real de tu archivo
+    fit: "contain",
     badge: "Individual",
     name: "Rosa de Limpiapipa",
     desc: "Una sola rosa tejida a mano en limpiapipas. El detalle perfecto para un regalo sencillo y especial.",
     priceNow: "500 CUP",
     priceWas: "750 CUP",
-    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual.",
+    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual (500 CUP).",
   },
   {
-    image: "/galeria/girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-saten.jpg")
+    image: "/galeria/rosa-saten.jpg", // Asegúrate de que este sea el nombre real de tu archivo
+    fit: "contain",
     badge: "Individual",
-    name: "Girasol de Satín",
-    desc: "Un hermoso girasol individual elaborado en tela de satén. Un toque de luz y alegría.",
+    name: "Rosa de Satén",
+    desc: "Una sola rosa tejida a mano en tela de satén, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
     priceNow: "600 CUP",
-    priceWas: "800 CUP",
-    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Satén individual.",
+    priceWas: "750 CUP",
+    waMessage: "Hola 🌻 Me interesa comprar una Rosa de Satén individual (600 CUP).",
   },
   {
-    image: "/galeria/girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-limpiapipa.jpg")
+    image: "/galeria/girasol-limpiapipa.jpg", // Asegúrate de que este sea el nombre real de tu archivo
+    fit: "contain",
     badge: "Individual",
     name: "Girasol de Limpiapipa",
     desc: "Un girasol individual tejido a mano en limpiapipas. Resistente, hermoso y duradero.",
     priceNow: "500 CUP",
-    priceWas: "750 CUP",
-    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual.",
-  },
-  {
-
-    image: "/galeria/rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-satin.jpg")
-    badge: "Individual",
-    name: "Rosa de Satín",
-    desc: "Una sola rosa tejida a mano en tela de satín, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
-    priceNow: "600 CUP",
-    priceWas: "750 CUP",
-    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Satén individual.",
+    priceWas: "",
+    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual (500 CUP).",
   },
 
   // ==========================================
@@ -217,6 +203,7 @@ const offers = [
   // ==========================================
   {
     image: "/galeria/roses-fuchsia-butterfly.jpg",
+    fit: "",
     badge: "Top ventas",
     name: "Romantic Pack",
     desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Incluye tarjeta personalizada escrita a mano.",
@@ -227,6 +214,7 @@ const offers = [
   },
   {
     image: "/galeria/sunflowers-limpiapipas.jpg",
+    fit: "",
     badge: "Favorito",
     name: "Sunshine Pack",
     desc: "Ramo de girasoles tejidos a mano en limpiapipas, con mariposa dorada y espigas blancas decorativas.",
@@ -237,6 +225,7 @@ const offers = [
   },
   {
     image: "/galeria/lamp-lotus-blue-1.jpg",
+    fit: "",
     badge: "Nuevo",
     name: "Flower Night",
     desc: "Lámpara flor de loto tejida a mano con luz LED cálida. Ilumina y decora tu espacio con un toque artesanal.",
@@ -247,6 +236,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-purple-butterfly.jpg",
+    fit: "",
     badge: "Nuevo",
     name: "Lavender Dreams",
     desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino, perfecto para sorprender.",
@@ -257,6 +247,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-lime-crown.jpg",
+    fit: "",
     badge: "Nuevo",
     name: "Lime Queen",
     desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno que no pasa desapercibido.",
@@ -267,6 +258,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-orange-butterfly.jpg",
+    fit: "",
     badge: "Promo",
     name: "Sunset Butterfly",
     desc: "Ramo de rosas naranjas con mariposa dorada calada. Un detalle cálido y elegante para sorprender.",
@@ -277,6 +269,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-blue-crown.jpg",
+    fit: "",
     badge: "Premium",
     name: "Blue Royale",
     desc: "Ramo de rosas azules con mariposas y corona plateada. Elegancia y distinción en cada detalle.",
@@ -287,6 +280,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-white-crown.jpg",
+    fit: "",
     badge: "Especial",
     name: "White Love",
     desc: "Ramo de rosas blancas con papel Love personalizado, corona dorada y mariposa calada. Romántico y delicado.",
@@ -297,6 +291,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-yellow-butterfly.jpg",
+    fit: "",
     badge: "Edición limitada",
     name: "Golden Sunrise",
     desc: "Ramo de rosas amarillas con espigas blancas y mariposas doradas. Un regalo luminoso y lleno de energía.",
@@ -307,6 +302,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-yellow-sunflower.jpg",
+    fit: "",
     badge: "Destacado",
     name: "Sunflower Glow",
     desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos mundos.",
@@ -317,6 +313,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-red-passion.jpg",
+    fit: "",
     badge: "Premium",
     name: "Red Passion",
     desc: "Ramo de rosas rojas intensas con mariposa calada dorada y corona de perlas. Un clásico romántico que nunca falla.",
@@ -327,6 +324,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-coral-butterfly.jpg",
+    fit: "",
     badge: "Nuevo",
     name: "Coral Aurora",
     desc: "Ramo de rosas coral con mariposas doradas y corona decorativa. Un color cálido y sofisticado.",
@@ -337,6 +335,7 @@ const offers = [
   },
   {
     image: "/galeria/roses-yellow-foami-50.jpg",
+    fit: "",
     badge: "Edición limitada",
     name: "Yellow Fifty",
     desc: "Ramo XL de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
@@ -347,6 +346,7 @@ const offers = [
   },
   {
     image: "/galeria/lily-pink-limpiapipas.jpg",
+    fit: "",
     badge: "Económico",
     name: "Pink Lily",
     desc: "Ramo de tulipanes rosados tejidos a mano en limpiapipas. Delicado, duradero y perfecto para cualquier ocasión.",
@@ -362,27 +362,24 @@ const galleryItems = [
   // 🌹 NUEVAS FLORES INDIVIDUALES EN GALERÍA 🌻
   // ==========================================
   {
-    src: "/galeria/rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/rosa-limpiapipa.jpg",
+    fit: "contain",
     caption: "Rosa Individual",
     alt: "Rosa de limpiapipa individual",
     cls: "",
   },
   {
-    src: "/galeria/girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
-    caption: "Girasol de Satín",
-    alt: "Girasol de satén individual",
+    src: "/galeria/rosa-saten.jpg",
+    fit: "contain",
+    caption: "Rosa de Satén",
+    alt: "Rosa de satén individual",
     cls: "tall",
   },
   {
-    src: "/galeria/girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/girasol-limpiapipa.jpg",
+    fit: "contain",
     caption: "Girasol Limpiapipa",
     alt: "Girasol de limpiapipa individual",
-    cls: "",
-  },
-  {
-    src: "/galeria/rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
-    caption: "Rosa de Satín",
-    alt: "Rosa de satén individual",
     cls: "",
   },
 
@@ -391,108 +388,126 @@ const galleryItems = [
   // ==========================================
   {
     src: "/galeria/roses-fuchsia-butterfly.jpg",
+    fit: "",
     caption: "Ramo Rosé",
     alt: "Ramo de rosas fucsia con mariposas metálicas y corona dorada",
     cls: "tall",
   },
   {
     src: "/galeria/roses-red-passion.jpg",
+    fit: "",
     caption: "Red Passion",
     alt: "Ramo de rosas rojas con mariposa dorada y corona de perlas",
     cls: "",
   },
   {
     src: "/galeria/roses-purple-butterfly.jpg",
+    fit: "",
     caption: "Lavender Dreams",
     alt: "Ramo de rosas violeta con mariposas decorativas",
     cls: "",
   },
   {
     src: "/galeria/roses-blue-crown.jpg",
+    fit: "",
     caption: "Blue Royale",
     alt: "Ramo de rosas azules con corona plateada",
     cls: "",
   },
   {
     src: "/galeria/roses-white-crown.jpg",
+    fit: "",
     caption: "White Queen",
     alt: "Ramo de rosas blancas con corona dorada y mariposa",
     cls: "tall",
   },
   {
     src: "/galeria/roses-orange-butterfly.jpg",
+    fit: "",
     caption: "Sunset Butterfly",
     alt: "Ramo de rosas naranjas con mariposa dorada",
     cls: "",
   },
   {
     src: "/galeria/roses-yellow-butterfly.jpg",
+    fit: "",
     caption: "Golden Sunrise",
     alt: "Ramo de rosas amarillas con espigas blancas y mariposas",
     cls: "",
   },
   {
     src: "/galeria/roses-yellow-sunflower.jpg",
+    fit: "",
     caption: "Sunflower Glow",
     alt: "Ramo de rosas amarillas con centro de girasol",
     cls: "tall",
   },
   {
     src: "/galeria/roses-coral-butterfly.jpg",
+    fit: "",
     caption: "Coral Aurora",
     alt: "Ramo de rosas coral con mariposas doradas",
     cls: "",
   },
   {
     src: "/galeria/roses-lime-crown.jpg",
+    fit: "",
     caption: "Lime Queen",
     alt: "Ramo de rosas verde limón con corona dorada",
     cls: "",
   },
   {
     src: "/galeria/roses-yellow-foami-50.jpg",
+    fit: "",
     caption: "Yellow Fifty",
     alt: "Ramo XL de 50 rosas amarillas de foami",
     cls: "tall",
   },
   {
     src: "/galeria/sunflowers-limpiapipas.jpg",
+    fit: "",
     caption: "Sunny Day",
     alt: "Ramo de girasoles tejidos en limpiapipas",
     cls: "",
   },
   {
     src: "/galeria/lily-pink-limpiapipas.jpg",
+    fit: "",
     caption: "Pink Lily",
     alt: "Ramo de tulipanes rosados tejidos en limpiapipas",
     cls: "",
   },
   {
     src: "/galeria/lamp-lotus-blue-1.jpg",
+    fit: "",
     caption: "Lámpara Loto",
     alt: "Lámpara con forma de flor de loto azul",
     cls: "tall",
   },
   {
     src: "/galeria/lamp-lotus-blue-2.jpg",
+    fit: "",
     caption: "Lámpara Loto II",
     alt: "Variante de lámpara flor de loto",
     cls: "",
   },
   {
     src: "/galeria/harry-potter.jpg",
+    fit: "",
     caption: "Harry Potter",
     alt: "Ramo temático Harry Potter",
     cls: "",
   },
   {
     src: "/galeria/hotwheels-black.jpg",
+    fit: "",
     caption: "Hot Wheels",
     alt: "Ramo temático Hot Wheels",
     cls: "",
   },
   {
     src: "/galeria/christmas-tree-limpiapipas.jpg",
+    fit: "",
     caption: "Árbol Navideño",
     alt: "Árbol de Navidad tejido a mano",
     cls: "tall",
@@ -757,17 +772,13 @@ export default function Home() {
                   <span className="offer-badge">{offer.badge}</span>
 
                   <div className="offer-visual">
-                    {offer.image ? (
-                      <Image
-                        alt={offer.name}
-                        className="offer-image"
-                        fill
-                        sizes="(max-width: 700px) 100vw, 380px"
-                        src={offer.image}
-                      />
-                    ) : (
-                      <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, var(--color-cream), var(--color-old-rose))", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-burgundy)", fontSize: "0.8rem", fontWeight: 600 }}>Imagen pendiente</div>
-                    )}
+                    <Image
+                      alt={offer.name}
+                      className={`offer-image ${offer.fit === "contain" ? "img-contain" : ""}`}
+                      fill
+                      sizes="(max-width: 700px) 100vw, 380px"
+                      src={offer.image}
+                    />
                   </div>
 
                   <div className="offer-body">
@@ -829,17 +840,13 @@ export default function Home() {
                   className={`gallery-item ${item.cls}`}
                   key={item.caption}
                 >
-                  {item.src ? (
-                    <Image
-                      alt={item.alt}
-                      className="gallery-image"
-                      fill
-                      sizes="(max-width: 700px) 50vw, 25vw"
-                      src={item.src}
-                    />
-                  ) : (
-                    <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, var(--color-cream), var(--color-old-rose))", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-burgundy)", fontSize: "0.8rem", fontWeight: 600, textAlign: "center", padding: "10px" }}>Imagen pendiente</div>
-                  )}
+                  <Image
+                    alt={item.alt}
+                    className={`gallery-image ${item.fit === "contain" ? "img-contain" : ""}`}
+                    fill
+                    sizes="(max-width: 700px) 50vw, 25vw"
+                    src={item.src}
+                  />
 
                   <span className="caption">{item.caption}</span>
                 </div>
@@ -985,7 +992,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-6.5">
+            <div className="mt-[26px]">
               <CustomizerButton variant="primary">
                 <Sparkles size={18} />
                 Personalizar mi ramo

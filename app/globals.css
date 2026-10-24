@@ -2031,3 +2031,27 @@ img {
   0% { transform: translate(250px, 220px) rotate(0deg); filter: drop-shadow(0 0 15px rgba(245, 197, 24, 0.5)); }
   100% { transform: translate(250px, 220px) rotate(1.5deg); filter: drop-shadow(0 0 35px rgba(245, 197, 24, 0.9)); }
 }
+/* =========================================
+   AJUSTE DE IMÁGENES INDIVIDUALES
+   ========================================= */
+
+/* Para las imágenes que deben verse completas (flores solas) */
+.img-contain {
+  object-fit: contain !important;
+  padding: 16px; /* Margen interno para que la flor respire */
+}
+
+/* Ajustamos el fondo de la galería para que se vea como un lienzo detrás de la flor */
+.gallery-item {
+  background-color: var(--color-cream);
+}
+
+/* En la galería, si la imagen es contain, hacemos que el fondo sea un poco más oscuro o con gradiente */
+.gallery-item:has(.img-contain) {
+  background: linear-gradient(135deg, var(--color-cream), rgba(217, 165, 168, 0.3));
+}
+
+/* En las ofertas, el fondo ya tiene un gradiente, pero nos aseguramos de que se vea bien */
+.offer-visual:has(.img-contain) {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 253, 251, 0.8), var(--color-cream));
+}
