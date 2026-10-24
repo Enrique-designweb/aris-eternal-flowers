@@ -1809,7 +1809,7 @@ img {
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- Layout de 2 columnas para el banner --- */
+/* --- Layout para el Banner --- */
 .cinematic-content-layout {
   display: flex;
   flex-direction: column;
@@ -1826,12 +1826,15 @@ img {
   width: 100%;
 }
 
+/* AHORA LA FLOR SE MUESTRA EN MÓVIL */
 .cinematic-right {
-  display: none; /* Oculto en móvil */
+  display: flex; 
   width: 100%;
-  height: 100%;
-  align-items: flex-end;
-  justify-content: flex-end;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+  order: -1; /* Mueve la flor ARRIBA del texto en móvil */
+  margin-bottom: 20px;
 }
 
 .cinematic-text-box {
@@ -1936,6 +1939,7 @@ img {
   width: 24px;
 }
 
+/* En Escritorio: Texto a la izquierda, Flor a la derecha */
 @media (min-width: 900px) {
   .cinematic-content-layout {
     flex-direction: row;
@@ -1950,9 +1954,10 @@ img {
   }
 
   .cinematic-right {
-    display: flex;
     width: 45%;
-    height: 80%; 
+    height: 80%;
+    order: 0; /* Quita el orden para que se ponga a la derecha */
+    margin-bottom: 0;
   }
   
   .cinematic-slide-content {
