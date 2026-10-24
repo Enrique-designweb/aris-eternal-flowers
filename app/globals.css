@@ -2043,7 +2043,7 @@ img {
   margin-bottom: 2px;
 }
 /* =========================================
-   CINEMATIC BANNER (Estilo Inmobiliaria)
+   CINEMATIC BANNER (Brand Palette)
    ========================================= */
 
 .cinematic-banner {
@@ -2055,7 +2055,6 @@ img {
   width: 100%;
 }
 
-/* --- Fondos animados --- */
 .cinematic-bg {
   inset: 0;
   opacity: 0;
@@ -2066,33 +2065,46 @@ img {
 
 .cinematic-bg.active {
   opacity: 1;
-  transform: scale(1.05); /* Efecto Ken Burns: lento zoom in */
+  transform: scale(1.05);
 }
 
-/* Colores para cada estación (puedes cambiarlos por imágenes luego) */
-.bg-spring {
-  background: radial-gradient(circle at 50% 50%, #8c4560 0%, #2a161c 100%);
-}
-.bg-summer {
-  background: radial-gradient(circle at 50% 50%, #b8853e 0%, #2a1a0f 100%);
-}
-.bg-autumn {
-  background: radial-gradient(circle at 50% 50%, #8a3b2a 0%, #1c0d09 100%);
-}
-.bg-winter {
-  background: radial-gradient(circle at 50% 50%, #3b5a6b 0%, #0d151c 100%);
-}
-.bg-eternal {
-  background: radial-gradient(circle at 50% 50%, #4d1428 0%, #14060a 100%);
+/* 
+  Adaptación de las estaciones a la paleta de Ari's Eternal Flowers 
+  Usando los tonos Borgoña, Vino, Dorado, Rosa Viejo e Ink.
+*/
+
+/* Primavera: Rosa viejo a Borgoña */
+.bg-spring { 
+  background: radial-gradient(circle at 50% 50%, var(--color-old-rose) 0%, var(--color-burgundy) 100%); 
 }
 
-/* --- Overlay oscuro --- */
+/* Verano: Dorado a Ink */
+.bg-summer { 
+  background: radial-gradient(circle at 50% 50%, var(--color-gold) 0%, var(--color-ink) 100%); 
+}
+
+/* Otoño: Vino a Ink */
+.bg-autumn { 
+  background: radial-gradient(circle at 50% 50%, var(--color-wine) 0%, var(--color-ink) 100%); 
+}
+
+/* Invierno: Un tono más oscuro y frío de la marca */
+.bg-winter { 
+  background: radial-gradient(circle at 50% 50%, #4d3b41 0%, #161014 100%); 
+}
+
+/* Eterno: Borgoña profundo (el clímax del mensaje) */
+.bg-eternal { 
+  background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #14060a 100%); 
+}
+
+/* --- Overlay oscuro usando el tono Ink --- */
 .cinematic-overlay {
   background: linear-gradient(
     to top,
-    rgba(20, 10, 13, 0.95) 0%,
-    rgba(20, 10, 13, 0.4) 50%,
-    rgba(20, 10, 13, 0.7) 100%
+    rgba(42, 32, 35, 0.95) 0%, /* var(--color-ink) */
+    rgba(42, 32, 35, 0.4) 50%,
+    rgba(42, 32, 35, 0.7) 100%
   );
   inset: 0;
   pointer-events: none;
@@ -2100,7 +2112,7 @@ img {
   z-index: 2;
 }
 
-/* --- Pétalos cayendo dentro del banner --- */
+/* --- Pétalos (usando la paleta) --- */
 .cinematic-petals {
   inset: 0;
   overflow: hidden;
@@ -2110,7 +2122,7 @@ img {
 }
 
 .cinematic-petal {
-  background: radial-gradient(circle at 30% 30%, #e9a9b4, #a34a63 70%);
+  background: radial-gradient(circle at 30% 30%, var(--color-old-rose), var(--color-wine) 70%);
   border-radius: 150% 0 150% 0;
   opacity: 0;
   position: absolute;
@@ -2118,7 +2130,6 @@ img {
   animation: fall-cinematic linear infinite;
 }
 
-/* Diferentes posiciones y tiempos para que parezca natural */
 .petal-1 { left: 10%; width: 15px; height: 15px; animation-duration: 8s; animation-delay: 0s; }
 .petal-2 { left: 25%; width: 10px; height: 10px; animation-duration: 10s; animation-delay: 2s; }
 .petal-3 { left: 40%; width: 18px; height: 18px; animation-duration: 9s; animation-delay: 1s; }
@@ -2139,43 +2150,41 @@ img {
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- Contenido de texto --- */
+/* --- Contenido y Grid --- */
 .cinematic-content {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: flex-end;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   position: relative;
   z-index: 10;
 }
 
 .cinematic-text-box {
+  display: grid;
+  margin-bottom: 24px;
   max-width: 650px;
-  position: relative;
-  min-height: 280px; /* Espacio para que el texto no salte al cambiar */
+  width: 100%;
 }
 
-/* --- Animación de los slides de texto --- */
 .cinematic-slide-content {
-  bottom: 100px; /* Altura para que los botones queden abajo */
-  left: 0;
+  grid-area: 1 / 1;
   opacity: 0;
-  position: absolute;
+  visibility: hidden;
   transform: translateY(20px);
   transition: all 0.8s ease-in-out;
-  visibility: hidden;
-  width: 100%;
 }
 
 .cinematic-slide-content.active {
   opacity: 1;
-  transform: translateY(0);
   visibility: visible;
+  transform: translateY(0);
 }
 
+/* --- Textos (usando la paleta) --- */
 .cinematic-eyebrow {
-  color: #f5c518;
+  color: var(--color-gold);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -2183,7 +2192,7 @@ img {
 }
 
 .cinematic-title {
-  color: #ffffff;
+  color: var(--color-white);
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: 500;
@@ -2192,12 +2201,12 @@ img {
 }
 
 .cinematic-title em {
-  color: #f5c518;
+  color: var(--color-gold);
   font-style: italic;
 }
 
 .cinematic-desc {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 253, 251, 0.85); /* var(--color-white) con opacidad */
   font-size: 1rem;
   line-height: 1.6;
   max-width: 480px;
@@ -2208,18 +2217,17 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
   position: relative;
   z-index: 20;
 }
 
 .button-gold {
-  background: #c9a86a;
-  color: #2a161c;
+  background: var(--color-gold);
+  color: var(--color-ink);
   font-weight: 700;
 }
 .button-gold:hover {
-  background: #dbbd83;
+  background: #dbbd83; /* Un dorado ligeramente más claro al hacer hover */
   transform: translateY(-2px);
 }
 
@@ -2227,14 +2235,14 @@ img {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  color: var(--color-white);
 }
 .button-secondary-glass:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
-/* --- Dots de paginación --- */
+/* --- Dots (Puntos) --- */
 .cinematic-dots {
   display: flex;
   gap: 8px;
@@ -2242,8 +2250,8 @@ img {
 }
 
 .cinematic-dot {
-  background: rgba(255, 255, 255, 0.3);
-  border: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   cursor: pointer;
   height: 8px;
@@ -2252,24 +2260,20 @@ img {
 }
 
 .cinematic-dot.active {
-  background: #f5c518;
+  background: var(--color-gold);
+  border-color: var(--color-gold);
   border-radius: 12px;
   width: 24px;
 }
 
-/* --- Responsive --- */
+/* --- Responsive (Escritorio) --- */
 @media (min-width: 900px) {
   .cinematic-content {
     justify-content: center;
     padding-bottom: 0;
   }
 
-  .cinematic-slide-content {
-    bottom: auto;
-    position: relative;
-  }
-
-  .cinematic-text-box {
-    min-height: 320px;
+  .cinematic-actions {
+    margin-top: 10px;
   }
 }

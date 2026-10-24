@@ -53,7 +53,7 @@ export function CinematicBanner() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    }, 4000); // Cambia cada 4 segundos
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -70,10 +70,10 @@ export function CinematicBanner() {
         />
       ))}
 
-      {/* 2. Overlay oscuro para legibilidad */}
+      {/* 2. Overlay oscuro */}
       <div className="cinematic-overlay" />
 
-      {/* 3. Pétalos cayendo (por detrás del texto) */}
+      {/* 3. Pétalos cayendo */}
       <div className="cinematic-petals" aria-hidden="true">
         {[...Array(12)].map((_, i) => (
           <span key={i} className={`cinematic-petal petal-${i + 1}`} />
@@ -82,6 +82,8 @@ export function CinematicBanner() {
 
       {/* 4. Contenido principal */}
       <div className="container cinematic-content">
+        
+        {/* Textos apilados con Grid */}
         <div className="cinematic-text-box">
           {SLIDES.map((slide, index) => (
             <div
@@ -98,20 +100,21 @@ export function CinematicBanner() {
               <p className="cinematic-desc">{slide.text}</p>
             </div>
           ))}
-
-          <div className="cinematic-actions">
-            <a className="button button-gold" href="#coleccion">
-              Ver colección
-              <ArrowRight size={18} />
-            </a>
-
-            <CustomizerButton variant="secondary-glass">
-              Crear mi ramo
-            </CustomizerButton>
-          </div>
         </div>
 
-        {/* 5. Indicadores de paginación (Dots) */}
+        {/* Botones fuera del contenedor de texto */}
+        <div className="cinematic-actions">
+          <a className="button button-gold" href="#coleccion">
+            Ver colección
+            <ArrowRight size={18} />
+          </a>
+
+          <CustomizerButton variant="secondary-glass">
+            Crear mi ramo
+          </CustomizerButton>
+        </div>
+
+        {/* Puntos (Dots) */}
         <div className="cinematic-dots">
           {SLIDES.map((_, index) => (
             <button
