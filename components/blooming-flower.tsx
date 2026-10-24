@@ -4,126 +4,115 @@ export function BloomingFlower({ season }: { season: number }) {
   return (
     <div className={`flower-scene season-${season}`}>
       <svg
-        viewBox="0 0 400 400"
+        viewBox="0 0 500 500"
         className="blooming-svg"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMax meet"
       >
         <defs>
-          {/* Gradientes del tallo y hojas */}
-          <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#4a702c" />
-            <stop offset="100%" stopColor="#1c2e11" />
+          {/* Gradiente de luz para el tallo y hojas */}
+          <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1e3310" />
+            <stop offset="50%" stopColor="#3d6122" />
+            <stop offset="100%" stopColor="#1e3310" />
           </linearGradient>
 
-          {/* Gradiente de los pétalos del lirio (Rosa suave a Borgoña) */}
-          <radialGradient id="petalGrad" cx="50%" cy="80%" r="80%">
-            <stop offset="0%" stopColor="#fff0f5" /> {/* Blanco rosado */}
-            <stop offset="50%" stopColor="#e81c5e" /> {/* Rosa vibrante */}
-            <stop offset="100%" stopColor="#6d1f3a" /> {/* Borgoña */}
+          {/* Gradiente de pétalos realista (Luz desde arriba) */}
+          <radialGradient id="petalGrad" cx="50%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#ffe6eb" /> {/* Brillo superior */}
+            <stop offset="40%" stopColor="#d92d5e" /> {/* Rosa vibrante */}
+            <stop offset="90%" stopColor="#730f28" /> {/* Sombra profunda */}
+            <stop offset="100%" stopColor="#420614" />
           </radialGradient>
 
-          {/* Gradiente dorado para el final */}
-          <radialGradient id="petalGold" cx="50%" cy="80%" r="80%">
-            <stop offset="0%" stopColor="#fff8d6" />
-            <stop offset="50%" stopColor="#f5c518" />
-            <stop offset="100%" stopColor="#c9a86a" />
+          {/* Gradiente para el estado Eterno (Dorado) */}
+          <radialGradient id="petalGold" cx="50%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="30%" stopColor="#fce38a" />
+            <stop offset="80%" stopColor="#c9a86a" />
+            <stop offset="100%" stopColor="#7a5c29" />
           </radialGradient>
 
-          {/* Filtro de resplandor (Glow) */}
-          <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="8" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="#e81c5e" floodOpacity="0.5" />
+          {/* Sombra suave para dar volumen (No es neón) */}
+          <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="8" stdDeviation="6" floodColor="#000" floodOpacity="0.4" />
           </filter>
         </defs>
 
-        {/* =========================================
-            LIRIO IZQUIERDO (Más pequeño)
-            ========================================= */}
-        <g className="lily lily-left" transform="translate(120, 260) scale(0.7)">
-          <path className="stem" d="M0,150 Q-10,50 0,-50" stroke="url(#stemGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
-          <path className="leaf" d="M-5,80 Q-40,60 -50,30 Q-20,40 -5,80" fill="#3e6123" />
-          <path className="leaf" d="M0,40 Q30,20 40,-10 Q15,10 0,40" fill="#4a702c" />
-          
-          <g className="flower-head" transform="translate(0, -50)">
+        {/* --- LIRIO IZQUIERDO --- */}
+        <g className="lily lily-left" transform="translate(150, 350) scale(0.7)">
+          <path className="stem" d="M0,150 Q-15,50 0,-50" stroke="url(#stemGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
+          <path className="leaf" d="M-5,80 Q-50,40 -60,10 Q-20,30 -5,80" fill="#2e4a1c" />
+          <g className="flower-head" transform="translate(0, -50)" filter="url(#softShadow)">
             {/* Pétalos traseros */}
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)"/>
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(120)" />
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(240)" />
+            <path className="petal p-back" d="M0,0 C-30,-20 -50,-80 -20,-110 C10,-80 20,-20 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-back" d="M0,0 C30,-20 50,-80 20,-110 C-10,-80 -20,-20 0,0" fill="url(#petalGrad)" />
             {/* Pétalos frontales */}
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(60)" />
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(180)" />
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(300)" />
-            {/* Estambres (Centro) */}
+            <path className="petal p-front" d="M0,0 C-40,-10 -60,-70 -30,-100 C0,-70 20,-10 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-front" d="M0,0 C40,-10 60,-70 30,-100 C0,-70 -20,-10 0,0" fill="url(#petalGrad)" />
+            {/* Estambres */}
             <g className="flower-center">
-              <path d="M0,0 Q-10,-15 -15,-25" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="-15" cy="-25" r="3" fill="#c9a86a" />
-              <path d="M0,0 Q10,-15 15,-25" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="15" cy="-25" r="3" fill="#c9a86a" />
-              <path d="M0,0 Q0,-20 0,-30" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="0" cy="-30" r="3" fill="#c9a86a" />
+              <path d="M0,0 Q-10,-20 -15,-40" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="-15" cy="-40" r="3" fill="#8a5a1c" />
+              <path d="M0,0 Q10,-20 15,-40" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="15" cy="-40" r="3" fill="#8a5a1c" />
+              <path d="M0,0 Q0,-25 0,-45" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="0" cy="-45" r="3" fill="#8a5a1c" />
             </g>
           </g>
         </g>
 
-        {/* =========================================
-            LIRIO DERECHO (Mediano)
-            ========================================= */}
-        <g className="lily lily-right" transform="translate(280, 240) scale(0.85)">
-          <path className="stem" d="M0,160 Q10,50 0,-60" stroke="url(#stemGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
-          <path className="leaf" d="M5,90 Q40,70 50,30 Q20,50 5,90" fill="#4a702c" />
-          <path className="leaf" d="M0,50 Q-30,30 -40,-10 Q-15,10 0,50" fill="#3e6123" />
-          
-          <g className="flower-head" transform="translate(0, -60)">
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)"/>
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(120)" />
-            <path className="petal p-back" d="M0,0 C-20,-30 -40,-80 0,-110 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(240)" />
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(60)" />
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(180)" />
-            <path className="petal p-front" d="M0,0 C-15,-25 -30,-70 0,-100 C30,-70 15,-25 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(300)" />
+        {/* --- LIRIO DERECHO --- */}
+        <g className="lily lily-right" transform="translate(350, 330) scale(0.8)">
+          <path className="stem" d="M0,170 Q15,50 0,-60" stroke="url(#stemGrad)" strokeWidth="6" fill="none" strokeLinecap="round" />
+          <path className="leaf" d="M5,90 Q50,50 60,20 Q20,40 5,90" fill="#3d6122" />
+          <g className="flower-head" transform="translate(0, -60)" filter="url(#softShadow)">
+            <path className="petal p-back" d="M0,0 C-30,-20 -50,-80 -20,-110 C10,-80 20,-20 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-back" d="M0,0 C30,-20 50,-80 20,-110 C-10,-80 -20,-20 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-front" d="M0,0 C-40,-10 -60,-70 -30,-100 C0,-70 20,-10 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-front" d="M0,0 C40,-10 60,-70 30,-100 C0,-70 -20,-10 0,0" fill="url(#petalGrad)" />
             <g className="flower-center">
-              <path d="M0,0 Q-10,-15 -15,-25" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="-15" cy="-25" r="3" fill="#c9a86a" />
-              <path d="M0,0 Q10,-15 15,-25" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="15" cy="-25" r="3" fill="#c9a86a" />
-              <path d="M0,0 Q0,-20 0,-30" stroke="#f5c518" strokeWidth="2" fill="none" />
-              <circle cx="0" cy="-30" r="3" fill="#c9a86a" />
+              <path d="M0,0 Q-10,-20 -15,-40" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="-15" cy="-40" r="3" fill="#8a5a1c" />
+              <path d="M0,0 Q10,-20 15,-40" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="15" cy="-40" r="3" fill="#8a5a1c" />
+              <path d="M0,0 Q0,-25 0,-45" stroke="#d4af37" strokeWidth="2" fill="none" />
+              <circle cx="0" cy="-45" r="3" fill="#8a5a1c" />
             </g>
           </g>
         </g>
 
-        {/* =========================================
-            LIRIO CENTRAL (El más grande y protagonista)
-            ========================================= */}
-        <g className="lily lily-center" transform="translate(200, 220)">
+        {/* --- LIRIO CENTRAL (Protagonista) --- */}
+        <g className="lily lily-center" transform="translate(250, 320)">
           <path className="stem" d="M0,180 Q-10,60 0,-80" stroke="url(#stemGrad)" strokeWidth="8" fill="none" strokeLinecap="round" />
-          <path className="leaf" d="M-5,110 Q-50,80 -60,40 Q-25,60 -5,110" fill="#3e6123" />
-          <path className="leaf" d="M5,60 Q50,40 60,-10 Q25,20 5,60" fill="#4a702c" />
-          
-          <g className="flower-head" transform="translate(0, -80)">
-            {/* Pétalos traseros */}
-            <path className="petal p-back" d="M0,0 C-25,-35 -50,-90 0,-130 C50,-90 25,-35 0,0" fill="url(#petalGrad)" filter="url(#glow)"/>
-            <path className="petal p-back" d="M0,0 C-25,-35 -50,-90 0,-130 C50,-90 25,-35 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(120)" />
-            <path className="petal p-back" d="M0,0 C-25,-35 -50,-90 0,-130 C50,-90 25,-35 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(240)" />
+          <path className="leaf" d="M-5,120 Q-60,70 -70,30 Q-30,60 -5,120" fill="#2e4a1c" />
+          <path className="leaf" d="M5,70 Q60,40 70,-10 Q30,20 5,70" fill="#3d6122" />
+          <g className="flower-head" transform="translate(0, -80)" filter="url(#softShadow)">
+            {/* 6 Pétalos (3 traseros, 3 frontales) */}
+            <path className="petal p-back" d="M0,0 C-40,-20 -60,-90 -20,-130 C20,-90 30,-20 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-back" d="M0,0 C40,-20 60,-90 20,-130 C-20,-90 -30,-20 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-back" d="M0,0 C-50,-10 -70,-60 -30,-90 C10,-60 30,-10 0,0" fill="url(#petalGrad)" transform="rotate(180)" />
             
-            {/* Pétalos frontales */}
-            <path className="petal p-front" d="M0,0 C-20,-30 -40,-80 0,-120 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(60)" />
-            <path className="petal p-front" d="M0,0 C-20,-30 -40,-80 0,-120 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(180)" />
-            <path className="petal p-front" d="M0,0 C-20,-30 -40,-80 0,-120 C40,-80 20,-30 0,0" fill="url(#petalGrad)" filter="url(#glow)" transform="rotate(300)" />
+            <path className="petal p-front" d="M0,0 C-50,-10 -70,-80 -30,-120 C10,-80 30,-10 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-front" d="M0,0 C50,-10 70,-80 30,-120 C-10,-80 -30,-10 0,0" fill="url(#petalGrad)" />
+            <path className="petal p-front" d="M0,0 C-60,-20 -80,-70 -40,-100 C0,-70 20,-20 0,0" fill="url(#petalGrad)" transform="rotate(180)" />
             
-            {/* Estambres Centrales (Más grandes) */}
+            {/* Estambres grandes y detallados */}
             <g className="flower-center">
-              <path d="M0,0 Q-15,-20 -25,-35" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <circle cx="-25" cy="-35" r="4" fill="#e81c5e" />
-              <path d="M0,0 Q15,-20 25,-35" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <circle cx="25" cy="-35" r="4" fill="#e81c5e" />
-              <path d="M0,0 Q0,-25 0,-45" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <circle cx="0" cy="-45" r="4" fill="#e81c5e" />
-              <path d="M0,0 Q-25,-10 -35,-15" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <circle cx="-35" cy="-15" r="4" fill="#e81c5e" />
-              <path d="M0,0 Q25,-10 35,-15" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <circle cx="35" cy="-15" r="4" fill="#e81c5e" />
+              <path d="M0,0 Q-15,-25 -25,-50" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="-25" cy="-50" rx="4" ry="6" fill="#b85c38" transform="rotate(-30 -25 -50)" />
+              
+              <path d="M0,0 Q15,-25 25,-50" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="25" cy="-50" rx="4" ry="6" fill="#b85c38" transform="rotate(30 25 -50)" />
+              
+              <path d="M0,0 Q-5,-30 -10,-60" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="-10" cy="-60" rx="4" ry="6" fill="#b85c38" transform="rotate(-10 -10 -60)" />
+              
+              <path d="M0,0 Q5,-30 10,-60" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="10" cy="-60" rx="4" ry="6" fill="#b85c38" transform="rotate(10 10 -60)" />
+              
+              <path d="M0,0 Q0,-35 0,-70" stroke="#f5c518" strokeWidth="3" fill="none" strokeLinecap="round" />
+              <ellipse cx="0" cy="-70" rx="4" ry="6" fill="#b85c38" />
             </g>
           </g>
         </g>
