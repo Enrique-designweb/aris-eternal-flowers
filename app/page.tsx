@@ -32,7 +32,7 @@ const whatsappUrl = (text = BRAND.whatsappText) =>
   `https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(text)}`;
 
 /* =========================================
-   ICONOS DE MARCA
+   ICONOS DE MARCA (SVG inline)
    ========================================= */
 
 function FacebookIcon({ size = 20 }: { size?: number }) {
@@ -164,13 +164,57 @@ const categories = [
 ];
 
 const offers = [
+  // ==========================================
+  // 🌹 NUEVAS FLORES INDIVIDUALES 🌻
+  // ==========================================
+  {
+    image: "rosa-limpiapipa.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-limpiapipa.jpg")
+    badge: "Individual",
+    name: "Rosa de Limpiapipa",
+    desc: "Una sola rosa tejida a mano en limpiapipas. El detalle perfecto para un regalo sencillo y especial.",
+    priceNow: "500 CUP",
+    priceWas: "750 CUP",
+    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual.",
+  },
+  {
+    image: "girasol-satin.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-saten.jpg")
+    badge: "Individual",
+    name: "Girasol de Satín",
+    desc: "Un hermoso girasol individual elaborado en tela de satén. Un toque de luz y alegría.",
+    priceNow: "600 CUP",
+    priceWas: "800 CUP",
+    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Satén individual.",
+  },
+  {
+    image: "girasol-limpiapipa.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-limpiapipa.jpg")
+    badge: "Individual",
+    name: "Girasol de Limpiapipa",
+    desc: "Un girasol individual tejido a mano en limpiapipas. Resistente, hermoso y duradero.",
+    priceNow: "500 CUP",
+    priceWas: "750 CUP",
+    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual.",
+  },
+  {
+
+    image: "rosa-satin.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-satin.jpg")
+    badge: "Individual",
+    name: "Rosa de Satín",
+    desc: "Una sola rosa tejida a mano en tela de satín, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
+    priceNow: "600 CUP",
+    priceWas: "750 CUP",
+    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Satén individual.",
+  },
+
+  // ==========================================
+  // RAMOS COMPLETOS
+  // ==========================================
   {
     image: "/galeria/roses-fuchsia-butterfly.jpg",
     badge: "Top ventas",
     name: "Romantic Pack",
-    desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Un detalle romántico y elegante para sorprender.",
-    priceNow: "$12,000",
-    priceWas: "$16,000",
+    desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Incluye tarjeta personalizada escrita a mano.",
+    priceNow: "$7,000",
+    priceWas: "$10,000",
     waMessage:
       "Hola 🌹 Me interesa el Romantic Pack (rosas fucsia con mariposa y corona). ¿Está disponible?",
   },
@@ -179,8 +223,8 @@ const offers = [
     badge: "Favorito",
     name: "Sunshine Pack",
     desc: "Ramo de girasoles tejidos a mano en limpiapipas, con mariposa dorada y espigas blancas decorativas.",
-    priceNow: "$6,000",
-    priceWas: "$7,500",
+    priceNow: "$4,000",
+    priceWas: "$5,000",
     waMessage:
       "Hola 🌻 Me interesa el Sunshine Pack (girasoles tejidos). ¿Cuánto demora?",
   },
@@ -198,7 +242,7 @@ const offers = [
     image: "/galeria/roses-purple-butterfly.jpg",
     badge: "Nuevo",
     name: "Lavender Dreams",
-    desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino.",
+    desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino, perfecto para sorprender.",
     priceNow: "$4,000",
     priceWas: "",
     waMessage:
@@ -208,7 +252,7 @@ const offers = [
     image: "/galeria/roses-lime-crown.jpg",
     badge: "Nuevo",
     name: "Lime Queen",
-    desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno.",
+    desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno que no pasa desapercibido.",
     priceNow: "$4,000",
     priceWas: "",
     waMessage:
@@ -235,7 +279,7 @@ const offers = [
       "Hola 💙 Me interesa el ramo Blue Royale (rosas azules con corona plateada). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-yellow-sunflower.jpg", // Imagen con papel Love
+    image: "/galeria/roses-white-crown.jpg",
     badge: "Especial",
     name: "White Love",
     desc: "Ramo de rosas blancas con papel Love personalizado, corona dorada y mariposa calada. Romántico y delicado.",
@@ -245,22 +289,22 @@ const offers = [
       "Hola 🤍 Me interesa el ramo White Love (rosas blancas con papel Love). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-coral-butterfly.jpg", // Imagen con mariposas marrones
+    image: "/galeria/roses-yellow-butterfly.jpg",
     badge: "Edición limitada",
     name: "Golden Sunrise",
-    desc: "Ramo de rosas amarillas con espigas blancas y mariposas decorativas. Un regalo luminoso y lleno de energía.",
+    desc: "Ramo de rosas amarillas con espigas blancas y mariposas doradas. Un regalo luminoso y lleno de energía.",
     priceNow: "$8,000",
     priceWas: "",
     waMessage:
       "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-yellow-butterfly.jpg", // Imagen del girasol al centro
+    image: "/galeria/roses-yellow-sunflower.jpg",
     badge: "Destacado",
     name: "Sunflower Glow",
-    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original.",
-    priceNow: "$8,000",
-    priceWas: "$9,500",
+    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos mundos.",
+    priceNow: "$7,000",
+    priceWas: "$8,500",
     waMessage:
       "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?",
   },
@@ -275,12 +319,12 @@ const offers = [
       "Hola ❤️ Me interesa el ramo Red Passion (rosas rojas con mariposa y corona). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-white-crown.jpg",
+    image: "/galeria/roses-coral-butterfly.jpg",
     badge: "Nuevo",
     name: "Coral Aurora",
     desc: "Ramo de rosas coral con mariposas doradas y corona decorativa. Un color cálido y sofisticado.",
-    priceNow: "$8,000",
-    priceWas: "$9,500",
+    priceNow: "$6,500",
+    priceWas: "$7,500",
     waMessage:
       "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?",
   },
@@ -288,7 +332,7 @@ const offers = [
     image: "/galeria/roses-yellow-foami-50.jpg",
     badge: "Edición limitada",
     name: "Yellow Fifty",
-    desc: "Ramo Gigante de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
+    desc: "Ramo XL de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
     priceNow: "$10,000",
     priceWas: "",
     waMessage:
@@ -304,19 +348,40 @@ const offers = [
     waMessage:
       "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?",
   },
-  /* --- ARBOLITOS NAVIDEÑOS --- */
-  {
-    image: "/galeria/christmas-tree-limpiapipas.jpg",
-    badge: "Navidad",
-    name: "Árbol Navideño",
-    desc: "Arbolito de Navidad tejido a mano en limpiapipas. Disponible en 3 tamaños: 30cm ($3,500), 40cm ($4,500) y 50cm ($5,500).",
-    priceNow: "Desde $3,500",
-    priceWas: "",
-    waMessage:
-      "Hola 🎄 Me interesa el Árbol Navideño. ¿Podría indicarme los tamaños disponibles?",
-  },
 ];
+
 const galleryItems = [
+  // ==========================================
+  // 🌹 NUEVAS FLORES INDIVIDUALES EN GALERÍA 🌻
+  // ==========================================
+  {
+    src: "rosa-limpiapipa.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    caption: "Rosa Individual",
+    alt: "Rosa de limpiapipa individual",
+    cls: "",
+  },
+  {
+    src: "girasol-satin.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    caption: "Girasol de Satín",
+    alt: "Girasol de satén individual",
+    cls: "tall",
+  },
+  {
+    src: "girasol-limpiapipa.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    caption: "Girasol Limpiapipa",
+    alt: "Girasol de limpiapipa individual",
+    cls: "",
+  },
+  {
+    src: "rosa-satin.jpg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    caption: "Rosa de Satín",
+    alt: "Rosa de satén individual",
+    cls: "",
+  },
+
+  // ==========================================
+  // GALERÍA EXISTENTE
+  // ==========================================
   {
     src: "/galeria/roses-fuchsia-butterfly.jpg",
     caption: "Ramo Rosé",
@@ -343,8 +408,8 @@ const galleryItems = [
   },
   {
     src: "/galeria/roses-white-crown.jpg",
-    caption: "White Love",
-    alt: "Ramo de rosas blancas con papel Love, corona dorada y mariposa",
+    caption: "White Queen",
+    alt: "Ramo de rosas blancas con corona dorada y mariposa",
     cls: "tall",
   },
   {
@@ -567,9 +632,8 @@ export default function Home() {
         </section>
 
         {/* =====================================
-            CINEMATIC BANNER (NUEVO)
+            CINEMATIC BANNER
             ===================================== */}
-
         <CinematicBanner />
 
         {/* =====================================
@@ -686,13 +750,17 @@ export default function Home() {
                   <span className="offer-badge">{offer.badge}</span>
 
                   <div className="offer-visual">
-                    <Image
-                      alt={offer.name}
-                      className="offer-image"
-                      fill
-                      sizes="(max-width: 700px) 100vw, 380px"
-                      src={offer.image}
-                    />
+                    {offer.image ? (
+                      <Image
+                        alt={offer.name}
+                        className="offer-image"
+                        fill
+                        sizes="(max-width: 700px) 100vw, 380px"
+                        src={offer.image}
+                      />
+                    ) : (
+                      <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, var(--color-cream), var(--color-old-rose))", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-burgundy)", fontSize: "0.8rem", fontWeight: 600 }}>Imagen pendiente</div>
+                    )}
                   </div>
 
                   <div className="offer-body">
@@ -754,13 +822,17 @@ export default function Home() {
                   className={`gallery-item ${item.cls}`}
                   key={item.caption}
                 >
-                  <Image
-                    alt={item.alt}
-                    className="gallery-image"
-                    fill
-                    sizes="(max-width: 700px) 50vw, 25vw"
-                    src={item.src}
-                  />
+                  {item.src ? (
+                    <Image
+                      alt={item.alt}
+                      className="gallery-image"
+                      fill
+                      sizes="(max-width: 700px) 50vw, 25vw"
+                      src={item.src}
+                    />
+                  ) : (
+                    <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, var(--color-cream), var(--color-old-rose))", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-burgundy)", fontSize: "0.8rem", fontWeight: 600, textAlign: "center", padding: "10px" }}>Imagen pendiente</div>
+                  )}
 
                   <span className="caption">{item.caption}</span>
                 </div>

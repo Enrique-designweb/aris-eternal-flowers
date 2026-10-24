@@ -51,10 +51,16 @@ const COLORS = [
 ];
 
 const SIZES = [
+  { id: "una-sola", label: "1 sola flor" }, // NUEVO
   { id: "pequeno", label: "Pequeño (5–10 flores)" },
   { id: "mediano", label: "Mediano (12–20 flores)" },
   { id: "grande", label: "Grande (25–40 flores)" },
-  { id: "extragrande", label: "Extra Grande (50+ flores)" },
+  { id: "xl", label: "Extra Grande (50+ flores)" },
+];
+
+const CURRENCIES = [
+  { id: "CUP", label: "CUP (Pesos Cubanos)" },
+  { id: "USD", label: "USD (Dólares)" },
 ];
 
 const OCCASIONS = [
@@ -70,7 +76,7 @@ const OCCASIONS = [
 
 const STEPS = [
   { title: "¿Qué flores quieres?", sub: "Puedes elegir varias" },
-  { title: "Colores y tamaño", sub: "Arma la paleta perfecta" },
+  { title: "Colores, tamaño y pago", sub: "Arma la paleta perfecta" },
   { title: "Ocasión y dedicatoria", sub: "Cuéntanos para qué momento es" },
   { title: "Tu referencia", sub: "Sube una imagen que te inspire" },
   { title: "Confirma y envía", sub: "Revisa todo antes de enviar" },
@@ -84,6 +90,7 @@ type FormState = {
   flowers: string[];
   colors: string[];
   size: string;
+  currency: string; // NUEVO
   occasion: string;
   message: string;
   name: string;
@@ -95,6 +102,7 @@ const INITIAL: FormState = {
   flowers: [],
   colors: [],
   size: "",
+  currency: "",
   occasion: "",
   message: "",
   name: "",
@@ -114,6 +122,7 @@ function buildWhatsAppMessage(data: FormState): string {
     .map((id) => COLORS.find((c) => c.id === id)?.label ?? id)
     .join(", ");
   const sizeLabel = SIZES.find((s) => s.id === data.size)?.label ?? "—";
+  const currencyLabel = CURRENCIES.find((c) => c.id === data.currency)?.label ?? "—";
   const occasionLabel =
     OCCASIONS.find((o) => o.id === data.occasion)?.label ?? "—";
 
@@ -125,6 +134,7 @@ function buildWhatsAppMessage(data: FormState): string {
     `🌹 *Flores:* ${flowerLabels || "—"}`,
     `🎨 *Colores:* ${colorLabels || "—"}`,
     `📏 *Tamaño:* ${sizeLabel}`,
+    `💵 *Moneda de pago:* ${currencyLabel}`,
     `🎁 *Ocasión:* ${occasionLabel}`,
   ];
 
@@ -136,15 +146,13 @@ function buildWhatsAppMessage(data: FormState): string {
     lines.push(
       "",
       `📷 *Referencia adjunta:* ${data.reference.name}`,
-      "👉 *Adjunto la imagen de referencia en este chat a continuación.*",
+      "👉 *Adjunto la imagen de referencia en este chat.*",
     );
   }
 
   lines.push(
     "",
     `👤 *Mi nombre:* ${data.name.trim()}`,
-    "",
-    "💵 *Formas de pago:* Aceptamos USD y CUP.",
     "",
     "¡Gracias! ✨",
   );
@@ -295,7 +303,7 @@ function CustomizerModal({
 
   const canNext = (): boolean => {
     if (step === 0) return data.flowers.length > 0;
-    if (step === 1) return data.colors.length > 0 && data.size !== "";
+    if (step === 1) return data.colors.length > 0 && data.size !== "" && data.currency !== "";
     if (step === 2) return data.occasion !== "";
     if (step === 3) return data.name.trim().length > 0;
     return true;
@@ -311,10 +319,33 @@ function CustomizerModal({
     setStep((s) => s - 1);
   };
 
-  const submit = () => {
-    const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-      buildWhatsAppMessage(data),
-    )}`;
+  // FIX: Usar Web Share API para adjuntar la imagen
+  const submit = async () => {
+    const text = buildWhatsAppMessage(data);
+    
+    if (typeof navigator !== "undefined" && navigator.share) {
+      try {
+        const shareData: ShareData = {
+          title: "Ari's Eternal Flowers",
+          text: text,
+        };
+        
+        // Si hay imagen y el dispositivo soporta compartir archivos
+        if (data.reference && navigator.canShare && navigator.canShare({ files: [data.reference] })) {
+          shareData.files = [data.reference];
+        }
+
+        await navigator.share(shareData);
+        setDone(true);
+        return;
+      } catch (error) {
+        console.log("Error sharing:", error);
+        // Si el usuario cancela o falla, hacemos fallback a wa.me
+      }
+    }
+
+    // Fallback: Abrir WhatsApp Web (Solo texto)
+    const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
     setDone(true);
   };
@@ -371,21 +402,10 @@ function CustomizerModal({
               <div className="customizer-done-icon">
                 <Check size={32} strokeWidth={3} />
               </div>
-              <h3>¡Pedido enviado por WhatsApp!</h3>
-
-              {data.reference && (
-                <div className="customizer-alert">
-                  <Camera size={20} />
-                  <div>
-                    <strong>Falta un paso:</strong> adjunta tu imagen
-                    de referencia en el chat de WhatsApp que se acaba
-                    de abrir.
-                  </div>
-                </div>
-              )}
+              <h3>¡Pedido generado!</h3>
 
               <p>
-                Si WhatsApp no se abrió automáticamente, revisa el
+                Si no se abrió WhatsApp automáticamente, revisa el
                 bloqueo de ventanas emergentes o vuelve a pulsar el
                 botón.
               </p>
@@ -420,7 +440,7 @@ function CustomizerModal({
                 </div>
               )}
 
-              {/* STEP 1 — Colores y tamaño */}
+              {/* STEP 1 — Colores, tamaño y moneda */}
               {step === 1 && (
                 <>
                   <div className="customizer-field">
@@ -461,6 +481,28 @@ function CustomizerModal({
                             type="button"
                           >
                             <span>{s.label}</span>
+                            {selected && <Check size={18} />}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="customizer-field">
+                    <span className="customizer-label">Moneda de pago</span>
+                    <div className="size-list">
+                      {CURRENCIES.map((c) => {
+                        const selected = data.currency === c.id;
+                        return (
+                          <button
+                            className={`size-option ${selected ? "selected" : ""}`}
+                            key={c.id}
+                            onClick={() =>
+                              setData((d) => ({ ...d, currency: c.id }))
+                            }
+                            type="button"
+                          >
+                            <span>{c.label}</span>
                             {selected && <Check size={18} />}
                           </button>
                         );
@@ -518,8 +560,7 @@ function CustomizerModal({
                   <p className="customizer-hint">
                     Puedes subir una captura de <strong>Pinterest</strong>,
                     <strong> Instagram</strong> o cualquier imagen que te
-                    sirva de inspiración. Al enviar, te recordaremos
-                    adjuntarla también en WhatsApp.
+                    sirva de inspiración.
                   </p>
 
                   <label className="upload-zone">
@@ -575,7 +616,6 @@ function CustomizerModal({
                     />
                     <p className="customizer-hint" style={{ marginTop: 10 }}>
                       Necesitamos tu nombre para coordinar la entrega.
-                      No compartimos tus datos con terceros.
                     </p>
                   </div>
                 </>
@@ -598,9 +638,11 @@ function CustomizerModal({
                   />
                   <SummaryRow
                     label="Tamaño"
-                    value={
-                      SIZES.find((s) => s.id === data.size)?.label ?? "—"
-                    }
+                    value={SIZES.find((s) => s.id === data.size)?.label ?? "—"}
+                  />
+                  <SummaryRow
+                    label="Moneda de pago"
+                    value={CURRENCIES.find((c) => c.id === data.currency)?.label ?? "—"}
                   />
                   <SummaryRow
                     label="Ocasión"
@@ -689,7 +731,7 @@ export function CustomizerButton({
   children,
   className = "",
 }: {
-  variant?: "primary" | "secondary" | "secondary-glass";
+  variant?: "primary" | "secondary";
   children: ReactNode;
   className?: string;
 }) {
