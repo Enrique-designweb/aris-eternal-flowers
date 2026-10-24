@@ -1016,7 +1016,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mt-[26px]">
+            <div className="mt-6.5">
               <CustomizerButton variant="primary">
                 <Sparkles size={18} />
                 Personalizar mi ramo

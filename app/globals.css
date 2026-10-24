@@ -2055,3 +2055,34 @@ img {
 .offer-visual:has(.img-contain) {
   background: radial-gradient(circle at 50% 50%, rgba(255, 253, 251, 0.8), var(--color-cream));
 }
+/* =========================================
+   FONDO PREMIUM PARA FLORES INDIVIDUALES
+   ========================================= */
+
+/* 1. Degradado radial en la tarjeta (Ofertas y Galería) */
+.offer-visual:has(.img-contain),
+.gallery-item:has(.img-contain) {
+  background: radial-gradient(
+    circle at 50% 50%,
+    #fffdfb 0%,                         /* Blanco puro en el centro para iluminar la foto */
+    var(--color-cream) 50%,             /* Crema */
+    rgba(217, 165, 168, 0.5) 100%       /* Rosa viejo en los bordes */
+  );
+}
+
+/* 2. Efecto de sombra y marco para la foto */
+.img-contain {
+  object-fit: contain !important;
+  padding: 20px;
+  /* Sombra suave alrededor del rectángulo de la foto */
+  filter: drop-shadow(0px 12px 20px rgba(109, 31, 58, 0.15));
+}
+
+/* 3. Redondear las esquinas de la foto (opcional pero recomendado) */
+.offer-visual .img-contain {
+  border-radius: 16px;
+}
+
+.gallery-item .img-contain {
+  border-radius: 12px;
+}
