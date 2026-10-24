@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { CustomizerButton } from "./customizer";
 import { BloomingFlower } from "./blooming-flower";
 
 const SLIDES = [
@@ -19,7 +17,7 @@ export function CinematicBanner() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
-    }, 4500); // 4.5 segundos por slide
+    }, 4500);
     return () => clearInterval(interval);
   }, []);
 
@@ -42,12 +40,12 @@ export function CinematicBanner() {
         ))}
       </div>
 
-      {/* FLOR EN EL FONDO (CENTRADA) */}
+      {/* FLOR EN EL FONDO */}
       <div className="cinematic-flower-bg">
         <BloomingFlower season={currentSlide} />
       </div>
 
-      {/* CONTENIDO */}
+      {/* CONTENIDO (Solo texto, sin botones) */}
       <div className="container cinematic-content-layout">
         <div className="cinematic-text-box">
           {SLIDES.map((slide, index) => (
@@ -65,16 +63,7 @@ export function CinematicBanner() {
           ))}
         </div>
 
-        <div className="cinematic-actions">
-          <a className="button button-gold" href="#coleccion">
-            Ver colección
-            <ArrowRight size={18} />
-          </a>
-          <CustomizerButton variant="secondary-glass">
-            Crear mi ramo
-          </CustomizerButton>
-        </div>
-
+        {/* Dots de navegación */}
         <div className="cinematic-dots">
           {SLIDES.map((_, index) => (
             <button

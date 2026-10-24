@@ -1726,20 +1726,19 @@ img {
   }
 }
 /* =========================================
-   CINEMATIC BANNER (Compacto y Centrado)
+   CINEMATIC BANNER (Artístico y Superpuesto)
    ========================================= */
 
 .cinematic-banner {
-  /* Altura reducida para que no sea un muro, sino una transición */
-  height: 65svh; 
-  min-height: 480px;
+  /* Altura ajustada para ser compacto y cerrar el paso al catálogo */
+  height: 60svh; 
+  min-height: 450px;
   max-height: 600px;
   overflow: hidden;
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center; 
-  justify-content: center;
+  align-items: flex-end; /* Texto hacia abajo */
 }
 
 .cinematic-bg {
@@ -1765,10 +1764,9 @@ img {
 .cinematic-overlay {
   background: linear-gradient(
     to bottom,
-    rgba(14, 8, 10, 0.2) 0%,
-    rgba(14, 8, 10, 0.5) 40%,
-    rgba(14, 8, 10, 0.95) 85%,
-    rgba(14, 8, 10, 1) 100%
+    rgba(14, 8, 10, 0.3) 0%,
+    rgba(14, 8, 10, 0.1) 50%,
+    rgba(14, 8, 10, 0.95) 100%
   );
   inset: 0;
   pointer-events: none;
@@ -1786,7 +1784,7 @@ img {
 }
 
 .cinematic-petal {
-  background: radial-gradient(circle at 30% 30%, #f0b5be, #a34a63 70%);
+  background: radial-gradient(circle at 30% 30%, #ffb6c1, #e81c5e 70%);
   border-radius: 150% 0 150% 0;
   opacity: 0;
   position: absolute;
@@ -1808,19 +1806,19 @@ img {
   100% { transform: translate3d(80px, 110vh, 0) rotate(540deg); opacity: 0; }
 }
 
-/* --- JARDÍN DE LIRIOS (Llenando el fondo ajustado) --- */
+/* --- JARDÍN DE LIRIOS (Superpuesto) --- */
 .cinematic-flower-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  opacity: 0.95;
+  z-index: 1; /* Detrás del texto pero llenando todo */
+  opacity: 1;
   pointer-events: none;
   transition: all 2s ease-in-out;
-  /* Degradado inferior para integrar los tallos */
-  mask-image: linear-gradient(to top, transparent 0%, black 20%);
-  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 20%);
+  /* Difuminado inferior para integrar los tallos */
+  mask-image: linear-gradient(to top, transparent 0%, black 25%);
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%);
 }
 
 /* --- LAYOUT Y TEXTOS --- */
@@ -1830,13 +1828,12 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 30px; /* Menos espacio abajo */
-  padding-top: 40px; /* Para que el texto respire arriba */
+  padding-bottom: 20px; /* Cerca de la barra de abajo */
 }
 
 .cinematic-text-box {
   position: relative;
-  min-height: 200px; /* Reducido para encajar en el banner más bajo */
+  min-height: 170px; /* Ajustado para que no empuje el diseño */
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
@@ -1863,21 +1860,21 @@ img {
 
 .cinematic-eyebrow {
   color: var(--color-gold);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
 }
 
 .cinematic-title {
   color: var(--color-white);
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 8vw, 3.5rem); /* Texto un poco más compacto */
+  font-size: clamp(2.4rem, 8vw, 3.5rem);
   font-weight: 500;
   line-height: 1.05;
   margin: 8px 0;
-  text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+  text-shadow: 0 4px 20px rgba(0,0,0,0.9);
 }
 
 .cinematic-title em {
@@ -1887,54 +1884,18 @@ img {
 
 .cinematic-desc {
   color: rgba(255, 253, 251, 0.95);
-  font-size: 0.9rem; /* Ligeramente más pequeño */
+  font-size: 0.95rem;
   line-height: 1.5;
-  max-width: 480px;
+  max-width: 400px;
   margin: 0 auto; 
-  text-shadow: 0 2px 8px rgba(0,0,0,0.9);
-}
-
-.cinematic-actions {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; 
-  gap: 10px; /* Botones más juntos */
-  position: relative;
-  z-index: 20;
-}
-
-.cinematic-actions .button {
-  min-height: 44px; /* Botones un poco más bajos para que no ocupen tanto */
-  font-size: 0.85rem;
-}
-
-.button-gold {
-  background: var(--color-gold);
-  color: var(--color-ink);
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(201, 168, 106, 0.3);
-}
-.button-gold:hover {
-  background: #dbbd83;
-  transform: translateY(-2px);
-}
-
-.button-secondary-glass {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--color-white);
-}
-.button-secondary-glass:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-2px);
+  text-shadow: 0 2px 10px rgba(0,0,0,1);
 }
 
 .cinematic-dots {
   display: flex;
   justify-content: center; 
   gap: 8px;
-  margin-top: 16px; /* Menos margen superior */
+  margin-top: 12px;
 }
 
 .cinematic-dot {
@@ -1956,35 +1917,22 @@ img {
 
 /* --- ESCRITORIO --- */
 @media (min-width: 900px) {
-  .cinematic-banner {
-    height: 75svh; /* Un poco más alto en PC */
-  }
-
   .cinematic-content-layout {
     width: 55%;
-    padding-bottom: 0;
-    margin-right: auto;
+    padding-bottom: 40px;
   }
 
   .cinematic-text-box {
     text-align: left;
-    min-height: 240px;
+    min-height: 200px;
   }
 
   .cinematic-desc {
     margin: 0;
   }
 
-  .cinematic-actions {
-    justify-content: flex-start;
-  }
-
   .cinematic-dots {
     justify-content: flex-start;
-  }
-
-  .cinematic-flower-bg {
-    left: 25%; 
   }
 }
 
@@ -2013,7 +1961,7 @@ img {
   transform-origin: bottom center;
 }
 
-.leaf, .petal {
+.leaf, .petal, .flower-spots {
   opacity: 0;
   transition: all 1.5s ease-in-out;
   transform-origin: center;
@@ -2027,6 +1975,7 @@ img {
 .season-0 .stem { stroke-dashoffset: 0; }
 .season-0 .leaf { opacity: 1; }
 .season-0 .petal { opacity: 1; transform: scale(1); }
+.season-0 .flower-spots { opacity: 1; }
 .season-0 .p-front { transform: scale(1) rotate(0deg); }
 .season-0 .p-back { transform: scale(1) rotate(0deg); }
 .season-0 .flower-center { opacity: 1; transform: scale(1); }
@@ -2035,6 +1984,7 @@ img {
 .season-1 .stem { stroke-dashoffset: 0; }
 .season-1 .leaf { opacity: 1; transform: scale(1.02); }
 .season-1 .petal { opacity: 1; transform: scale(1.02); }
+.season-1 .flower-spots { opacity: 1; }
 .season-1 .flower-center { opacity: 1; }
 .season-1 .lily-center .flower-head { animation: wind-center 4s ease-in-out infinite alternate; }
 .season-1 .lily-left .flower-head { animation: wind-side 4s ease-in-out infinite alternate 0.5s; }
@@ -2053,6 +2003,7 @@ img {
 .season-2 .stem { stroke-dashoffset: 0; stroke: #5c4028; }
 .season-2 .leaf { opacity: 1; fill: #8c5a2b; }
 .season-2 .petal { opacity: 1; transform: scale(0.95); fill: #b85c38; }
+.season-2 .flower-spots { opacity: 1; fill: #3b1b0e; }
 .season-2 .flower-center { opacity: 1; filter: sepia(1); }
 
 /* INVIERNO */
@@ -2060,12 +2011,14 @@ img {
 .season-3 .lily-right .stem { transform: rotate(-12deg); }
 .season-3 .leaf { opacity: 0; transform: translateY(30px) rotate(45deg); }
 .season-3 .petal { opacity: 0; transform: translateY(80px) scale(0.4); }
+.season-3 .flower-spots { opacity: 0; }
 .season-3 .flower-center { opacity: 0; }
 
 /* ETERNO */
 .season-4 .stem { stroke-dashoffset: 0; stroke: var(--color-gold); transform: rotate(0deg); }
 .season-4 .leaf { opacity: 1; fill: var(--color-gold); }
 .season-4 .petal { opacity: 1; transform: scale(1.05); fill: url(#petalGold); }
+.season-4 .flower-spots { opacity: 0; }
 .season-4 .flower-center { opacity: 1; filter: brightness(1.5); }
 .season-4 .lily-center .flower-head { animation: glow-eternal 4s ease-in-out infinite alternate; }
 
