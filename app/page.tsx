@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { CustomizerButton } from "../components/customizer";
 import { ScrollEffects } from "../components/scroll-effects";
+import { CinematicBanner } from "../components/cinematic-banner";
 
 /* =========================================
    MARCA
@@ -73,7 +74,7 @@ function InstagramIcon({ size = 20 }: { size?: number }) {
 }
 
 /* =========================================
-   PÉTALOS CAYENDO
+   PÉTALOS CAYENDO (Fondo Global)
    ========================================= */
 
 const PETALS = [
@@ -167,9 +168,9 @@ const offers = [
     image: "/galeria/roses-fuchsia-butterfly.jpg",
     badge: "Top ventas",
     name: "Romantic Pack",
-    desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Un detalle romántico y elegante para sorprender a esa persona especial.",
-    priceNow: "$7,000",
-    priceWas: "$10,000",
+    desc: "Ramo de rosas fucsia con mariposa metálica dorada y corona de perlas. Un detalle romántico y elegante para sorprender.",
+    priceNow: "$12,000",
+    priceWas: "$16,000",
     waMessage:
       "Hola 🌹 Me interesa el Romantic Pack (rosas fucsia con mariposa y corona). ¿Está disponible?",
   },
@@ -178,8 +179,8 @@ const offers = [
     badge: "Favorito",
     name: "Sunshine Pack",
     desc: "Ramo de girasoles tejidos a mano en limpiapipas, con mariposa dorada y espigas blancas decorativas.",
-    priceNow: "$4,000",
-    priceWas: "$5,000",
+    priceNow: "$6,000",
+    priceWas: "$7,500",
     waMessage:
       "Hola 🌻 Me interesa el Sunshine Pack (girasoles tejidos). ¿Cuánto demora?",
   },
@@ -197,7 +198,7 @@ const offers = [
     image: "/galeria/roses-purple-butterfly.jpg",
     badge: "Nuevo",
     name: "Lavender Dreams",
-    desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino, perfecto para sorprender.",
+    desc: "Ramo de rosas violeta claro con mariposas decorativas. Un detalle delicado y femenino.",
     priceNow: "$4,000",
     priceWas: "",
     waMessage:
@@ -207,7 +208,7 @@ const offers = [
     image: "/galeria/roses-lime-crown.jpg",
     badge: "Nuevo",
     name: "Lime Queen",
-    desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno que no pasa desapercibido.",
+    desc: "Ramo de rosas verde limón con mariposa y corona dorada. Un color vibrante y moderno.",
     priceNow: "$4,000",
     priceWas: "",
     waMessage:
@@ -234,7 +235,7 @@ const offers = [
       "Hola 💙 Me interesa el ramo Blue Royale (rosas azules con corona plateada). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-white-crown.jpg",
+    image: "/galeria/roses-yellow-sunflower.jpg", // Imagen con papel Love
     badge: "Especial",
     name: "White Love",
     desc: "Ramo de rosas blancas con papel Love personalizado, corona dorada y mariposa calada. Romántico y delicado.",
@@ -244,22 +245,22 @@ const offers = [
       "Hola 🤍 Me interesa el ramo White Love (rosas blancas con papel Love). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-yellow-butterfly.jpg",
+    image: "/galeria/roses-coral-butterfly.jpg", // Imagen con mariposas marrones
     badge: "Edición limitada",
     name: "Golden Sunrise",
-    desc: "Ramo de rosas amarillas con espigas blancas y mariposas doradas. Un regalo luminoso y lleno de energía.",
+    desc: "Ramo de rosas amarillas con espigas blancas y mariposas decorativas. Un regalo luminoso y lleno de energía.",
     priceNow: "$8,000",
     priceWas: "",
     waMessage:
       "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-yellow-sunflower.jpg",
+    image: "/galeria/roses-yellow-butterfly.jpg", // Imagen del girasol al centro
     badge: "Destacado",
     name: "Sunflower Glow",
-    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original que combina lo mejor de dos mundos.",
-    priceNow: "$7,000",
-    priceWas: "$8,500",
+    desc: "Ramo de rosas amarillas con centro de girasol tejido a mano. Un contraste luminoso y original.",
+    priceNow: "$8,000",
+    priceWas: "$9,500",
     waMessage:
       "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?",
   },
@@ -274,12 +275,12 @@ const offers = [
       "Hola ❤️ Me interesa el ramo Red Passion (rosas rojas con mariposa y corona). ¿Está disponible?",
   },
   {
-    image: "/galeria/roses-coral-butterfly.jpg",
+    image: "/galeria/roses-white-crown.jpg",
     badge: "Nuevo",
     name: "Coral Aurora",
     desc: "Ramo de rosas coral con mariposas doradas y corona decorativa. Un color cálido y sofisticado.",
-    priceNow: "$6,500",
-    priceWas: "$7,500",
+    priceNow: "$8,000",
+    priceWas: "$9,500",
     waMessage:
       "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?",
   },
@@ -287,7 +288,7 @@ const offers = [
     image: "/galeria/roses-yellow-foami-50.jpg",
     badge: "Edición limitada",
     name: "Yellow Fifty",
-    desc: "Ramo XL de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
+    desc: "Ramo Gigante de 50 rosas amarillas hechas a mano en foami, con mariposas y corona decorativa. Nuestra pieza más imponente.",
     priceNow: "$10,000",
     priceWas: "",
     waMessage:
@@ -303,8 +304,18 @@ const offers = [
     waMessage:
       "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?",
   },
+  /* --- ARBOLITOS NAVIDEÑOS --- */
+  {
+    image: "/galeria/christmas-tree-limpiapipas.jpg",
+    badge: "Navidad",
+    name: "Árbol Navideño",
+    desc: "Arbolito de Navidad tejido a mano en limpiapipas. Disponible en 3 tamaños: 30cm ($3,500), 40cm ($4,500) y 50cm ($5,500).",
+    priceNow: "Desde $3,500",
+    priceWas: "",
+    waMessage:
+      "Hola 🎄 Me interesa el Árbol Navideño. ¿Podría indicarme los tamaños disponibles?",
+  },
 ];
-
 const galleryItems = [
   {
     src: "/galeria/roses-fuchsia-butterfly.jpg",
@@ -332,8 +343,8 @@ const galleryItems = [
   },
   {
     src: "/galeria/roses-white-crown.jpg",
-    caption: "White Queen",
-    alt: "Ramo de rosas blancas con corona dorada y mariposa",
+    caption: "White Love",
+    alt: "Ramo de rosas blancas con papel Love, corona dorada y mariposa",
     cls: "tall",
   },
   {
@@ -478,7 +489,7 @@ const faqs = [
   },
   {
     q: "¿Cómo puedo pagar?",
-    a: "Aceptamos transferencia bancaria y efectivo contra entrega en zonas habilitadas. Te compartimos los detalles al confirmar tu pedido.",
+    a: "Aceptamos pagos en USD (efectivo), transferencia bancaria y pagos móviles (CUP). En zonas habilitadas también aceptamos contra entrega. Te compartimos los detalles al confirmar tu pedido.",
   },
 ];
 
@@ -554,6 +565,12 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* =====================================
+            CINEMATIC BANNER (NUEVO)
+            ===================================== */}
+
+        <CinematicBanner />
 
         {/* =====================================
             CATEGORÍAS
@@ -659,7 +676,7 @@ export default function Home() {
                 tulipanes artesanales y lámparas florales. Cada ramo
                 incluye la posibilidad de personalizar colores,
                 tamaño y dedicatoria. <strong>Todos se elaboran por
-                encargo.</strong> Precios en pesos cubanos (CUP).
+                encargo.</strong> Aceptamos pagos en USD y CUP.
               </p>
             </div>
 
@@ -813,7 +830,7 @@ export default function Home() {
                 </h2>
 
                 <p className="about-text">
-                  Soy <strong>Ariadna</strong>, creadora
+                  Soy <strong>Ariadna Paz González</strong>, creadora
                   de Ari&apos;s Eternal Flowers desde Santa Clara,
                   Villa Clara, Cuba. Comencé este proyecto en junio
                   de este año, aunque la idea llevaba tiempo rondando
@@ -826,7 +843,8 @@ export default function Home() {
                 </p>
 
                 <p className="about-text">
-                  Trabajo con foami, limpiapipas, cintas de satín,               mariposas metálicas y coronas decorativas. Me
+                  Trabajo con foami, limpiapipas, cintas de satén,
+                  mariposas metálicas y coronas decorativas. Me
                   inspira la naturaleza, el arte y las personas. Lo
                   que más me gusta es la emoción y la sorpresa en el
                   rostro de quien recibe un ramo — esa reacción es

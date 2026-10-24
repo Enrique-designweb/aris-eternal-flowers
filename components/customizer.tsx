@@ -33,6 +33,9 @@ const FLOWERS = [
   { id: "navidad", label: "Navideño", emoji: "🎄" },
   { id: "tematico", label: "Temático (Hot Wheels, HP…)", emoji: "🏎️" },
   { id: "combinado", label: "Combinado", emoji: "💐" },
+  { id: "una-rosa", label: "1 Rosa individual", emoji: "🌹" },
+  { id: "un-girasol", label: "1 Girasol individual", emoji: "🌻" },
+  { id: "un-tulipan", label: "1 Tulipán individual", emoji: "🌷" },
 ];
 
 const COLORS = [
@@ -48,9 +51,10 @@ const COLORS = [
 ];
 
 const SIZES = [
-  { id: "pequeno", label: "Pequeño (6–9 flores)" },
-  { id: "mediano", label: "Mediano (12–18 flores)" },
-  { id: "grande", label: "Grande (24+ flores)" },
+  { id: "pequeno", label: "Pequeño (5–10 flores)" },
+  { id: "mediano", label: "Mediano (12–20 flores)" },
+  { id: "grande", label: "Grande (25–40 flores)" },
+  { id: "extragrande", label: "Extra Grande (50+ flores)" },
 ];
 
 const OCCASIONS = [
@@ -131,15 +135,20 @@ function buildWhatsAppMessage(data: FormState): string {
   if (data.reference) {
     lines.push(
       "",
-      `📷 *Referencia:* tengo una imagen (${data.reference.name}). La adjunto en el chat a continuación.`,
+      `📷 *Referencia adjunta:* ${data.reference.name}`,
+      "👉 *Adjunto la imagen de referencia en este chat a continuación.*",
     );
   }
 
-  if (data.name.trim()) {
-    lines.push("", `👤 *Mi nombre:* ${data.name.trim()}`);
-  }
+  lines.push(
+    "",
+    `👤 *Mi nombre:* ${data.name.trim()}`,
+    "",
+    "💵 *Formas de pago:* Aceptamos USD y CUP.",
+    "",
+    "¡Gracias! ✨",
+  );
 
-  lines.push("", "¡Gracias! ✨");
   return lines.join("\n");
 }
 
@@ -288,7 +297,7 @@ function CustomizerModal({
     if (step === 0) return data.flowers.length > 0;
     if (step === 1) return data.colors.length > 0 && data.size !== "";
     if (step === 2) return data.occasion !== "";
-    if (step === 3) return true;
+    if (step === 3) return data.name.trim().length > 0;
     return true;
   };
 
@@ -362,13 +371,25 @@ function CustomizerModal({
               <div className="customizer-done-icon">
                 <Check size={32} strokeWidth={3} />
               </div>
-              <h3>Tu pedido se envió por WhatsApp</h3>
+              <h3>¡Pedido enviado por WhatsApp!</h3>
+
+              {data.reference && (
+                <div className="customizer-alert">
+                  <Camera size={20} />
+                  <div>
+                    <strong>Falta un paso:</strong> adjunta tu imagen
+                    de referencia en el chat de WhatsApp que se acaba
+                    de abrir.
+                  </div>
+                </div>
+              )}
+
               <p>
-                Si no se abrió automáticamente, revisa el bloqueo de
-                ventanas emergentes. <br />
-                <strong>No olvides adjuntar tu imagen de referencia
-                en el chat.</strong>
+                Si WhatsApp no se abrió automáticamente, revisa el
+                bloqueo de ventanas emergentes o vuelve a pulsar el
+                botón.
               </p>
+
               <button
                 className="button button-secondary"
                 onClick={onClose}
@@ -491,7 +512,7 @@ function CustomizerModal({
                 </>
               )}
 
-              {/* STEP 3 — Referencia */}
+              {/* STEP 3 — Referencia + Nombre */}
               {step === 3 && (
                 <>
                   <p className="customizer-hint">
@@ -541,17 +562,21 @@ function CustomizerModal({
 
                   <div className="customizer-field">
                     <span className="customizer-label">
-                      Tu nombre (opcional)
+                      Tu nombre <span style={{ color: "#a34a63" }}>*</span>
                     </span>
                     <input
                       className="customizer-input"
                       onChange={(e) =>
                         setData((d) => ({ ...d, name: e.target.value }))
                       }
-                      placeholder="¿Cómo te llamas?"
+                      placeholder="Tu nombre completo"
                       type="text"
                       value={data.name}
                     />
+                    <p className="customizer-hint" style={{ marginTop: 10 }}>
+                      Necesitamos tu nombre para coordinar la entrega.
+                      No compartimos tus datos con terceros.
+                    </p>
                   </div>
                 </>
               )}
@@ -593,9 +618,7 @@ function CustomizerModal({
                       value={data.reference.name}
                     />
                   )}
-                  {data.name && (
-                    <SummaryRow label="Nombre" value={data.name} />
-                  )}
+                  <SummaryRow label="Nombre" value={data.name} />
 
                   <div className="summary-note">
                     <Sparkles size={16} />
@@ -666,7 +689,7 @@ export function CustomizerButton({
   children,
   className = "",
 }: {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "secondary-glass";
   children: ReactNode;
   className?: string;
 }) {
