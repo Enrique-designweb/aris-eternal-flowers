@@ -161,6 +161,13 @@ const categories = [
     name: "Personalizados",
     slug: "personalizados",
   },
+  {
+    image: "/galeria/flores-individuales.jpeg",
+    alt: "Flores individuales hechas a mano",
+    icon: "🌸",
+    name: "Individuales",
+    slug: "individuales",
+  }
 ];
 
 const offers = [
@@ -168,34 +175,44 @@ const offers = [
   // 🌹 NUEVAS FLORES INDIVIDUALES 🌻
   // ==========================================
   {
-    image: "/galeria/rosa-limpiapipa.jpg", // Asegúrate de que este sea el nombre real de tu archivo
-    fit: "contain",
+    image: "/galeria/rosa-limpiapipa.jpeg",
+    fit: "contain", 
     badge: "Individual",
     name: "Rosa de Limpiapipa",
     desc: "Una sola rosa tejida a mano en limpiapipas. El detalle perfecto para un regalo sencillo y especial.",
     priceNow: "500 CUP",
-    priceWas: "750 CUP",
-    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual (500 CUP).",
+    priceWas: "",
+    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual.",
   },
   {
-    image: "/galeria/rosa-saten.jpg", // Asegúrate de que este sea el nombre real de tu archivo
+    image: "/galeria/girasol-satin.jpeg",
     fit: "contain",
     badge: "Individual",
-    name: "Rosa de Satén",
-    desc: "Una sola rosa tejida a mano en tela de satén, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
+    name: "Girasol de Satín",
+    desc: "Un hermoso girasol individual elaborado en tela de satén. Un toque de luz y alegría.",
     priceNow: "600 CUP",
-    priceWas: "750 CUP",
-    waMessage: "Hola 🌻 Me interesa comprar una Rosa de Satén individual (600 CUP).",
+    priceWas: "",
+    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Satén individual.",
   },
   {
-    image: "/galeria/girasol-limpiapipa.jpg", // Asegúrate de que este sea el nombre real de tu archivo
+    image: "/galeria/girasol-limpiapipa.jpeg",
     fit: "contain",
     badge: "Individual",
     name: "Girasol de Limpiapipa",
     desc: "Un girasol individual tejido a mano en limpiapipas. Resistente, hermoso y duradero.",
     priceNow: "500 CUP",
     priceWas: "",
-    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual (500 CUP).",
+    waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual.",
+  },
+  {
+    image: "/galeria/rosa-satin.jpeg",
+    fit: "contain",
+    badge: "Individual",
+    name: "Rosa de Satín",
+    desc: "Una sola rosa tejida a mano en tela de satín, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
+    priceNow: "600 CUP",
+    priceWas: "",
+    waMessage: "Hola 🌹 Me interesa comprar una Rosa de Satén individual.",
   },
 
   // ==========================================
@@ -362,24 +379,31 @@ const galleryItems = [
   // 🌹 NUEVAS FLORES INDIVIDUALES EN GALERÍA 🌻
   // ==========================================
   {
-    src: "/galeria/rosa-limpiapipa.jpg",
+    src: "/galeria/rosa-limpiapipa.jpeg",
     fit: "contain",
     caption: "Rosa Individual",
     alt: "Rosa de limpiapipa individual",
     cls: "",
   },
   {
-    src: "/galeria/rosa-saten.jpg",
+    src: "/galeria/girasol-satin.jpeg",
     fit: "contain",
-    caption: "Rosa de Satén",
-    alt: "Rosa de satén individual",
+    caption: "Girasol de Satín",
+    alt: "Girasol de satén individual",
     cls: "tall",
   },
   {
-    src: "/galeria/girasol-limpiapipa.jpg",
+    src: "/galeria/girasol-limpiapipa.jpeg",
     fit: "contain",
     caption: "Girasol Limpiapipa",
     alt: "Girasol de limpiapipa individual",
+    cls: "",
+  },
+  {
+    src: "/galeria/rosa-satin.jpeg",
+    fit: "contain",
+    caption: "Rosa de Satín",
+    alt: "Rosa de satén individual",
     cls: "",
   },
 
