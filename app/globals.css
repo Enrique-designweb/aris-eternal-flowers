@@ -1730,9 +1730,10 @@ img {
    ========================================= */
 
 .cinematic-banner {
-  height: 100svh; /* Altura completa de pantalla en móvil */
-  min-height: 650px;
-  max-height: 900px;
+  /* Altura reducida para que no ocupe toda la pantalla en móvil */
+  height: 80svh; 
+  min-height: 550px;
+  max-height: 750px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -1750,10 +1751,10 @@ img {
 
 .cinematic-bg.active {
   opacity: 1;
-  transform: scale(1.1); /* Zoom lento cinematográfico */
+  transform: scale(1.1);
 }
 
-/* Fondos Estacionales */
+/* Fondos Estacionales (Ligeramente iluminados) */
 .bg-spring { background: radial-gradient(circle at 50% 50%, #8c4560 0%, #1c0e13 100%); }
 .bg-summer { background: radial-gradient(circle at 50% 50%, #b8853e 0%, #1c140a 100%); }
 .bg-autumn { background: radial-gradient(circle at 50% 50%, #8a3b2a 0%, #140806 100%); }
@@ -1761,10 +1762,11 @@ img {
 .bg-eternal { background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #0d0407 100%); }
 
 .cinematic-overlay {
+  /* Overlay un poco más suave en el centro para que la flor brille */
   background: linear-gradient(
     to bottom,
-    rgba(14, 8, 10, 0.3) 0%,
-    rgba(14, 8, 10, 0.8) 60%,
+    rgba(14, 8, 10, 0.4) 0%,
+    rgba(14, 8, 10, 0.2) 40%,
     rgba(14, 8, 10, 0.95) 100%
   );
   inset: 0;
@@ -1773,6 +1775,7 @@ img {
   z-index: 2;
 }
 
+/* Pétalos cayendo */
 .cinematic-petals {
   inset: 0;
   overflow: hidden;
@@ -1804,19 +1807,21 @@ img {
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- FLOR DE FONDO --- */
+/* --- FLOR DE FONDO (Más iluminada) --- */
 .cinematic-flower-bg {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
-  max-width: 400px;
-  height: 80vw;
-  max-height: 400px;
+  width: 90vw;
+  max-width: 450px;
+  height: 90vw;
+  max-height: 450px;
   z-index: 1;
-  opacity: 0.6; /* Se ve detrás del texto */
+  opacity: 0.9; /* Antes 0.6, ahora resalta más */
+  filter: brightness(1.2); /* Subimos el brillo base */
   pointer-events: none;
+  transition: all 2s ease-in-out;
 }
 
 /* --- LAYOUT Y TEXTOS --- */
@@ -1826,20 +1831,19 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: auto; /* Empuja el contenido hacia abajo */
-  padding-bottom: 60px;
+  margin-top: auto;
+  padding-bottom: 40px;
 }
 
 .cinematic-text-box {
   position: relative;
-  min-height: 260px; /* Evita que el layout salte entre slides */
-  margin-bottom: 24px;
+  min-height: 240px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
-/* FIX: El texto anterior ya no se superpone */
 .cinematic-slide-content {
   position: absolute;
   bottom: 0;
@@ -1863,15 +1867,17 @@ img {
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 .cinematic-title {
   color: var(--color-white);
   font-family: var(--font-display);
-  font-size: clamp(2.8rem, 9vw, 4.5rem);
+  font-size: clamp(2.6rem, 8vw, 4.5rem);
   font-weight: 500;
   line-height: 1.05;
   margin: 12px 0;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 .cinematic-title em {
@@ -1880,10 +1886,11 @@ img {
 }
 
 .cinematic-desc {
-  color: rgba(255, 253, 251, 0.85);
-  font-size: 1rem;
+  color: rgba(255, 253, 251, 0.95);
+  font-size: 0.95rem;
   line-height: 1.6;
   max-width: 480px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
 
 .cinematic-actions {
@@ -1905,20 +1912,20 @@ img {
 }
 
 .button-secondary-glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--color-white);
 }
 .button-secondary-glass:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
 }
 
 .cinematic-dots {
   display: flex;
   gap: 8px;
-  margin-top: 30px;
+  margin-top: 24px;
 }
 
 .cinematic-dot {
@@ -1940,11 +1947,12 @@ img {
 
 @media (min-width: 900px) {
   .cinematic-content-layout {
-    width: 55%; /* En escritorio, el texto va a la izquierda */
+    width: 55%;
   }
   .cinematic-flower-bg {
-    left: 75%; /* La flor se mueve a la derecha */
-    opacity: 0.9;
+    left: 70%;
+    opacity: 1;
+    filter: brightness(1.3);
   }
 }
 
@@ -1964,7 +1972,7 @@ img {
   overflow: visible;
 }
 
-/* El tallo por defecto está oculto/arrugado */
+/* El tallo */
 .stem {
   stroke-dasharray: 250;
   stroke-dashoffset: 250;
@@ -1972,33 +1980,26 @@ img {
   transform-origin: bottom center;
 }
 
-/* Las hojas y pétalos están ocultos */
+/* Las hojas y pétalos */
 .leaf, .petal {
   opacity: 0;
   transition: all 1.5s ease-in-out;
 }
 
 /* --- PRIMAVERA (Crecimiento) --- */
-.season-0 .stem {
-  stroke-dashoffset: 0; /* El tallo crece */
-}
-.season-0 .leaf {
-  opacity: 1;
-}
-.season-0 .petal {
-  opacity: 1;
-  transform: scale(1);
-}
+.season-0 .stem { stroke-dashoffset: 0; }
+.season-0 .leaf { opacity: 1; }
+.season-0 .petal { opacity: 1; transform: scale(1); }
 .season-0 .p-front { transform: scale(1) rotate(0deg); }
 .season-0 .p-back { transform: scale(1) rotate(0deg); }
+.season-0 .cinematic-flower-bg { filter: brightness(1.2) drop-shadow(0 0 15px rgba(232, 28, 94, 0.5)); }
 
 /* --- VERANO (Máximo esplendor) --- */
 .season-1 .stem { stroke-dashoffset: 0; }
 .season-1 .leaf { opacity: 1; }
 .season-1 .petal { opacity: 1; transform: scale(1.05); }
-.season-1 .flower-head {
-  animation: breathe 3s ease-in-out infinite alternate;
-}
+.season-1 .flower-head { animation: breathe 3s ease-in-out infinite alternate; }
+.season-1 .cinematic-flower-bg { filter: brightness(1.3) drop-shadow(0 0 25px rgba(255, 182, 193, 0.7)); }
 
 @keyframes breathe {
   0% { transform: translate(150px, 190px) scale(1); }
@@ -2008,31 +2009,24 @@ img {
 /* --- OTOÑO (Cambio de color) --- */
 .season-2 .stem { stroke-dashoffset: 0; stroke: #5c4028; }
 .season-2 .leaf { opacity: 1; fill: #8c5a2b; }
-.season-2 .petal { opacity: 1; transform: scale(0.95); fill: #b85c38; } /* Pétalos se tornan marrones */
+.season-2 .petal { opacity: 1; transform: scale(0.95); fill: #b85c38; }
+.season-2 .cinematic-flower-bg { filter: brightness(1.1) sepia(0.4) drop-shadow(0 0 15px rgba(184, 92, 56, 0.5)); }
 
 /* --- INVIERNO (Muerte y caída) --- */
-.season-3 .stem { 
-  stroke-dashoffset: 0; 
-  stroke: #2b2b2b; 
-  transform: rotate(15deg); /* El tallo se dobla por el peso */
-}
-.season-3 .leaf { 
-  opacity: 0; 
-  transform: translateY(20px) rotate(45deg); /* Caen las hojas */
-}
-.season-3 .petal { 
-  opacity: 0; 
-  transform: translateY(60px) scale(0.5); /* Caen los pétalos */
-}
+.season-3 .stem { stroke-dashoffset: 0; stroke: #2b2b2b; transform: rotate(15deg); }
+.season-3 .leaf { opacity: 0; transform: translateY(20px) rotate(45deg); }
+.season-3 .petal { opacity: 0; transform: translateY(60px) scale(0.5); }
 .season-3 .flower-center { opacity: 0; }
+/* Oscurecemos un poco la flor en invierno */
+.season-3 .cinematic-flower-bg { filter: brightness(0.6) grayscale(0.8); }
 
 /* --- ETERNO (Resurrección Dorada) --- */
 .season-4 .stem { stroke-dashoffset: 0; stroke: var(--color-gold); transform: rotate(0deg); }
 .season-4 .leaf { opacity: 1; fill: var(--color-gold); }
-.season-4 .petal { opacity: 1; transform: scale(1.1); fill: url(#petalGold); } /* Pétalos dorados */
-.season-4 .flower-head {
-  animation: float-eternal 4s ease-in-out infinite alternate;
-}
+.season-4 .petal { opacity: 1; transform: scale(1.1); fill: url(#petalGold); }
+.season-4 .flower-head { animation: float-eternal 4s ease-in-out infinite alternate; }
+/* Súper resplandor dorado */
+.season-4 .cinematic-flower-bg { filter: brightness(1.5) drop-shadow(0 0 35px rgba(245, 197, 24, 0.9)); }
 
 @keyframes float-eternal {
   0% { transform: translate(150px, 180px); }
