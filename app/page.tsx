@@ -175,7 +175,7 @@ const offers = [
   // 🌹 NUEVAS FLORES INDIVIDUALES 🌻
   // ==========================================
   {
-    image: "rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-limpiapipa.jpg")
+    image: "/galeria/rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-limpiapipa.jpg")
     badge: "Individual",
     name: "Rosa de Limpiapipa",
     desc: "Una sola rosa tejida a mano en limpiapipas. El detalle perfecto para un regalo sencillo y especial.",
@@ -184,7 +184,7 @@ const offers = [
     waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual.",
   },
   {
-    image: "girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-saten.jpg")
+    image: "/galeria/girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-saten.jpg")
     badge: "Individual",
     name: "Girasol de Satín",
     desc: "Un hermoso girasol individual elaborado en tela de satén. Un toque de luz y alegría.",
@@ -193,7 +193,7 @@ const offers = [
     waMessage: "Hola 🌻 Me interesa comprar un Girasol de Satén individual.",
   },
   {
-    image: "girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-limpiapipa.jpg")
+    image: "/galeria/girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/girasol-limpiapipa.jpg")
     badge: "Individual",
     name: "Girasol de Limpiapipa",
     desc: "Un girasol individual tejido a mano en limpiapipas. Resistente, hermoso y duradero.",
@@ -203,7 +203,7 @@ const offers = [
   },
   {
 
-    image: "rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-satin.jpg")
+    image: "/galeria/rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN (ej: "/galeria/rosa-satin.jpg")
     badge: "Individual",
     name: "Rosa de Satín",
     desc: "Una sola rosa tejida a mano en tela de satín, decorada con una mariposa dorada. Un detalle perfecto para un regalo sencillo y especial.",
@@ -362,25 +362,25 @@ const galleryItems = [
   // 🌹 NUEVAS FLORES INDIVIDUALES EN GALERÍA 🌻
   // ==========================================
   {
-    src: "rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/rosa-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
     caption: "Rosa Individual",
     alt: "Rosa de limpiapipa individual",
     cls: "",
   },
   {
-    src: "girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/girasol-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
     caption: "Girasol de Satín",
     alt: "Girasol de satén individual",
     cls: "tall",
   },
   {
-    src: "girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/girasol-limpiapipa.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
     caption: "Girasol Limpiapipa",
     alt: "Girasol de limpiapipa individual",
     cls: "",
   },
   {
-    src: "rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
+    src: "/galeria/rosa-satin.jpeg", // <-- PON AQUÍ LA RUTA DE TU IMAGEN
     caption: "Rosa de Satín",
     alt: "Rosa de satén individual",
     cls: "",
