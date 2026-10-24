@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { CustomizerButton } from "./customizer";
+import { BloomingFlower } from "./blooming-flower";
+
+/* =========================================
+   DATOS DE LOS SLIDES
+   ========================================= */
 
 const SLIDES = [
   {
@@ -47,10 +52,15 @@ const SLIDES = [
   },
 ];
 
+/* =========================================
+   COMPONENTE PRINCIPAL
+   ========================================= */
+
 export function CinematicBanner() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
+    // Cambia de slide automáticamente cada 4 segundos
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
     }, 4000);
@@ -80,53 +90,58 @@ export function CinematicBanner() {
         ))}
       </div>
 
-      {/* 4. Contenido principal */}
-      <div className="container cinematic-content">
+      {/* 4. Contenido Principal - Layout de 2 columnas */}
+      <div className="container cinematic-content-layout">
         
-        {/* Textos apilados con Grid */}
-        <div className="cinematic-text-box">
-          {SLIDES.map((slide, index) => (
-            <div
-              key={slide.id}
-              className={`cinematic-slide-content ${
-                index === currentSlide ? "active" : ""
-              }`}
-            >
-              <span className="cinematic-eyebrow">{slide.eyebrow}</span>
-              <h2 className="cinematic-title">
-                {slide.title} <br />
-                <em>{slide.highlight}</em>
-              </h2>
-              <p className="cinematic-desc">{slide.text}</p>
-            </div>
-          ))}
+        {/* Columna Izquierda: Textos y Botones */}
+        <div className="cinematic-left">
+          <div className="cinematic-text-box">
+            {SLIDES.map((slide, index) => (
+              <div
+                key={slide.id}
+                className={`cinematic-slide-content ${
+                  index === currentSlide ? "active" : ""
+                }`}
+              >
+                <span className="cinematic-eyebrow">{slide.eyebrow}</span>
+                <h2 className="cinematic-title">
+                  {slide.title} <br />
+                  <em>{slide.highlight}</em>
+                </h2>
+                <p className="cinematic-desc">{slide.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="cinematic-actions">
+            <a className="button button-gold" href="#coleccion">
+              Ver colección
+              <ArrowRight size={18} />
+            </a>
+            <CustomizerButton variant="secondary-glass">
+              Crear mi ramo
+            </CustomizerButton>
+          </div>
+
+          <div className="cinematic-dots">
+            {SLIDES.map((_, index) => (
+              <button
+                key={index}
+                className={`cinematic-dot ${
+                  index === currentSlide ? "active" : ""
+                }`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Ir al slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Botones fuera del contenedor de texto */}
-        <div className="cinematic-actions">
-          <a className="button button-gold" href="#coleccion">
-            Ver colección
-            <ArrowRight size={18} />
-          </a>
-
-          <CustomizerButton variant="secondary-glass">
-            Crear mi ramo
-          </CustomizerButton>
+        {/* Columna Derecha: La Flor Animada */}
+        <div className="cinematic-right">
+          <BloomingFlower />
         </div>
 
-        {/* Puntos (Dots) */}
-        <div className="cinematic-dots">
-          {SLIDES.map((_, index) => (
-            <button
-              key={index}
-              className={`cinematic-dot ${
-                index === currentSlide ? "active" : ""
-              }`}
-              onClick={() => setCurrentSlide(index)}
-              aria-label={`Ir al slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

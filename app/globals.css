@@ -312,215 +312,6 @@ img {
 }
 
 /* =========================================
-   FLOWER ANIMATION
-   ========================================= */
-
-.flower-stage {
-  height: 310px;
-  margin: 22px auto 0;
-  max-width: 390px;
-  position: relative;
-  width: 100%;
-}
-
-.flower-ground {
-  background: radial-gradient(
-    ellipse,
-    rgba(109, 31, 58, 0.18),
-    transparent 70%
-  );
-  bottom: 16px;
-  height: 40px;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  width: 220px;
-}
-
-.flower {
-  bottom: 30px;
-  height: 260px;
-  left: 50%;
-  position: absolute;
-  transform: translateX(-50%);
-  width: 150px;
-}
-
-.flower-stem {
-  background: linear-gradient(90deg, #526b43, #77935f, #526b43);
-  bottom: 0;
-  height: 190px;
-  left: 50%;
-  position: absolute;
-  transform-origin: bottom;
-  transform: translateX(-50%) scaleY(0);
-  width: 7px;
-  animation: grow-stem 1.5s var(--ease-smooth) forwards;
-}
-
-.flower-leaf {
-  background: linear-gradient(135deg, #77935f, #3f5d36);
-  border-radius: 100% 0 100% 0;
-  height: 58px;
-  opacity: 0;
-  position: absolute;
-  width: 34px;
-}
-
-.flower-leaf.left {
-  left: 35px;
-  top: 135px;
-  transform: rotate(-30deg) scale(0);
-  animation: leaf-grow 0.7s 1s var(--ease-smooth) forwards;
-}
-
-.flower-leaf.right {
-  right: 34px;
-  top: 105px;
-  transform: rotate(30deg) scale(0);
-  animation: leaf-grow 0.7s 1.2s var(--ease-smooth) forwards;
-}
-
-.flower-head {
-  height: 105px;
-  left: 50%;
-  position: absolute;
-  top: 25px;
-  transform: translateX(-50%);
-  width: 115px;
-}
-
-.petal {
-  background: linear-gradient(145deg, #e9a9b4, #a34a63);
-  border-radius: 60% 40% 65% 35%;
-  height: 68px;
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  top: 20px;
-  transform-origin: bottom center;
-  width: 43px;
-}
-
-.petal-1 {
-  --rotation: 0deg;
-  transform: translateX(-50%) rotate(0deg) scale(0);
-  animation: bloom 0.8s 1.65s var(--ease-smooth) forwards;
-}
-
-.petal-2 {
-  --rotation: 72deg;
-  transform: translateX(-50%) rotate(72deg) scale(0);
-  animation: bloom 0.8s 1.75s var(--ease-smooth) forwards;
-}
-
-.petal-3 {
-  --rotation: 144deg;
-  transform: translateX(-50%) rotate(144deg) scale(0);
-  animation: bloom 0.8s 1.85s var(--ease-smooth) forwards;
-}
-
-.petal-4 {
-  --rotation: 216deg;
-  transform: translateX(-50%) rotate(216deg) scale(0);
-  animation: bloom 0.8s 1.95s var(--ease-smooth) forwards;
-}
-
-.petal-5 {
-  --rotation: 288deg;
-  transform: translateX(-50%) rotate(288deg) scale(0);
-  animation: bloom 0.8s 2.05s var(--ease-smooth) forwards;
-}
-
-.flower-center {
-  background: radial-gradient(
-    circle at 35% 30%,
-    #f8df9f,
-    var(--color-gold)
-  );
-  border: 5px solid #fff0d0;
-  border-radius: 50%;
-  height: 30px;
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  top: 57px;
-  transform: translate(-50%, -50%) scale(0);
-  width: 30px;
-  z-index: 5;
-  animation: center-bloom 0.7s 2.25s var(--ease-smooth) forwards;
-}
-
-.sparkle {
-  color: var(--color-gold);
-  font-size: 1.2rem;
-  opacity: 0;
-  position: absolute;
-  animation: sparkle 2.5s 2.3s ease-in-out infinite;
-}
-
-.sparkle-1 {
-  left: 22%;
-  top: 30%;
-}
-
-.sparkle-2 {
-  right: 20%;
-  top: 18%;
-  animation-delay: 2.7s;
-}
-
-.sparkle-3 {
-  right: 10%;
-  top: 52%;
-  animation-delay: 3s;
-}
-
-/* =========================================
-   ANIMATIONS
-   ========================================= */
-
-@keyframes grow-stem {
-  to {
-    transform: translateX(-50%) scaleY(1);
-  }
-}
-
-@keyframes leaf-grow {
-  to {
-    opacity: 1;
-    transform: rotate(-30deg) scale(1);
-  }
-}
-
-@keyframes bloom {
-  to {
-    opacity: 1;
-    transform: translateX(-50%) rotate(var(--rotation)) scale(1);
-  }
-}
-
-@keyframes center-bloom {
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes sparkle {
-  0%,
-  100% {
-    opacity: 0.15;
-    transform: translateY(0) scale(0.8);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translateY(-10px) scale(1.1);
-  }
-}
-
-/* =========================================
    SECTION
    ========================================= */
 
@@ -542,7 +333,26 @@ img {
 }
 
 /* =========================================
-   CATEGORY CARDS
+   PÁRRAFOS SEO — Secciones
+   ========================================= */
+
+.section-lead {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin: 14px 0 32px;
+  max-width: 680px;
+}
+
+@media (min-width: 700px) {
+  .section-lead {
+    font-size: 1rem;
+    margin: 18px 0 40px;
+  }
+}
+
+/* =========================================
+   CATEGORÍAS CON IMÁGENES REALES
    ========================================= */
 
 .category-grid {
@@ -556,86 +366,76 @@ img {
   background: var(--color-cream);
   border-radius: var(--radius-lg);
   display: flex;
-  min-height: 190px;
+  isolation: isolate;
+  min-height: 220px;
   overflow: hidden;
-  padding: 18px;
+  padding: 22px;
   position: relative;
-  transition: transform 300ms var(--ease-smooth);
+  transition: transform 450ms var(--ease-smooth);
 }
 
 .category-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
 }
 
 .category-card::before {
-  background: radial-gradient(
-    circle at 50% 35%,
-    rgba(217, 165, 168, 0.65),
-    transparent 55%
+  background: linear-gradient(
+    180deg,
+    rgba(42, 32, 35, 0) 0%,
+    rgba(42, 32, 35, 0) 35%,
+    rgba(42, 32, 35, 0.72) 78%,
+    rgba(42, 32, 35, 0.92) 100%
   );
   content: "";
   inset: 0;
+  pointer-events: none;
   position: absolute;
-}
-
-.category-content {
-  position: relative;
   z-index: 2;
 }
 
-.category-icon {
-  font-size: 3rem;
+.category-card .category-image {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  transition: transform 800ms var(--ease-smooth);
+  width: 100%;
+  z-index: 1;
 }
 
-.category-name {
-  color: var(--color-burgundy);
+.category-card:hover .category-image {
+  transform: scale(1.1);
+}
+
+.category-card .category-content {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+}
+
+.category-card .category-icon {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.category-card .category-name {
+  color: white;
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  line-height: 1;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 
 @media (min-width: 700px) {
-  .hero {
-    padding-bottom: 80px;
+  .category-card {
+    min-height: 260px;
   }
 
-  .hero-content {
-    padding-top: 40px;
-  }
-
-  .hero-actions {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .button {
-    min-width: 170px;
-  }
-
-  .mobile-nav {
-    display: none;
-  }
-
-  .category-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .category-card .category-name {
+    font-size: 1.7rem;
   }
 }
 
@@ -768,6 +568,11 @@ img {
   height: 170px;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+}
+
+.offer-image {
+  object-fit: cover;
 }
 
 .offer-body {
@@ -850,13 +655,13 @@ img {
   opacity: 1;
 }
 
-.gallery-emoji {
-  align-items: center;
-  display: flex;
-  font-size: 2.6rem;
-  height: 100%;
-  justify-content: center;
-  width: 100%;
+.gallery-image {
+  object-fit: cover;
+  transition: transform 600ms var(--ease-smooth);
+}
+
+.gallery-item:hover .gallery-image {
+  transform: scale(1.08);
 }
 
 .gallery-item .caption {
@@ -881,13 +686,6 @@ img {
 .gallery-item.tall {
   grid-row: span 2;
 }
-
-.gallery-item.g1 { background: radial-gradient(circle at 40% 30%, #e9a9b4, #a34a63); }
-.gallery-item.g2 { background: radial-gradient(circle at 60% 40%, #f8df9f, #c9a86a); }
-.gallery-item.g3 { background: radial-gradient(circle at 50% 50%, #d9a5a8, #6d1f3a); }
-.gallery-item.g4 { background: radial-gradient(circle at 30% 60%, #cfc2a5, #879b83); }
-.gallery-item.g5 { background: radial-gradient(circle at 70% 30%, #e9a9b4, #4d1428); }
-.gallery-item.g6 { background: radial-gradient(circle at 40% 60%, #f5ede0, #d9a5a8); }
 
 /* =========================================
    FAQ
@@ -1121,6 +919,31 @@ img {
    ========================================= */
 
 @media (min-width: 700px) {
+  .hero {
+    padding-bottom: 80px;
+  }
+
+  .hero-content {
+    padding-top: 40px;
+  }
+
+  .hero-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .button {
+    min-width: 170px;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .offers-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -1143,35 +966,15 @@ img {
   }
 }
 
-/* =========================================
-   IMÁGENES EN OFERTAS Y GALERÍA
-   ========================================= */
-
-.offer-visual {
-  position: relative;
-  overflow: hidden;
-}
-
-.offer-image {
-  object-fit: cover;
-}
-
-.gallery-image {
-  object-fit: cover;
-  transition: transform 600ms var(--ease-smooth);
-}
-
-.gallery-item:hover .gallery-image {
-  transform: scale(1.08);
-}
-
-.gallery-item {
-  position: relative;
-}
-
-/* El emoji ya no se usa, quitamos su fondo */
-.gallery-item .gallery-emoji {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* =========================================
@@ -1318,8 +1121,6 @@ img {
   padding: 14px 16px;
 }
 
-/* ------- Pick cards ------- */
-
 .pick-grid {
   display: grid;
   gap: 10px;
@@ -1361,8 +1162,6 @@ img {
   font-weight: 600;
   line-height: 1.2;
 }
-
-/* ------- Colors ------- */
 
 .color-grid {
   display: flex;
@@ -1406,8 +1205,6 @@ img {
   color: var(--color-burgundy);
 }
 
-/* ------- Sizes ------- */
-
 .size-list {
   display: flex;
   flex-direction: column;
@@ -1436,8 +1233,6 @@ img {
   color: var(--color-burgundy);
 }
 
-/* ------- Inputs ------- */
-
 .customizer-input,
 .customizer-textarea {
   background: var(--color-cream);
@@ -1461,8 +1256,6 @@ img {
   line-height: 1.5;
   resize: vertical;
 }
-
-/* ------- Upload ------- */
 
 .upload-zone {
   align-items: center;
@@ -1527,8 +1320,6 @@ img {
   font-weight: 700;
 }
 
-/* ------- Summary ------- */
-
 .summary {
   display: flex;
   flex-direction: column;
@@ -1573,8 +1364,6 @@ img {
   text-align: center;
 }
 
-/* ------- Done ------- */
-
 .customizer-done {
   align-items: center;
   display: flex;
@@ -1610,7 +1399,37 @@ img {
   max-width: 380px;
 }
 
-/* ------- Responsive ------- */
+.customizer-alert {
+  align-items: flex-start;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 106, 0.18),
+    rgba(217, 165, 168, 0.15)
+  );
+  border: 1px solid rgba(201, 168, 106, 0.4);
+  border-radius: var(--radius-md);
+  color: var(--color-burgundy);
+  display: flex;
+  font-size: 0.85rem;
+  gap: 12px;
+  line-height: 1.5;
+  margin: 4px 0;
+  padding: 14px 16px;
+  text-align: left;
+  width: 100%;
+}
+
+.customizer-alert svg {
+  color: var(--color-gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.customizer-alert strong {
+  color: var(--color-burgundy);
+  display: block;
+  margin-bottom: 2px;
+}
 
 @media (min-width: 700px) {
   .customizer-overlay {
@@ -1750,107 +1569,6 @@ img {
   min-height: 70svh;
   justify-content: center;
   padding: 40px 0 60px;
-}
-
-/* =========================================
-   CATEGORÍAS CON IMÁGENES REALES
-   ========================================= */
-
-.category-card {
-  align-items: flex-end;
-  background: var(--color-cream);
-  border-radius: var(--radius-lg);
-  display: flex;
-  isolation: isolate;
-  min-height: 220px;
-  overflow: hidden;
-  padding: 22px;
-  position: relative;
-  transition: transform 450ms var(--ease-smooth);
-}
-
-.category-card:hover {
-  transform: translateY(-6px);
-}
-
-.category-card::before {
-  background: linear-gradient(
-    180deg,
-    rgba(42, 32, 35, 0) 0%,
-    rgba(42, 32, 35, 0) 35%,
-    rgba(42, 32, 35, 0.72) 78%,
-    rgba(42, 32, 35, 0.92) 100%
-  );
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: 2;
-}
-
-.category-card .category-image {
-  height: 100%;
-  inset: 0;
-  object-fit: cover;
-  position: absolute;
-  transition: transform 800ms var(--ease-smooth);
-  width: 100%;
-  z-index: 1;
-}
-
-.category-card:hover .category-image {
-  transform: scale(1.1);
-}
-
-.category-card .category-content {
-  position: relative;
-  width: 100%;
-  z-index: 3;
-}
-
-.category-card .category-icon {
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
-  font-size: 1.8rem;
-  margin-bottom: 6px;
-}
-
-.category-card .category-name {
-  color: white;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1;
-  margin: 0;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
-}
-
-@media (min-width: 700px) {
-  .category-card {
-    min-height: 260px;
-  }
-
-  .category-card .category-name {
-    font-size: 1.7rem;
-  }
-}
-
-/* =========================================
-   PÁRRAFOS SEO — Secciones
-   ========================================= */
-
-.section-lead {
-  color: var(--color-muted);
-  font-size: 0.95rem;
-  line-height: 1.75;
-  margin: 14px 0 32px;
-  max-width: 680px;
-}
-
-@media (min-width: 700px) {
-  .section-lead {
-    font-size: 1rem;
-    margin: 18px 0 40px;
-  }
 }
 
 /* =========================================
@@ -2007,41 +1725,7 @@ img {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-/* =========================================
-   CUSTOMIZER — Alerta de imagen
-   ========================================= */
 
-.customizer-alert {
-  align-items: flex-start;
-  background: linear-gradient(
-    135deg,
-    rgba(201, 168, 106, 0.18),
-    rgba(217, 165, 168, 0.15)
-  );
-  border: 1px solid rgba(201, 168, 106, 0.4);
-  border-radius: var(--radius-md);
-  color: var(--color-burgundy);
-  display: flex;
-  font-size: 0.85rem;
-  gap: 12px;
-  line-height: 1.5;
-  margin: 4px 0;
-  padding: 14px 16px;
-  text-align: left;
-  width: 100%;
-}
-
-.customizer-alert svg {
-  color: var(--color-gold);
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.customizer-alert strong {
-  color: var(--color-burgundy);
-  display: block;
-  margin-bottom: 2px;
-}
 /* =========================================
    CINEMATIC BANNER (Brand Palette)
    ========================================= */
@@ -2068,41 +1752,17 @@ img {
   transform: scale(1.05);
 }
 
-/* 
-  Adaptación de las estaciones a la paleta de Ari's Eternal Flowers 
-  Usando los tonos Borgoña, Vino, Dorado, Rosa Viejo e Ink.
-*/
+/* Fondos Estacionales */
+.bg-spring { background: radial-gradient(circle at 50% 50%, var(--color-old-rose) 0%, var(--color-burgundy) 100%); }
+.bg-summer { background: radial-gradient(circle at 50% 50%, var(--color-gold) 0%, var(--color-ink) 100%); }
+.bg-autumn { background: radial-gradient(circle at 50% 50%, var(--color-wine) 0%, var(--color-ink) 100%); }
+.bg-winter { background: radial-gradient(circle at 50% 50%, #4d3b41 0%, #161014 100%); }
+.bg-eternal { background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #14060a 100%); }
 
-/* Primavera: Rosa viejo a Borgoña */
-.bg-spring { 
-  background: radial-gradient(circle at 50% 50%, var(--color-old-rose) 0%, var(--color-burgundy) 100%); 
-}
-
-/* Verano: Dorado a Ink */
-.bg-summer { 
-  background: radial-gradient(circle at 50% 50%, var(--color-gold) 0%, var(--color-ink) 100%); 
-}
-
-/* Otoño: Vino a Ink */
-.bg-autumn { 
-  background: radial-gradient(circle at 50% 50%, var(--color-wine) 0%, var(--color-ink) 100%); 
-}
-
-/* Invierno: Un tono más oscuro y frío de la marca */
-.bg-winter { 
-  background: radial-gradient(circle at 50% 50%, #4d3b41 0%, #161014 100%); 
-}
-
-/* Eterno: Borgoña profundo (el clímax del mensaje) */
-.bg-eternal { 
-  background: radial-gradient(circle at 50% 50%, var(--color-burgundy) 0%, #14060a 100%); 
-}
-
-/* --- Overlay oscuro usando el tono Ink --- */
 .cinematic-overlay {
   background: linear-gradient(
     to top,
-    rgba(42, 32, 35, 0.95) 0%, /* var(--color-ink) */
+    rgba(42, 32, 35, 0.95) 0%,
     rgba(42, 32, 35, 0.4) 50%,
     rgba(42, 32, 35, 0.7) 100%
   );
@@ -2112,7 +1772,6 @@ img {
   z-index: 2;
 }
 
-/* --- Pétalos (usando la paleta) --- */
 .cinematic-petals {
   inset: 0;
   overflow: hidden;
@@ -2150,8 +1809,8 @@ img {
   100% { transform: translate3d(50px, 110vh, 0) rotate(360deg); opacity: 0; }
 }
 
-/* --- Contenido y Grid --- */
-.cinematic-content {
+/* --- Layout de 2 columnas para el banner --- */
+.cinematic-content-layout {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -2159,6 +1818,20 @@ img {
   padding-bottom: 60px;
   position: relative;
   z-index: 10;
+}
+
+.cinematic-left {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cinematic-right {
+  display: none; /* Oculto en móvil */
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .cinematic-text-box {
@@ -2182,7 +1855,6 @@ img {
   transform: translateY(0);
 }
 
-/* --- Textos (usando la paleta) --- */
 .cinematic-eyebrow {
   color: var(--color-gold);
   font-size: 0.75rem;
@@ -2206,13 +1878,12 @@ img {
 }
 
 .cinematic-desc {
-  color: rgba(255, 253, 251, 0.85); /* var(--color-white) con opacidad */
+  color: rgba(255, 253, 251, 0.85);
   font-size: 1rem;
   line-height: 1.6;
   max-width: 480px;
 }
 
-/* --- Botones --- */
 .cinematic-actions {
   display: flex;
   flex-wrap: wrap;
@@ -2227,7 +1898,7 @@ img {
   font-weight: 700;
 }
 .button-gold:hover {
-  background: #dbbd83; /* Un dorado ligeramente más claro al hacer hover */
+  background: #dbbd83;
   transform: translateY(-2px);
 }
 
@@ -2242,7 +1913,6 @@ img {
   transform: translateY(-2px);
 }
 
-/* --- Dots (Puntos) --- */
 .cinematic-dots {
   display: flex;
   gap: 8px;
@@ -2266,14 +1936,114 @@ img {
   width: 24px;
 }
 
-/* --- Responsive (Escritorio) --- */
 @media (min-width: 900px) {
-  .cinematic-content {
-    justify-content: center;
+  .cinematic-content-layout {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding-bottom: 0;
   }
 
-  .cinematic-actions {
-    margin-top: 10px;
+  .cinematic-left {
+    width: 55%;
+    justify-content: center;
   }
+
+  .cinematic-right {
+    display: flex;
+    width: 45%;
+    height: 80%; 
+  }
+  
+  .cinematic-slide-content {
+    position: relative; 
+  }
+}
+
+/* =========================================
+   FLOR ANIMADA SVG (Ciclo de vida)
+   ========================================= */
+
+.flower-container {
+  height: 100%;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.blooming-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.stem {
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+  transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flower-container.animate .stem {
+  stroke-dashoffset: 0;
+}
+
+.leaf {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flower-container.animate .leaf-left {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 1s;
+}
+
+.flower-container.animate .leaf-right {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 1.3s;
+}
+
+.petal {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 0px 0px;
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.flower-container.animate .petal-bg-1 { opacity: 0.8; transform: scale(1); transition-delay: 1.5s; }
+.flower-container.animate .petal-bg-2 { opacity: 0.8; transform: scale(1); transition-delay: 1.6s; }
+.flower-container.animate .petal-bg-3 { opacity: 0.8; transform: scale(1); transition-delay: 1.7s; }
+
+.flower-container.animate .petal-fg-1 { opacity: 1; transform: scale(1); transition-delay: 2.0s; }
+.flower-container.animate .petal-fg-2 { opacity: 1; transform: scale(1); transition-delay: 2.1s; }
+.flower-container.animate .petal-fg-3 { opacity: 1; transform: scale(1); transition-delay: 2.2s; }
+
+.flower-center {
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  transition: all 0.8s ease-out;
+}
+
+.flower-container.animate .flower-center {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 2.5s;
+}
+
+.flower-container.animate .flower-head {
+  animation: sway 4s ease-in-out infinite alternate;
+  animation-delay: 3.5s;
+}
+
+@keyframes sway {
+  0% { transform: translate(150px, 190px) rotate(-2deg); }
+  100% { transform: translate(150px, 190px) rotate(2deg); }
 }
