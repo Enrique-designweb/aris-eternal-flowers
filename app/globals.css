@@ -1730,7 +1730,6 @@ img {
    ========================================= */
 
 .cinematic-banner {
-  /* Altura ajustada para ser compacto y cerrar el paso al catálogo */
   height: 60svh; 
   min-height: 450px;
   max-height: 600px;
@@ -1738,7 +1737,7 @@ img {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: flex-end; /* Texto hacia abajo */
+  align-items: flex-end; 
 }
 
 .cinematic-bg {
@@ -1806,17 +1805,16 @@ img {
   100% { transform: translate3d(80px, 110vh, 0) rotate(540deg); opacity: 0; }
 }
 
-/* --- JARDÍN DE LIRIOS (Superpuesto) --- */
+/* --- JARDÍN DE LIRIOS --- */
 .cinematic-flower-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Detrás del texto pero llenando todo */
+  z-index: 1;
   opacity: 1;
   pointer-events: none;
   transition: all 2s ease-in-out;
-  /* Difuminado inferior para integrar los tallos */
   mask-image: linear-gradient(to top, transparent 0%, black 25%);
   -webkit-mask-image: linear-gradient(to top, transparent 0%, black 25%);
 }
@@ -1828,12 +1826,12 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-bottom: 20px; /* Cerca de la barra de abajo */
+  padding-bottom: 20px;
 }
 
 .cinematic-text-box {
   position: relative;
-  min-height: 170px; /* Ajustado para que no empuje el diseño */
+  min-height: 170px;
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
@@ -1921,16 +1919,13 @@ img {
     width: 55%;
     padding-bottom: 40px;
   }
-
   .cinematic-text-box {
     text-align: left;
     min-height: 200px;
   }
-
   .cinematic-desc {
     margin: 0;
   }
-
   .cinematic-dots {
     justify-content: flex-start;
   }
@@ -1954,9 +1949,10 @@ img {
   overflow: visible;
 }
 
+/* El tallo, hojas y pétalos */
 .stem {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
   transition: stroke-dashoffset 2s ease-out, transform 2s ease-in-out, stroke 2s ease;
   transform-origin: bottom center;
 }
@@ -1968,7 +1964,7 @@ img {
 }
 
 .lily .petal {
-  transform-origin: 0px 0px;
+  transform-origin: 0px 0px; /* Abren desde la base */
 }
 
 /* PRIMAVERA */
@@ -1986,17 +1982,23 @@ img {
 .season-1 .petal { opacity: 1; transform: scale(1.02); }
 .season-1 .flower-spots { opacity: 1; }
 .season-1 .flower-center { opacity: 1; }
-.season-1 .lily-center .flower-head { animation: wind-center 4s ease-in-out infinite alternate; }
-.season-1 .lily-left .flower-head { animation: wind-side 4s ease-in-out infinite alternate 0.5s; }
-.season-1 .lily-right .flower-head { animation: wind-side 4s ease-in-out infinite alternate 0.8s; }
+
+/* FIX: Ahora animamos la PLANTA ENTERA (g), no solo la cabeza */
+.season-1 .lily-center { animation: wind-center 4s ease-in-out infinite alternate; }
+.season-1 .lily-left { animation: wind-side-left 4s ease-in-out infinite alternate 0.5s; }
+.season-1 .lily-right { animation: wind-side-right 4s ease-in-out infinite alternate 0.8s; }
 
 @keyframes wind-center {
-  0% { transform: translate(250px, 220px) rotate(-2deg); }
-  100% { transform: translate(250px, 220px) rotate(2deg); }
+  0% { transform: translate(250px, 220px) rotate(-1deg); }
+  100% { transform: translate(250px, 220px) rotate(1deg); }
 }
-@keyframes wind-side {
-  0% { transform: rotate(-3deg); }
-  100% { transform: rotate(3deg); }
+@keyframes wind-side-left {
+  0% { transform: translate(140px, 280px) scale(0.7) rotate(-15deg); }
+  100% { transform: translate(140px, 280px) scale(0.7) rotate(-12deg); }
+}
+@keyframes wind-side-right {
+  0% { transform: translate(360px, 260px) scale(0.8) rotate(12deg); }
+  100% { transform: translate(360px, 260px) scale(0.8) rotate(15deg); }
 }
 
 /* OTOÑO */
@@ -2020,7 +2022,7 @@ img {
 .season-4 .petal { opacity: 1; transform: scale(1.05); fill: url(#petalGold); }
 .season-4 .flower-spots { opacity: 0; }
 .season-4 .flower-center { opacity: 1; filter: brightness(1.5); }
-.season-4 .lily-center .flower-head { animation: glow-eternal 4s ease-in-out infinite alternate; }
+.season-4 .lily-center { animation: glow-eternal 4s ease-in-out infinite alternate; }
 
 @keyframes glow-eternal {
   0% { transform: translate(250px, 220px) rotate(0deg); filter: drop-shadow(0 0 15px rgba(245, 197, 24, 0.5)); }
