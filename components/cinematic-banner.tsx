@@ -8,7 +8,7 @@ const SLIDES = [
   { id: 2, bgClass: "bg-summer", eyebrow: "Verano", title: "Máximo esplendor.", highlight: "La naturaleza florece.", text: "Ramos llenos de energía, luz y vida." },
   { id: 3, bgClass: "bg-autumn", eyebrow: "Otoño", title: "Todo cambia.", highlight: "Los colores se transforman.", text: "Tonos cálidos y profundos, preludio del descanso." },
   { id: 4, bgClass: "bg-winter", eyebrow: "Invierno", title: "Todo se marchita.", highlight: "La naturaleza se detiene.", text: "El frío llega, los pétalos caen... la belleza desaparece." },
-  { id: 5, bgClass: "bg-eternal", eyebrow: "Ari's Eternal Flowers", title: "Aquí, el tiempo", highlight: "se detiene.", text: "Desde una sola flor hasta ramos XL. Hacemos que sea eterno." },
+  { id: 5, bgClass: "bg-eternal", title: "Aquí, el tiempo", highlight: "se detiene.", text: "Desde una sola flor hasta ramos XL. Hacemos que sea eterno." },
 ];
 
 export function CinematicBanner() {
@@ -23,29 +23,20 @@ export function CinematicBanner() {
 
   return (
     <section className="cinematic-banner">
-      {/* Fondos */}
-      {SLIDES.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`cinematic-bg ${slide.bgClass} ${index === currentSlide ? "active" : ""}`}
-        />
-      ))}
+      <div className="canvas-texture" />
 
-      <div className="cinematic-overlay" />
-
-      {/* Pétalos cayendo */}
       <div className="cinematic-petals" aria-hidden="true">
         {[...Array(12)].map((_, i) => (
           <span key={i} className={`cinematic-petal petal-${i + 1}`} />
         ))}
       </div>
 
-      {/* FLOR EN EL FONDO */}
       <div className="cinematic-flower-bg">
         <BloomingFlower season={currentSlide} />
       </div>
 
-      {/* CONTENIDO (Solo texto, sin botones) */}
+      <div className="cinematic-overlay" />
+
       <div className="container cinematic-content-layout">
         <div className="cinematic-text-box">
           {SLIDES.map((slide, index) => (
@@ -53,7 +44,9 @@ export function CinematicBanner() {
               key={slide.id}
               className={`cinematic-slide-content ${index === currentSlide ? "active" : ""}`}
             >
-              <span className="cinematic-eyebrow">{slide.eyebrow}</span>
+              {/* Renderizado condicional para que no quede un espacio vacío si no hay eyebrow */}
+              {slide.eyebrow && <span className="cinematic-eyebrow">{slide.eyebrow}</span>}
+              
               <h2 className="cinematic-title">
                 {slide.title} <br />
                 <em>{slide.highlight}</em>
@@ -63,7 +56,6 @@ export function CinematicBanner() {
           ))}
         </div>
 
-        {/* Dots de navegación */}
         <div className="cinematic-dots">
           {SLIDES.map((_, index) => (
             <button

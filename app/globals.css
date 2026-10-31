@@ -1958,7 +1958,7 @@ img {
   stroke-dasharray: 400;
   stroke-dashoffset: 400;
   transition: stroke-dashoffset 2s ease-out, transform 2s ease-in-out, stroke 2s ease;
-  transform-origin: bottom center;
+  transform-origin: bottom center; /* <--- ESTO ES VITAL */
 }
 
 .leaf, .petal, .flower-spots {
@@ -2011,14 +2011,33 @@ img {
 .season-2 .flower-spots { opacity: 1; fill: #3b1b0e; }
 .season-2 .flower-center { opacity: 1; filter: sepia(1); }
 
-/* INVIERNO */
-.season-3 .stem { stroke-dashoffset: 0; stroke: #2b2b2b; transform: rotate(10deg); }
-.season-3 .lily-right .stem { transform: rotate(-12deg); }
-.season-3 .leaf { opacity: 0; transform: translateY(30px) rotate(45deg); }
-.season-3 .petal { opacity: 0; transform: translateY(80px) scale(0.4); }
-.season-3 .flower-spots { opacity: 0; }
-.season-3 .flower-center { opacity: 0; }
+/* INVIERNO: Los pétalos caen y el tallo se dobla marchito */
+.season-3 .stem { 
+  stroke-dashoffset: 0; 
+  stroke: #2b1f14; /* Color café oscuro seco */
+  transform: rotate(25deg); /* El tallo central se dobla hacia la derecha */
+  transition-delay: 0.8s; /* Espera a que caigan los pétalos primero */
+}
 
+.season-3 .lily-left .stem { 
+  transform: rotate(45deg); /* El tallo izquierdo cae más fuerte */
+}
+
+.season-3 .lily-right .stem { 
+  transform: rotate(-40deg); /* El tallo derecho cae hacia el otro lado */
+}
+
+.season-3 .petal { 
+  opacity: 0; 
+  transform: translateY(100px) scale(0.2); /* Caen al vacío */
+  filter: grayscale(1); /* Pierden todo el color */
+}
+
+.season-3 .flower-center { 
+  opacity: 0; 
+  transform: translateY(50px) scale(0.3); /* El centro también cae */
+  background: #2b1f14;
+}
 /* ETERNO */
 .season-4 .stem { stroke-dashoffset: 0; stroke: var(--color-gold); transform: rotate(0deg); }
 .season-4 .leaf { opacity: 1; fill: var(--color-gold); }
@@ -2069,6 +2088,16 @@ img {
     rgba(217, 165, 168, 0.5) 100%       /* Rosa viejo en los bordes */
   );
 }
+.img-contain {
+  object-fit: contain !important;
+  padding: 20px;
+  filter: drop-shadow(0px 12px 20px rgba(109, 31, 58, 0.15));
+  border-radius: 16px;
+}
+
+.offer-visual:has(.img-contain), .gallery-item:has(.img-contain) {
+  background: radial-gradient(circle at 50% 50%, #fffdfb 0%, var(--color-cream) 50%, rgba(217, 165, 168, 0.5) 100%);
+}
 
 /* 2. Efecto de sombra y marco para la foto */
 .img-contain {
@@ -2085,4 +2114,215 @@ img {
 
 .gallery-item .img-contain {
   border-radius: 12px;
+}
+/* En escritorio sube un poco más porque no hay barra de navegación */
+@media (min-width: 700px) {
+  .dynamic-wa {
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 16px 10px 10px;
+    gap: 12px;
+  }
+  
+  .dynamic-wa-flower {
+    font-size: 1.4rem;
+  }
+
+  .dynamic-wa-text strong {
+    font-size: 0.85rem;
+  }
+  
+  .dynamic-wa-text span {
+    font-size: 0.7rem;
+  }
+
+  .dynamic-wa-icon {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+  }
+}
+/* ICONO CON FONDO CREMA Y FLOR */
+.dynamic-wa-icon {
+  background: var(--color-cream);
+  color: var(--color-burgundy);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  border: 1px solid rgba(109, 31, 58, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+/* =========================================
+   TEXTURA DE LIENZO Y ESTILO VAN GOGH
+   ========================================= */
+
+/* Textura sutil de lienzo sobre el banner */
+.canvas-texture {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image: 
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 4px 4px;
+  mix-blend-mode: overlay;
+}
+
+/* Fondo de cielo pintado (Campo de Girasoles) */
+.cinematic-banner {
+  background: linear-gradient(
+    135deg,
+    #0e2a47 0%,   /* Azul noche */
+    #2a5c7a 40%,  /* Azul cielo */
+    #6d8c54 70%,  /* Verde campo */
+    #a3913e 100%  /* Amarillo trigo */
+  );
+  height: 60svh;
+  min-height: 450px;
+  max-height: 600px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cinematic-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 6px),
+    repeating-linear-gradient(-45deg, rgba(0,0,0,0.05) 0px, rgba(0,0,0,0.05) 3px, transparent 3px, transparent 8px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ocultamos los fondos de gradientes antiguos para que no estorben */
+.cinematic-bg {
+  display: none;
+}
+
+/* Ajustamos el overlay para que el texto sea legible sobre el cielo */
+.cinematic-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 42, 71, 0.1) 0%,
+    rgba(14, 42, 71, 0.5) 50%,
+    rgba(20, 10, 13, 0.95) 100%
+  );
+  z-index: 2;
+}
+
+/* La flor ahora tiene un ligero resplandor amarillo */
+.cinematic-flower-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  filter: drop-shadow(0 0 30px rgba(251, 192, 45, 0.3));
+}
+
+/* AJUSTE DEL ICONO DE WHATSAPP (Flor dorada) */
+.dynamic-wa-icon {
+  background: var(--color-gold) !important;
+  color: var(--color-ink) !important;
+}
+/* =========================================
+   BOTÓN DINÁMICO DE WHATSAPP (ÚNICO)
+   ========================================= */
+
+.dynamic-wa {
+  position: fixed;
+  bottom: 90px; 
+  right: 20px;
+  z-index: 9999; 
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 253, 251, 0.98);
+  backdrop-filter: blur(10px);
+  padding: 8px 12px 8px 10px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(109, 31, 58, 0.15);
+  border: 1px solid rgba(109, 31, 58, 0.08);
+  text-decoration: none;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dynamic-wa.visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dynamic-wa:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(109, 31, 58, 0.25);
+}
+
+.dynamic-wa-flower {
+  font-size: 1.3rem;
+  animation: wa-float 3s ease-in-out infinite;
+}
+
+@keyframes wa-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(10deg); }
+}
+
+.dynamic-wa-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.dynamic-wa-text strong {
+  color: var(--color-burgundy);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+}
+
+.dynamic-wa-text span {
+  color: var(--color-muted);
+  font-size: 0.65rem;
+}
+
+.dynamic-wa-icon {
+  background: var(--color-gold) !important;
+  color: var(--color-ink) !important;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  border: 1px solid rgba(109, 31, 58, 0.1);
+}
+
+/* Ocultamos el botón viejo */
+.whatsapp-float {
+  display: none !important;
+}
+
+@media (min-width: 700px) {
+  .dynamic-wa {
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 16px 10px 10px;
+    gap: 12px;
+  }
+  
+  .dynamic-wa-flower { font-size: 1.4rem; }
+  .dynamic-wa-text strong { font-size: 0.85rem; }
+  .dynamic-wa-text span { font-size: 0.7rem; }
+  .dynamic-wa-icon { width: 32px; height: 32px; margin-left: 4px; }
 }
