@@ -13,6 +13,25 @@ import { CustomizerButton } from "../components/customizer";
 import { ScrollEffects } from "../components/scroll-effects";
 import { CinematicBanner } from "../components/cinematic-banner";
 import { DynamicWhatsApp } from "../components/dynamic-whatsapp";
+import { MotionOfferCard, TapLink } from "../components/motion-offer";
+import { Gallery3DItem } from "../components/gallery-3d-item";
+import type { CSSProperties } from "react";
+
+/** Variable CSS con la foto, para el fondo desenfocado de las flores individuales. */
+interface VisualStyle extends CSSProperties {
+  "--visual-bg"?: string;
+}
+
+/** "12,000 CUP" -> número grande + "CUP" pequeño. */
+function Price({ value }: { value: string }) {
+  const [amount, currency] = value.split(" ");
+  return (
+    <>
+      {amount}
+      {currency && <span className="currency">{currency}</span>}
+    </>
+  );
+}
 
 /* =========================================
    MARCA
@@ -100,24 +119,28 @@ const categories = [
 ];
 
 const offers = [
+  { image: "/galeria/snowy-pine.jpeg", fit: "", badge: "Navidad", name: "Snowy Pine", desc: "Un pino nevado tejido a mano con limpiapipas. La magia del invierno en un rincón de tu hogar, sin necesidad de que nieve.", priceNow: "4,500 CUP", priceWas: "", waMessage: "Hola 🎄 Me interesa el árbol Snowy Pine (4,500 CUP). ¿Está disponible?" },
+  { image: "/galeria/santas-magic.jpeg", fit: "", badge: "Navidad", name: "Santa's Magic", desc: "Detalles rojos y dorados que parecen salidos del taller de Santa. Un árbol eterno para que la Navidad dure todo el año.", priceNow: "5,000 CUP", priceWas: "", waMessage: "Hola 🎅 Me interesa el árbol Santa's Magic (5,000 CUP). ¿Está disponible?" },
+  { image: "/galeria/christmas-tree-limpiapipas.jpg", fit: "", badge: "Navidad", name: "Classic Christmas", desc: "El árbol navideño de siempre, tejido hilo por hilo con limpiapipas y luces. Tradición y calidez para tu sala.", priceNow: "5,500 CUP", priceWas: "", waMessage: "Hola 🎄 Me interesa el árbol Classic Christmas (5,500 CUP). ¿Está disponible?" },
+  { image: "/galeria/christmas-tree-limpiapipas.jpg", fit: "", badge: "Navidad", name: "Grand Christmas", desc: "La versión más grande y majestuosa. Un árbol que se convierte en el centro de toda la celebración.", priceNow: "6,000 CUP", priceWas: "", waMessage: "Hola 🎄 Me interesa el árbol Grand Christmas (6,000 CUP). ¿Está disponible?" },
   { image: "/galeria/rosa-limpiapipa.jpeg", fit: "contain", badge: "Individual", name: "Rosa de Limpiapipa", desc: "Un pequeño tesoro tejido hilo por hilo. Perfecto para esos momentos en los que un detalle sencillo lo dice todo.", priceNow: "500 CUP", priceWas: "", waMessage: "Hola 🌹 Me interesa comprar una Rosa de Limpiapipa individual." },
   { image: "/galeria/girasol-satin.jpeg", fit: "contain", badge: "Individual", name: "Girasol de Satín", desc: "Alegría en estado puro. Un girasol de suave satén que iluminará cualquier espacio y sacará una sonrisa.", priceNow: "600 CUP", priceWas: "", waMessage: "Hola 🌻 Me interesa comprar un Girasol de Satén individual." },
   { image: "/galeria/girasol-limpiapipa.jpeg", fit: "contain", badge: "Individual", name: "Girasol de Limpiapipa", desc: "Hecho a mano con paciencia. Un girasol eterno para recordar a alguien especial que siempre busca el lado brillante de la vida.", priceNow: "500 CUP", priceWas: "", waMessage: "Hola 🌻 Me interesa comprar un Girasol de Limpiapipa individual." },
   { image: "/galeria/rosa-satin.jpeg", fit: "contain", badge: "Individual", name: "Rosa de Satín", desc: "Una caricia en forma de flor. Suave satén y una mariposa dorada que se posa para quedarse contigo.", priceNow: "600 CUP", priceWas: "", waMessage: "Hola 🌹 Me interesa comprar una Rosa de Satén individual." },
-  { image: "/galeria/roses-fuchsia-butterfly.jpg", fit: "", badge: "Top ventas", name: "Romantic Pack", desc: "Un abrazo hecho arte. Rosas fucsia intensas, capturadas para siempre con una mariposa dorada que parece recién posada.", priceNow: "$12,000", priceWas: "$15,000", waMessage: "Hola 🌹 Me interesa el Romantic Pack (rosas fucsia con mariposa y corona). ¿Está disponible?" },
-  { image: "/galeria/sunflowers-limpiapipas.jpg", fit: "", badge: "Favorito", name: "Sunshine Pack", desc: "Alegría tejida hilo por hilo. Girasoles que no buscan el sol porque lo llevan dentro.", priceNow: "$6,000", priceWas: "", waMessage: "Hola 🌻 Me interesa el Sunshine Pack (girasoles tejidos). ¿Cuánto demora?" },
-  { image: "/galeria/lamp-lotus-blue-1.jpg", fit: "", badge: "Nuevo", name: "Flower Night", desc: "Luz cálida para tus noches. Una flor de loto que no se cierra jamás y que ilumina tus espacios con magia.", priceNow: "$1,500", priceWas: "$3,000", waMessage: "Hola 💡 Me interesa la lámpara Flower Night (flor de loto). ¿Tienen más colores?" },
-  { image: "/galeria/roses-purple-butterfly.jpg", fit: "", badge: "Nuevo", name: "Lavender Dreams", desc: "Suavidad en tonos violeta. Un susurro de calma y elegancia para los momentos que merecen ser recordados.", priceNow: "$4,000", priceWas: "", waMessage: "Hola 💜 Me interesa el ramo Lavender Dreams (rosas violeta con mariposas). ¿Está disponible?" },
-  { image: "/galeria/roses-lime-crown.jpg", fit: "", badge: "Nuevo", name: "Lime Queen", desc: "Frescura vibrante. Un toque de verde limón que no pasa desapercibido y le roba el aliento a quien lo recibe.", priceNow: "$4,000", priceWas: "", waMessage: "Hola 💚 Me interesa el ramo Lime Queen (rosas verde limón con corona dorada). ¿Está disponible?" },
-  { image: "/galeria/roses-orange-butterfly.jpg", fit: "", badge: "Promo", name: "Sunset Butterfly", desc: "Atardecer en tus manos. Cálidas rosas naranjas custodiadas por una mariposa que se niega a volar lejos.", priceNow: "$5,000", priceWas: "$6,500", waMessage: "Hola 🧡 Me interesa el ramo Sunset Butterfly (rosas naranjas con mariposa dorada). ¿Está disponible?" },
-  { image: "/galeria/roses-blue-crown.jpg", fit: "", badge: "Premium", name: "Blue Royale", desc: "Realeza y serenidad. El azul profundo de un océano en calma, coronado para una ocasión inolvidable.", priceNow: "$7,000", priceWas: "$9,500", waMessage: "Hola 💙 Me interesa el ramo Blue Royale (rosas azules con corona plateada). ¿Está disponible?" },
-  { image: "/galeria/roses-white-love.jpg", fit: "", badge: "Especial", name: "White Love", desc: "Pureza y romance. Rosas blancas envueltas en promesas de 'Love', con un toque dorado que ilumina cualquier espacio.", priceNow: "$7,000", priceWas: "$8,500", waMessage: "Hola 🤍 Me interesa el ramo White Love (rosas blancas con papel Love). ¿Está disponible?" },
-  { image: "/galeria/golden-sunrise.jpg", fit: "", badge: "Edición limitada", name: "Golden Sunrise", desc: "Un amanecer eterno. Espigas y rosas bañadas en oro para regalar la energía y la luz que todos buscamos.", priceNow: "$8,000", priceWas: "$10,000", waMessage: "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?" },
-  { image: "/galeria/roses-yellow-butterfly.jpg", fit: "", badge: "Destacado", name: "Sunflower Glow", desc: "El encuentro perfecto. El romance de una rosa y la alegría de un girasol, fundidos en un abrazo artesanal.", priceNow: "$7,000", priceWas: "$8,500", waMessage: "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?" },
-  { image: "/galeria/roses-red-passion.jpg", fit: "", badge: "Premium", name: "Red Passion", desc: "Amor sin filtros. Intensidad roja, mariposas doradas y coronas de perlas para gritar lo que sientes sin usar palabras.", priceNow: "$8,000", priceWas: "", waMessage: "Hola ❤️ Me interesa el ramo Red Passion (rosas rojas con mariposa y corona). ¿Está disponible?" },
-  { image: "/galeria/coral-aurora.jpg", fit: "", badge: "Nuevo", name: "Coral Aurora", desc: "Tonos de aurora tropical. Un coral cálido que abraza, decorado con mariposas que parecen recién despertar.", priceNow: "$6,500", priceWas: "$7,500", waMessage: "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?" },
-  { image: "/galeria/roses-yellow-foami-50.jpg", fit: "", badge: "Edición limitada", name: "Yellow Fifty", desc: "Cincuenta historias en un solo ramo. Un despliegue de 50 rosas hechas a mano que demuestran que el amor no tiene límites.", priceNow: "$10,000", priceWas: "", waMessage: "Hola 💛 Me interesa el ramo Yellow Fifty (50 rosas amarillas de foami). ¿Está disponible?" },
-  { image: "/galeria/lily-pink-limpiapipas.jpg", fit: "", badge: "Económico", name: "Pink Lily", desc: "Delicadeza infinita. Tulipanes tejidos con paciencia, perfectos para decir 'te quiero' con un detalle sutil.", priceNow: "$2,500", priceWas: "$3,500", waMessage: "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?" },
+  { image: "/galeria/roses-fuchsia-butterfly.jpg", fit: "", badge: "Top ventas", name: "Romantic Pack", desc: "Un abrazo hecho arte. Rosas fucsia intensas, capturadas para siempre con una mariposa dorada que parece recién posada.", priceNow: "12,000 CUP", priceWas: "15,000 CUP", waMessage: "Hola 🌹 Me interesa el Romantic Pack (rosas fucsia con mariposa y corona). ¿Está disponible?" },
+  { image: "/galeria/sunflowers-limpiapipas.jpg", fit: "", badge: "Favorito", model: "/models/sunflowers.glb", name: "Sunshine Pack", desc: "Alegría tejida hilo por hilo. Girasoles que no buscan el sol porque lo llevan dentro.", priceNow: "6,000 CUP", priceWas: "", waMessage: "Hola 🌻 Me interesa el Sunshine Pack (girasoles tejidos). ¿Cuánto demora?" },
+  { image: "/galeria/lamp-lotus-blue-1.jpg", fit: "", badge: "Nuevo", name: "Flower Night", desc: "Luz cálida para tus noches. Una flor de loto que no se cierra jamás y que ilumina tus espacios con magia.", priceNow: "1,500 CUP", priceWas: "3,000 CUP", waMessage: "Hola 💡 Me interesa la lámpara Flower Night (flor de loto). ¿Tienen más colores?" },
+  { image: "/galeria/roses-purple-butterfly.jpg", fit: "", badge: "Nuevo", name: "Lavender Dreams", desc: "Suavidad en tonos violeta. Un susurro de calma y elegancia para los momentos que merecen ser recordados.", priceNow: "4,000 CUP", priceWas: "", waMessage: "Hola 💜 Me interesa el ramo Lavender Dreams (rosas violeta con mariposas). ¿Está disponible?" },
+  { image: "/galeria/roses-lime-crown.jpg", fit: "", badge: "Nuevo", name: "Lime Queen", desc: "Frescura vibrante. Un toque de verde limón que no pasa desapercibido y le roba el aliento a quien lo recibe.", priceNow: "4,000 CUP", priceWas: "", waMessage: "Hola 💚 Me interesa el ramo Lime Queen (rosas verde limón con corona dorada). ¿Está disponible?" },
+  { image: "/galeria/roses-orange-butterfly.jpg", fit: "", badge: "Promo", name: "Sunset Butterfly", desc: "Atardecer en tus manos. Cálidas rosas naranjas custodiadas por una mariposa que se niega a volar lejos.", priceNow: "5,000 CUP", priceWas: "6,500 CUP", waMessage: "Hola 🧡 Me interesa el ramo Sunset Butterfly (rosas naranjas con mariposa dorada). ¿Está disponible?" },
+  { image: "/galeria/roses-blue-crown.jpg", fit: "", badge: "Premium", name: "Blue Royale", desc: "Realeza y serenidad. El azul profundo de un océano en calma, coronado para una ocasión inolvidable.", priceNow: "7,000 CUP", priceWas: "9,500 CUP", waMessage: "Hola 💙 Me interesa el ramo Blue Royale (rosas azules con corona plateada). ¿Está disponible?" },
+  { image: "/galeria/roses-white-love.jpg", fit: "", badge: "Especial", model: "/models/white-love.glb", name: "White Love", desc: "Pureza y romance. Rosas blancas envueltas en promesas de 'Love', con un toque dorado que ilumina cualquier espacio.", priceNow: "7,000 CUP", priceWas: "8,500 CUP", waMessage: "Hola 🤍 Me interesa el ramo White Love (rosas blancas con papel Love). ¿Está disponible?" },
+  { image: "/galeria/golden-sunrise.jpg", fit: "", badge: "Edición limitada", name: "Golden Sunrise", desc: "Un amanecer eterno. Espigas y rosas bañadas en oro para regalar la energía y la luz que todos buscamos.", priceNow: "8,000 CUP", priceWas: "10,000 CUP", waMessage: "Hola 💛 Me interesa el ramo Golden Sunrise (rosas amarillas con espigas blancas). ¿Está disponible?" },
+  { image: "/galeria/roses-yellow-butterfly.jpg", fit: "", badge: "Destacado", name: "Sunflower Glow", desc: "El encuentro perfecto. El romance de una rosa y la alegría de un girasol, fundidos en un abrazo artesanal.", priceNow: "7,000 CUP", priceWas: "8,500 CUP", waMessage: "Hola 🌻 Me interesa el ramo Sunflower Glow (rosas amarillas con girasol). ¿Está disponible?" },
+  { image: "/galeria/roses-red-passion.jpg", fit: "", badge: "Premium", name: "Red Passion", desc: "Amor sin filtros. Intensidad roja, mariposas doradas y coronas de perlas para gritar lo que sientes sin usar palabras.", priceNow: "8,000 CUP", priceWas: "", waMessage: "Hola ❤️ Me interesa el ramo Red Passion (rosas rojas con mariposa y corona). ¿Está disponible?" },
+  { image: "/galeria/coral-aurora.jpg", fit: "", badge: "Nuevo", name: "Coral Aurora", desc: "Tonos de aurora tropical. Un coral cálido que abraza, decorado con mariposas que parecen recién despertar.", priceNow: "6,500 CUP", priceWas: "7,500 CUP", waMessage: "Hola 🌸 Me interesa el ramo Coral Aurora (rosas coral con mariposas). ¿Está disponible?" },
+  { image: "/galeria/roses-yellow-foami-50.jpg", fit: "", badge: "Edición limitada", name: "Yellow Fifty", desc: "Cincuenta historias en un solo ramo. Un despliegue de 50 rosas hechas a mano que demuestran que el amor no tiene límites.", priceNow: "10,000 CUP", priceWas: "", waMessage: "Hola 💛 Me interesa el ramo Yellow Fifty (50 rosas amarillas de foami). ¿Está disponible?" },
+  { image: "/galeria/lily-pink-limpiapipas.jpg", fit: "", badge: "Económico", name: "Pink Lily", desc: "Delicadeza infinita. Tulipanes tejidos con paciencia, perfectos para decir 'te quiero' con un detalle sutil.", priceNow: "2,500 CUP", priceWas: "3,500 CUP", waMessage: "Hola 🌷 Me interesa el ramo Pink Lily (tulipanes rosados). ¿Está disponible?" },
 ];
 
 const testimonials = [
@@ -276,10 +299,18 @@ export default function Home() {
               </p>
             </div>
             <div className="offers-grid">
-              {offers.map((offer) => (
-                <article className="offer-card" key={offer.name}>
+              {offers.map((offer, index) => (
+                <MotionOfferCard index={index} key={offer.name}>
+                <article className="offer-card">
                   <span className="offer-badge">{offer.badge}</span>
-                  <div className="offer-visual">
+                  <div
+                    className="offer-visual"
+                    style={
+                      offer.fit === "contain"
+                        ? ({ "--visual-bg": `url(${offer.image})` } as VisualStyle)
+                        : undefined
+                    }
+                  >
                     <Image
                       alt={offer.name}
                       className={`offer-image ${offer.fit === "contain" ? "img-contain" : ""}`}
@@ -292,14 +323,15 @@ export default function Home() {
                     <h3 className="offer-name">{offer.name}</h3>
                     <p className="offer-desc">{offer.desc}</p>
                     <div className="offer-price">
-                      <span className="now">{offer.priceNow}</span>
+                      <span className="now"><Price value={offer.priceNow} /></span>
                       {offer.priceWas && <span className="was">{offer.priceWas}</span>}
                     </div>
-                    <a className="button button-primary" href={whatsappUrl(offer.waMessage)} rel="noopener noreferrer" target="_blank">
+                    <TapLink className="button button-primary" href={whatsappUrl(offer.waMessage)}>
                       Quiero este ramo
-                    </a>
+                    </TapLink>
                   </div>
                 </article>
+                </MotionOfferCard>
               ))}
             </div>
           </div>
@@ -322,8 +354,28 @@ export default function Home() {
             <div className="gallery-grid">
               {offers.map((item, index) => {
                 const isTall = index % 4 === 0 || index % 4 === 3;
+                if (item.model) {
+                  return (
+                    <Gallery3DItem
+                      className={isTall ? "tall" : ""}
+                      fit={item.fit}
+                      image={item.image}
+                      key={`gal-${item.name}`}
+                      modelUrl={item.model}
+                      name={item.name}
+                    />
+                  );
+                }
                 return (
-                  <div className={`gallery-item ${isTall ? "tall" : ""}`} key={`gal-${item.name}`}>
+                  <div
+                    className={`gallery-item ${isTall ? "tall" : ""}`}
+                    key={`gal-${item.name}`}
+                    style={
+                      item.fit === "contain"
+                        ? ({ "--visual-bg": `url(${item.image})` } as VisualStyle)
+                        : undefined
+                    }
+                  >
                     <Image
                       alt={item.name}
                       className={`gallery-image ${item.fit === "contain" ? "img-contain" : ""}`}
@@ -339,14 +391,8 @@ export default function Home() {
                 <Image alt="Harry Potter" className="gallery-image" fill sizes="(max-width: 700px) 50vw, 25vw" src="/galeria/harry-potter.jpg" />
                 <span className="caption">Harry Potter</span>
               </div>
-              <div className="gallery-item">
-                <Image alt="Hot Wheels" className="gallery-image" fill sizes="(max-width: 700px) 50vw, 25vw" src="/galeria/hotwheels-black.jpg" />
-                <span className="caption">Hot Wheels</span>
-              </div>
-              <div className="gallery-item">
-                <Image alt="Árbol Navideño" className="gallery-image" fill sizes="(max-width: 700px) 50vw, 25vw" src="/galeria/christmas-tree-limpiapipas.jpg" />
-                <span className="caption">Árbol Navideño</span>
-              </div>
+              <Gallery3DItem image="/galeria/hotwheels-black.jpg" modelUrl="/models/hotwheels.glb" name="Hot Wheels" />
+              <Gallery3DItem image="/galeria/christmas-tree-limpiapipas.jpg" modelUrl="/models/christmas-tree.glb" name="Árbol Navideño" />
               <div className="gallery-item">
                 <Image alt="Lámpara Loto II" className="gallery-image" fill sizes="(max-width: 700px) 50vw, 25vw" src="/galeria/lamp-lotus-blue-2.jpg" />
                 <span className="caption">Lámpara Loto II</span>

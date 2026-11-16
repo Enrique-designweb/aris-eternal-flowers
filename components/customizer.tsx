@@ -12,11 +12,26 @@ import {
   ArrowRight,
   Camera,
   Check,
+  Loader2,
   MessageCircle,
   Sparkles,
   X,
 } from "lucide-react";
 import gsap from "gsap";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
+import { useUploadThing } from "../lib/uploadthing";
+
+/* Transición entre pasos: entra desde la derecha al avanzar, desde la izquierda al volver */
+const stepVariants: Variants = {
+  enter: (dir: number) => ({ opacity: 0, x: 50 * dir }),
+  center: { opacity: 1, x: 0 },
+  exit: (dir: number) => ({ opacity: 0, x: -50 * dir }),
+};
 
 /* =========================================
    DATOS
@@ -114,7 +129,10 @@ const INITIAL: FormState = {
    HELPERS
    ========================================= */
 
-function buildWhatsAppMessage(data: FormState): string {
+function buildWhatsAppMessage(
+  data: FormState,
+  includeReferenceNote = false,
+): string {
   const flowerLabels = data.flowers
     .map((id) => FLOWERS.find((f) => f.id === id)?.label ?? id)
     .join(", ");
@@ -126,36 +144,31 @@ function buildWhatsAppMessage(data: FormState): string {
   const occasionLabel =
     OCCASIONS.find((o) => o.id === data.occasion)?.label ?? "—";
 
+  const divider = "----------------------------------------";
+
   const lines = [
-    "🌸 *Ari's Eternal Flowers* 🌸",
+    "ARI'S ETERNAL FLOWERS",
+    "Flores que permanecen, momentos que perduran",
+    divider,
     "",
-    "Hola, quiero crear un ramo personalizado:",
+    "Hola, quiero encargar un ramo personalizado:",
     "",
-    `🌹 *Flores:* ${flowerLabels || "—"}`,
-    `🎨 *Colores:* ${colorLabels || "—"}`,
-    `📏 *Tamaño:* ${sizeLabel}`,
-    `💵 *Moneda de pago:* ${currencyLabel}`,
-    `🎁 *Ocasión:* ${occasionLabel}`,
+    `FLORES: ${flowerLabels || "—"}`,
+    `COLORES: ${colorLabels || "—"}`,
+    `TAMAÑO: ${sizeLabel}`,
+    `MONEDA: ${currencyLabel}`,
+    `OCASIÓN: ${occasionLabel}`,
+    "",
+    "DEDICATORIA:",
+    `"${data.message.trim() || "Ninguna"}"`,
+    "",
+    `CLIENTE: ${data.name.trim()}`,
+    divider,
   ];
 
-  if (data.message.trim()) {
-    lines.push("", "💌 *Dedicatoria:*", `"${data.message.trim()}"`);
+  if (includeReferenceNote) {
+    lines.push("(Adjunto mi imagen de referencia a continuación)");
   }
-
-  if (data.reference) {
-    lines.push(
-      "",
-      `📷 *Referencia adjunta:* ${data.reference.name}`,
-      "👉 *Adjunto la imagen de referencia en este chat.*",
-    );
-  }
-
-  lines.push(
-    "",
-    `👤 *Mi nombre:* ${data.name.trim()}`,
-    "",
-    "¡Gracias! ✨",
-  );
 
   return lines.join("\n");
 }
@@ -174,13 +187,18 @@ function CustomizerModal({
   const [step, setStep] = useState(0);
   const [data, setData] = useState<FormState>(INITIAL);
   const [done, setDone] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const reduceMotion = useReducedMotion();
+  // Con "reducir movimiento" solo hay fundido, sin desplazamiento
+  const slide = reduceMotion ? 0 : direction;
+  const { startUpload } = useUploadThing("imageUploader");
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const stepRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
-  const prevStepRef = useRef(0);
   const prevUrlRef = useRef<string | null>(null);
 
   /* ---------- Abrir / cerrar ---------- */
@@ -253,21 +271,6 @@ function CustomizerModal({
     return () => window.removeEventListener("keydown", handler);
   }, [open, onClose]);
 
-  /* ---------- Transición entre pasos ---------- */
-  useEffect(() => {
-    if (!open || !stepRef.current) return;
-    if (prevStepRef.current === step) return;
-
-    const dir = step > prevStepRef.current ? 1 : -1;
-    prevStepRef.current = step;
-
-    gsap.fromTo(
-      stepRef.current,
-      { opacity: 0, x: 50 * dir },
-      { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" },
-    );
-  }, [step, open]);
-
   /* ---------- Barra de progreso ---------- */
   useEffect(() => {
     if (!progressRef.current) return;
@@ -311,42 +314,47 @@ function CustomizerModal({
 
   const next = () => {
     if (!canNext() || step >= STEPS.length - 1) return;
+    setDirection(1);
     setStep((s) => s + 1);
   };
 
   const back = () => {
     if (step === 0) return;
+    setDirection(-1);
     setStep((s) => s - 1);
   };
 
-  // FIX: Usar Web Share API para adjuntar la imagen
+  // Sube la imagen de referencia a Uploadthing y envía su URL por WhatsApp
   const submit = async () => {
-    const text = buildWhatsAppMessage(data);
-    
-    if (typeof navigator !== "undefined" && navigator.share) {
-      try {
-        const shareData: ShareData = {
-          title: "Ari's Eternal Flowers",
-          text: text,
-        };
-        
-        // Si hay imagen y el dispositivo soporta compartir archivos
-        if (data.reference && navigator.canShare && navigator.canShare({ files: [data.reference] })) {
-          shareData.files = [data.reference];
-        }
+    if (isUploading) return;
+    let referenceUrl: string | null = null;
 
-        await navigator.share(shareData);
-        setDone(true);
-        return;
+    if (data.reference) {
+      setIsUploading(true);
+      try {
+        const res = await startUpload([data.reference]);
+        const url = res?.[0]?.ufsUrl;
+        if (!url) throw new Error("Uploadthing no devolvió una URL");
+        referenceUrl = url;
       } catch (error) {
-        console.log("Error sharing:", error);
-        // Si el usuario cancela o falla, hacemos fallback a wa.me
+        console.error("Error subiendo la imagen de referencia:", error);
+        alert(
+          "No pudimos subir la imagen de referencia. Se abrirá WhatsApp solo con el texto; puedes enviarle la foto a Ari directamente en el chat.",
+        );
+      } finally {
+        setIsUploading(false);
       }
     }
 
-    // Fallback: Abrir WhatsApp Web (Solo texto)
-    const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank", "noopener,noreferrer");
+    // La nota de "imagen adjunta" solo aparece si la subida tuvo éxito
+    let text = buildWhatsAppMessage(data, referenceUrl !== null);
+    if (referenceUrl) text += `\n${referenceUrl}`;
+
+    // encodeURIComponent codifica en UTF-8 y respeta los emojis (pares sustitutos)
+    const waUrl = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+    const opened = window.open(waUrl, "_blank", "noopener,noreferrer");
+    // Si el navegador bloqueó el popup (común en móvil tras un await), navegamos directo
+    if (!opened) window.location.href = waUrl;
     setDone(true);
   };
 
@@ -396,7 +404,22 @@ function CustomizerModal({
         </div>
 
         {/* Body */}
-        <div className="customizer-body" ref={stepRef}>
+        <div className="customizer-body" ref={stepRef} data-lenis-prevent>
+          <AnimatePresence
+            custom={slide}
+            initial={false}
+            mode="wait"
+            onExitComplete={() => stepRef.current?.scrollTo({ top: 0 })}
+          >
+          <motion.div
+            animate="center"
+            custom={slide}
+            exit="exit"
+            initial="enter"
+            key={done ? "done" : step}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            variants={stepVariants}
+          >
           {done ? (
             <div className="customizer-done">
               <div className="customizer-done-icon">
@@ -432,6 +455,11 @@ function CustomizerModal({
                         onClick={() => toggleArray("flowers", f.id)}
                         type="button"
                       >
+                        {selected && (
+                          <span aria-hidden="true" className="pick-check">
+                            <Check size={13} strokeWidth={3.5} />
+                          </span>
+                        )}
                         <span className="pick-emoji">{f.emoji}</span>
                         <span className="pick-label">{f.label}</span>
                       </button>
@@ -529,6 +557,11 @@ function CustomizerModal({
                             }
                             type="button"
                           >
+                            {selected && (
+                              <span aria-hidden="true" className="pick-check">
+                                <Check size={13} strokeWidth={3.5} />
+                              </span>
+                            )}
                             <span className="pick-emoji">{o.emoji}</span>
                             <span className="pick-label">{o.label}</span>
                           </button>
@@ -671,40 +704,58 @@ function CustomizerModal({
               )}
             </>
           )}
+          </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Footer */}
         {!done && (
           <footer className="customizer-footer">
-            <button
+            <motion.button
               className="button button-secondary"
               disabled={step === 0}
               onClick={back}
               type="button"
+              whileHover={step === 0 ? undefined : { scale: 1.02 }}
+              whileTap={step === 0 ? undefined : { scale: 0.95 }}
             >
               <ArrowLeft size={18} />
               Atrás
-            </button>
+            </motion.button>
 
             {step < STEPS.length - 1 ? (
-              <button
+              <motion.button
                 className="button button-primary"
                 disabled={!canNext()}
                 onClick={next}
                 type="button"
+                whileHover={canNext() ? { scale: 1.02 } : undefined}
+                whileTap={canNext() ? { scale: 0.95 } : undefined}
               >
                 Siguiente
                 <ArrowRight size={18} />
-              </button>
+              </motion.button>
             ) : (
-              <button
+              <motion.button
                 className="button button-primary"
+                disabled={isUploading}
                 onClick={submit}
                 type="button"
+                whileHover={isUploading ? undefined : { scale: 1.02 }}
+                whileTap={isUploading ? undefined : { scale: 0.95 }}
               >
-                <MessageCircle size={18} />
-                Enviar por WhatsApp
-              </button>
+                {isUploading ? (
+                  <>
+                    <Loader2 className="animate-spin" size={18} />
+                    Subiendo imagen...
+                  </>
+                ) : (
+                  <>
+                    <MessageCircle size={18} />
+                    Enviar por WhatsApp
+                  </>
+                )}
+              </motion.button>
             )}
           </footer>
         )}

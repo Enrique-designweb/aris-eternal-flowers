@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ServiceWorker } from "../components/service-worker";
+import { SmoothScroll } from "../components/smooth-scroll";
 import "./globals.css";
 
 /* =========================================
@@ -11,7 +12,7 @@ import "./globals.css";
 const displayFont = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -184,7 +185,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
         <ServiceWorker />
       </body>

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 :root {
   /* =========================================
@@ -139,13 +140,19 @@ img {
 }
 
 .button-primary {
-  background: var(--color-burgundy);
-  box-shadow: 0 12px 28px rgba(109, 31, 58, 0.22);
+  background: linear-gradient(135deg, var(--color-burgundy) 0%, #8d2f50 100%);
+  box-shadow:
+    0 10px 26px rgba(109, 31, 58, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
   color: white;
+  min-height: 52px; /* >= 48px: objetivo táctil cómodo */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button-primary:hover {
-  box-shadow: 0 16px 35px rgba(109, 31, 58, 0.3);
+  box-shadow:
+    0 16px 36px rgba(109, 31, 58, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .button-secondary {
@@ -282,10 +289,10 @@ img {
 .hero-title {
   color: var(--color-burgundy);
   font-family: var(--font-display);
-  font-size: clamp(3.4rem, 15vw, 6.5rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 0.82;
+  font-size: clamp(3.8rem, 16vw, 7.5rem);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
   margin-top: 12px;
 }
 
@@ -293,6 +300,7 @@ img {
   color: var(--color-wine);
   display: block;
   font-style: italic;
+  font-weight: 500; /* contraste con el peso ligero del título */
 }
 
 .hero-description {
@@ -315,21 +323,23 @@ img {
    SECTION
    ========================================= */
 
+/* El espacio en blanco es lujo: secciones con mucho aire */
 .section {
-  padding: 80px 0;
+  padding: clamp(96px, 14vw, 170px) 0;
 }
 
 .section-heading {
-  margin-bottom: 30px;
+  margin-bottom: clamp(40px, 6vw, 64px);
 }
 
 .section-title {
   color: var(--color-burgundy);
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 10vw, 4rem);
-  font-weight: 500;
-  line-height: 0.95;
-  margin-top: 8px;
+  font-size: clamp(2.9rem, 11.5vw, 5.5rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-top: 12px;
 }
 
 /* =========================================
@@ -339,8 +349,8 @@ img {
 .section-lead {
   color: var(--color-muted);
   font-size: 0.95rem;
-  line-height: 1.75;
-  margin: 14px 0 32px;
+  line-height: 1.8;
+  margin: 20px 0 32px;
   max-width: 680px;
 }
 
@@ -538,9 +548,24 @@ img {
     box-shadow 350ms var(--ease-smooth);
 }
 
+.offer-motion {
+  display: flex;
+  flex-direction: column;
+}
+
+/* La flotación (hover/tap) la hace Framer Motion en .offer-float */
+.offer-float {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.offer-float > .offer-card {
+  flex: 1;
+}
+
 .offer-card:hover {
-  box-shadow: var(--shadow-card);
-  transform: translateY(-6px);
+  box-shadow: 0 28px 60px rgba(109, 31, 58, 0.18);
 }
 
 .offer-badge {
@@ -589,9 +614,9 @@ img {
 
 .offer-desc {
   color: var(--color-muted);
-  font-size: 0.85rem;
-  line-height: 1.55;
-  margin-top: 8px;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  margin-top: 10px;
 }
 
 .offer-price {
@@ -606,6 +631,15 @@ img {
   font-family: var(--font-display);
   font-size: 1.65rem;
   font-weight: 700;
+}
+
+.offer-price .currency {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-left: 5px;
+  opacity: 0.8;
 }
 
 .offer-price .was {
@@ -999,7 +1033,14 @@ img {
 }
 
 .customizer-card {
-  background: var(--color-white);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(253, 249, 245, 0.88);
+  border: 1px solid rgba(201, 168, 106, 0.3);
+  box-shadow:
+    0 30px 80px rgba(42, 32, 35, 0.35),
+    0 8px 24px rgba(109, 31, 58, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -1020,6 +1061,7 @@ img {
 
 .customizer-eyebrow {
   color: var(--color-wine);
+  font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -1045,15 +1087,16 @@ img {
 .customizer-close {
   align-items: center;
   background: var(--color-cream);
+  border: 1px solid rgba(201, 168, 106, 0.35);
   border-radius: 50%;
   color: var(--color-burgundy);
   cursor: pointer;
   display: flex;
   flex-shrink: 0;
-  height: 38px;
+  height: 44px;
   justify-content: center;
   transition: background 200ms ease;
-  width: 38px;
+  width: 44px;
 }
 
 .customizer-close:hover {
@@ -1062,34 +1105,54 @@ img {
 }
 
 .customizer-progress {
-  background: var(--color-cream);
-  height: 4px;
+  background: rgba(201, 168, 106, 0.18);
+  height: 5px;
   margin: 0 22px;
   overflow: hidden;
   border-radius: 999px;
 }
 
 .customizer-progress-bar {
-  background: linear-gradient(90deg, var(--color-wine), var(--color-burgundy));
+  background: linear-gradient(90deg, var(--color-gold), var(--color-wine));
+  border-radius: 999px;
   height: 100%;
   width: 20%;
 }
 
 .customizer-body {
   flex: 1;
+  overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 22px;
 }
 
 .customizer-footer {
-  background: var(--color-white);
-  border-top: 1px solid rgba(109, 31, 58, 0.08);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  background: rgba(253, 249, 245, 0.92);
+  border-top: 1px solid rgba(201, 168, 106, 0.3);
   display: flex;
+  flex-shrink: 0;
   gap: 10px;
   padding: 14px 22px calc(14px + env(safe-area-inset-bottom));
 }
 
 .customizer-footer .button {
+  flex: 1;
+  min-height: 52px;
+}
+
+/* "Atrás": minimalista, texto oscuro y borde sutil */
+.customizer-footer .button-secondary {
+  background: transparent;
+  border: 1px solid rgba(42, 32, 35, 0.18);
+  color: var(--color-ink);
+  flex: 0 0 auto;
+  padding: 0 20px;
+}
+
+.customizer-footer .button-primary {
   flex: 1;
 }
 
@@ -1129,15 +1192,18 @@ img {
 
 .pick-card {
   align-items: center;
-  background: var(--color-cream);
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.65);
+  border: 2px solid rgba(201, 168, 106, 0.18);
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(109, 31, 58, 0.07);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  min-height: 96px;
-  padding: 14px 10px;
+  gap: 8px;
+  justify-content: center;
+  min-height: 112px;
+  padding: 16px 10px;
+  position: relative;
   text-align: center;
   transition: all 250ms var(--ease-smooth);
 }
@@ -1147,12 +1213,43 @@ img {
 }
 
 .pick-card.selected {
-  background: rgba(217, 165, 168, 0.22);
-  border-color: var(--color-burgundy);
+  background: linear-gradient(
+    145deg,
+    var(--color-cream) 0%,
+    rgba(201, 168, 106, 0.28) 100%
+  );
+  border-color: var(--color-gold);
+  box-shadow: 0 8px 22px rgba(201, 168, 106, 0.35);
+}
+
+.pick-check {
+  align-items: center;
+  animation: pick-check-pop 260ms var(--ease-smooth) both;
+  background: var(--color-gold);
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  height: 22px;
+  justify-content: center;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 22px;
+}
+
+@keyframes pick-check-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .pick-emoji {
-  font-size: 1.9rem;
+  font-size: 2.5rem;
   line-height: 1;
 }
 
@@ -1164,9 +1261,9 @@ img {
 }
 
 .color-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 14px;
+  display: grid;
+  gap: 14px 8px;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
 }
 
 .color-swatch {
@@ -1176,33 +1273,41 @@ img {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 0;
+  gap: 7px;
+  padding: 4px 0;
 }
 
 .color-dot {
-  border: 2px solid rgba(42, 32, 35, 0.1);
+  border: 2px solid rgba(42, 32, 35, 0.12);
   border-radius: 50%;
-  height: 40px;
+  box-shadow: 0 4px 10px rgba(42, 32, 35, 0.12);
+  height: 48px;
   transition: all 250ms var(--ease-smooth);
-  width: 40px;
+  width: 48px;
 }
 
 .color-swatch.selected .color-dot {
   box-shadow:
-    0 0 0 3px var(--color-white),
-    0 0 0 5px var(--color-burgundy);
-  transform: scale(1.05);
+    0 0 0 3px var(--color-cream),
+    0 0 0 5px var(--color-gold),
+    0 8px 16px rgba(42, 32, 35, 0.2);
+  transform: scale(1.18);
 }
 
 .color-label {
-  color: var(--color-muted);
-  font-size: 0.7rem;
-  font-weight: 600;
+  color: var(--color-ink);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  opacity: 0.75;
+  text-align: center;
 }
 
 .color-swatch.selected .color-label {
   color: var(--color-burgundy);
+  font-weight: 700;
+  opacity: 1;
 }
 
 .size-list {
@@ -1213,9 +1318,9 @@ img {
 
 .size-option {
   align-items: center;
-  background: var(--color-cream);
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.65);
+  border: 2px solid rgba(201, 168, 106, 0.18);
+  border-radius: 16px;
   color: var(--color-ink);
   cursor: pointer;
   display: flex;
@@ -1228,18 +1333,23 @@ img {
 }
 
 .size-option.selected {
-  background: rgba(217, 165, 168, 0.22);
-  border-color: var(--color-burgundy);
+  background: linear-gradient(
+    145deg,
+    var(--color-cream) 0%,
+    rgba(201, 168, 106, 0.28) 100%
+  );
+  border-color: var(--color-gold);
   color: var(--color-burgundy);
 }
 
 .customizer-input,
 .customizer-textarea {
-  background: var(--color-cream);
-  border: 2px solid transparent;
-  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.75);
+  border: 2px solid rgba(201, 168, 106, 0.25);
+  border-radius: 16px;
   color: var(--color-ink);
-  font-size: 0.9rem;
+  font-size: 1rem;
+  min-height: 52px;
   padding: 14px 16px;
   transition: all 200ms ease;
   width: 100%;
@@ -1248,7 +1358,8 @@ img {
 .customizer-input:focus,
 .customizer-textarea:focus {
   background: var(--color-white);
-  border-color: var(--color-burgundy);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(201, 168, 106, 0.2);
   outline: none;
 }
 
@@ -2051,70 +2162,69 @@ img {
   100% { transform: translate(250px, 220px) rotate(1.5deg); filter: drop-shadow(0 0 35px rgba(245, 197, 24, 0.9)); }
 }
 /* =========================================
-   AJUSTE DE IMÁGENES INDIVIDUALES
+   FLORES INDIVIDUALES (.img-contain)
+   Fotos verticales con fondo gris: se muestran completas (contain), ampliadas
+   y sobre una versión desenfocada de la misma foto, para que no parezcan un parche.
    ========================================= */
 
-/* Para las imágenes que deben verse completas (flores solas) */
-.img-contain {
-  object-fit: contain !important;
-  padding: 16px; /* Margen interno para que la flor respire */
-}
-
-/* Ajustamos el fondo de la galería para que se vea como un lienzo detrás de la flor */
-.gallery-item {
-  background-color: var(--color-cream);
-}
-
-/* En la galería, si la imagen es contain, hacemos que el fondo sea un poco más oscuro o con gradiente */
-.gallery-item:has(.img-contain) {
-  background: linear-gradient(135deg, var(--color-cream), rgba(217, 165, 168, 0.3));
-}
-
-/* En las ofertas, el fondo ya tiene un gradiente, pero nos aseguramos de que se vea bien */
-.offer-visual:has(.img-contain) {
-  background: radial-gradient(circle at 50% 50%, rgba(255, 253, 251, 0.8), var(--color-cream));
-}
-/* =========================================
-   FONDO PREMIUM PARA FLORES INDIVIDUALES
-   ========================================= */
-
-/* 1. Degradado radial en la tarjeta (Ofertas y Galería) */
 .offer-visual:has(.img-contain),
 .gallery-item:has(.img-contain) {
+  background: #efe3d3;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Fondo: la misma foto, desenfocada */
+.offer-visual:has(.img-contain)::before,
+.gallery-item:has(.img-contain)::before {
+  background-image: var(--visual-bg);
+  background-position: center;
+  background-size: cover;
+  content: "";
+  filter: blur(22px) saturate(1.1);
+  inset: -24px;
+  opacity: 0.85;
+  position: absolute;
+  z-index: -2;
+}
+
+/* Velo crema/rosa con degradado radial que resalta la flor */
+.offer-visual:has(.img-contain)::after,
+.gallery-item:has(.img-contain)::after {
   background: radial-gradient(
-    circle at 50% 50%,
-    #fffdfb 0%,                         /* Blanco puro en el centro para iluminar la foto */
-    var(--color-cream) 50%,             /* Crema */
-    rgba(217, 165, 168, 0.5) 100%       /* Rosa viejo en los bordes */
+    circle at 50% 42%,
+    rgba(255, 253, 251, 0.55) 0%,
+    rgba(245, 237, 224, 0.35) 45%,
+    rgba(217, 165, 168, 0.45) 100%
   );
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
 }
+
+/* Contenedor más alto (formato casi vertical) en las ofertas */
+.offer-visual:has(.img-contain) {
+  height: 300px;
+}
+
 .img-contain {
+  filter: drop-shadow(0 10px 18px rgba(42, 32, 35, 0.25));
+  /* Bordes difuminados: el fondo gris de la foto se funde con la tarjeta */
+  -webkit-mask-image: radial-gradient(ellipse 70% 72% at 50% 50%, #000 52%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 72% at 50% 50%, #000 52%, transparent 100%);
   object-fit: contain !important;
-  padding: 20px;
-  filter: drop-shadow(0px 12px 20px rgba(109, 31, 58, 0.15));
-  border-radius: 16px;
+  padding: 0;
+  transform: scale(1.12);
 }
 
-.offer-visual:has(.img-contain), .gallery-item:has(.img-contain) {
-  background: radial-gradient(circle at 50% 50%, #fffdfb 0%, var(--color-cream) 50%, rgba(217, 165, 168, 0.5) 100%);
+@media (max-width: 700px) {
+  .offer-visual:has(.img-contain) {
+    height: 340px;
+  }
 }
 
-/* 2. Efecto de sombra y marco para la foto */
-.img-contain {
-  object-fit: contain !important;
-  padding: 20px;
-  /* Sombra suave alrededor del rectángulo de la foto */
-  filter: drop-shadow(0px 12px 20px rgba(109, 31, 58, 0.15));
-}
-
-/* 3. Redondear las esquinas de la foto (opcional pero recomendado) */
-.offer-visual .img-contain {
-  border-radius: 16px;
-}
-
-.gallery-item .img-contain {
-  border-radius: 12px;
-}
 /* En escritorio sube un poco más porque no hay barra de navegación */
 @media (min-width: 700px) {
   .dynamic-wa {
@@ -2325,4 +2435,619 @@ img {
   .dynamic-wa-text strong { font-size: 0.85rem; }
   .dynamic-wa-text span { font-size: 0.7rem; }
   .dynamic-wa-icon { width: 32px; height: 32px; margin-left: 4px; }
+}
+
+/* =========================================
+   ÁRBOL DE NAVIDAD INTERACTIVO (slider)
+   ========================================= */
+
+.offer-motion > .tree-card {
+  flex: 1;
+}
+
+.tree-card {
+  background: var(--color-white);
+  border: 1px solid rgba(201, 168, 106, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.tree-visual {
+  aspect-ratio: 4 / 5;
+  background: var(--color-cream);
+  overflow: hidden;
+  position: relative;
+}
+
+.tree-image {
+  object-fit: cover;
+}
+
+.tree-size-pill {
+  background: rgba(253, 249, 245, 0.85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 106, 0.4);
+  border-radius: 999px;
+  bottom: 14px;
+  color: var(--color-burgundy);
+  font-size: 0.8rem;
+  font-weight: 700;
+  left: 14px;
+  letter-spacing: 0.06em;
+  padding: 6px 14px;
+  position: absolute;
+}
+
+.tree-body {
+  padding: 20px;
+}
+
+.tree-body .button {
+  margin-top: 18px;
+  width: 100%;
+}
+
+.tree-sizes {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 18px;
+}
+
+.tree-size-option {
+  background: var(--color-white);
+  border: 2px solid rgba(109, 31, 58, 0.15);
+  border-radius: var(--radius-pill);
+  color: var(--color-burgundy);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 10px 8px;
+  transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  white-space: nowrap;
+}
+
+.tree-size-option:hover {
+  border-color: rgba(201, 168, 106, 0.6);
+}
+
+.tree-size-option.selected {
+  background: rgba(201, 168, 106, 0.12);
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 14px rgba(201, 168, 106, 0.3);
+}
+
+.tree-size-option:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+@media (min-width: 400px) {
+  .tree-size-option { font-size: 0.88rem; }
+}
+
+/* =========================================
+   VISOR 3D (React Three Fiber)
+   ========================================= */
+
+.viewer-3d {
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 50% 40%, #fffdfb, var(--color-cream));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.viewer-3d-empty {
+  align-items: center;
+  color: var(--color-muted);
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================================
+   BOTÓN FLOTANTE COLAPSABLE + CHAT DE SOPORTE
+   ========================================= */
+
+button.dynamic-wa {
+  cursor: pointer;
+  font: inherit;
+}
+
+/* Colapsado por defecto: solo flor + icono; se expande con .expanded */
+.dynamic-wa .dynamic-wa-text {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  text-align: left;
+  transition: max-width 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+  white-space: nowrap;
+}
+
+.dynamic-wa.expanded .dynamic-wa-text {
+  max-width: 220px;
+  opacity: 1;
+}
+
+.dynamic-wa.beating {
+  animation: wa-beat 1.1s ease-in-out;
+}
+
+@keyframes wa-beat {
+  0%, 100% { box-shadow: 0 10px 30px rgba(109, 31, 58, 0.15), 0 0 0 0 rgba(201, 168, 106, 0.55); }
+  25% { transform: scale(1.08); }
+  50% { box-shadow: 0 10px 30px rgba(109, 31, 58, 0.2), 0 0 0 14px rgba(201, 168, 106, 0); transform: scale(1); }
+  75% { transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-wa.beating { animation: none; }
+}
+
+/* Conserje de lujo: marfil, doble filete dorado, tipografía serif */
+.support-chat {
+  background:
+    linear-gradient(180deg, rgba(255, 251, 244, 0.9), rgba(245, 237, 224, 0.86));
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid rgba(201, 168, 106, 0.75);
+  border-radius: 26px;
+  bottom: 150px;
+  box-shadow:
+    0 0 0 4px rgba(245, 237, 224, 0.55),
+    0 0 0 5px rgba(201, 168, 106, 0.35),
+    0 30px 70px rgba(74, 18, 38, 0.35);
+  color: var(--color-burgundy);
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 190px);
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  right: 14px;
+  transform: translateY(18px) scale(0.97);
+  transform-origin: bottom right;
+  transition: opacity 250ms ease, transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  visibility: hidden;
+  width: min(380px, calc(100vw - 28px));
+  z-index: 10000;
+}
+
+.support-chat.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+  visibility: visible;
+}
+
+.support-chat-header {
+  align-items: center;
+  background: linear-gradient(135deg, #4a1226 0%, var(--color-burgundy) 55%, #8a2a4b 100%);
+  border-bottom: 1px solid var(--color-gold);
+  color: var(--color-cream);
+  display: flex;
+  gap: 12px;
+  padding: 14px 14px 14px 16px;
+}
+
+.support-chat-avatar {
+  align-items: center;
+  background: linear-gradient(135deg, #f0d9a0, var(--color-gold) 55%, #a98544);
+  border: 2px solid rgba(255, 253, 251, 0.75);
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  color: #4a1226;
+  display: flex;
+  flex: none;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 600;
+  height: 44px;
+  justify-content: center;
+  line-height: 1;
+  width: 44px;
+}
+
+.support-chat-id {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.support-chat-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+.support-chat-status {
+  align-items: center;
+  color: rgba(245, 237, 224, 0.78);
+  display: flex;
+  font-size: 0.72rem;
+  gap: 6px;
+  letter-spacing: 0.04em;
+}
+
+.support-chat-dot {
+  background: #7fd18b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #7fd18b;
+  height: 7px;
+  width: 7px;
+}
+
+.support-chat-close {
+  background: transparent;
+  border: 0;
+  color: var(--color-gold);
+  cursor: pointer;
+  flex: none;
+  font-size: 1.8rem;
+  height: 40px;
+  line-height: 1;
+  width: 40px;
+}
+
+.support-chat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: min(56vh, 420px);
+  overflow-y: auto;
+  padding: 18px 16px 16px;
+}
+
+.support-chat-bubble {
+  animation: chat-pop 320ms ease both;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 88%;
+  padding: 12px 15px;
+}
+
+/* Bot: crema suave con filete dorado */
+.support-chat-bubble.from-bot {
+  align-self: flex-start;
+  background: #fbf3e4;
+  border: 1px solid rgba(201, 168, 106, 0.45);
+  border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 3px 10px rgba(109, 31, 58, 0.06);
+  color: #4a1226;
+}
+
+/* Cliente: borgoña */
+.support-chat-bubble.from-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #6d1f3a, #8a2a4b);
+  border-radius: 18px 18px 4px 18px;
+  box-shadow: 0 4px 12px rgba(109, 31, 58, 0.25);
+  color: var(--color-cream);
+}
+
+@keyframes chat-pop {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.support-chat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+/* Opciones: degradado dorado */
+.support-chat-option {
+  background: linear-gradient(135deg, #f0d9a0 0%, var(--color-gold) 50%, #b08d4f 100%);
+  border: 1px solid rgba(255, 253, 251, 0.55);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(176, 141, 79, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: #4a1226;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  min-height: 42px;
+  padding: 9px 16px;
+  transition: transform 200ms ease, box-shadow 200ms ease, filter 200ms ease;
+}
+
+.support-chat-option:hover {
+  box-shadow: 0 8px 20px rgba(176, 141, 79, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+.support-chat-option:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.support-chat-option.primary {
+  background: linear-gradient(135deg, #e6c987 0%, #c9a86a 45%, #9c7a3c 100%);
+  box-shadow: 0 6px 18px rgba(156, 122, 60, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.support-chat-option:focus-visible,
+.support-chat-close:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+@media (min-width: 700px) {
+  .support-chat {
+    bottom: 100px;
+    max-height: calc(100dvh - 140px);
+    right: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .support-chat-bubble { animation: none; }
+}
+
+/* =========================================
+   GALERÍA: ITEMS CON VISOR 3D + MODAL
+   ========================================= */
+
+.gallery-3d-trigger {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  inset: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.gallery-3d-badge {
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background: rgba(245, 237, 224, 0.85);
+  border: 1px solid rgba(201, 168, 106, 0.6);
+  border-radius: 999px;
+  color: var(--color-burgundy);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 5px 10px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
+}
+
+.gallery-3d-trigger:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: -3px;
+}
+
+/* =========================================
+   MODAL 3D: "EL MUSEO VIRTUAL"
+   ========================================= */
+
+.viewer-modal {
+  align-items: center;
+  background: rgba(14, 8, 11, 0.86);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 8px;
+  position: fixed;
+  z-index: 10001;
+}
+
+.viewer-modal-panel {
+  background: radial-gradient(120% 90% at 50% 0%, #3d1b2b 0%, #1f1017 55%, #120a0e 100%);
+  border: 1px solid rgba(201, 168, 106, 0.5);
+  border-radius: 22px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(201, 168, 106, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: min(calc(100dvh - 16px), 880px);
+  overflow: hidden;
+  position: relative;
+  width: min(100%, 980px);
+}
+
+.viewer-modal-header {
+  padding: 18px 70px 8px 22px;
+}
+
+.viewer-modal-eyebrow {
+  color: var(--color-gold);
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.viewer-modal-title {
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 6vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 4px 0 0;
+}
+
+/* El canvas toma todo el alto restante: en móvil casi toda la pantalla */
+.viewer-modal-stage {
+  border-radius: 16px;
+  flex: 1;
+  margin: 4px 8px 8px;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.viewer-3d.viewer-modal-canvas {
+  aspect-ratio: auto;
+  background: radial-gradient(circle at 50% 45%, #55283b 0%, #25131c 60%, #170c12 100%);
+  border-radius: 0;
+  height: 100%;
+  touch-action: none;
+}
+
+.viewer-modal-hint {
+  align-items: center;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: viewer-hint-float 2.8s ease-in-out infinite;
+  background: rgba(20, 10, 14, 0.62);
+  border: 1px solid rgba(201, 168, 106, 0.55);
+  border-radius: 999px;
+  bottom: 18px;
+  color: #f3e3bd;
+  display: flex;
+  font-size: 0.85rem;
+  font-weight: 600;
+  gap: 10px;
+  left: 50%;
+  letter-spacing: 0.08em;
+  padding: 10px 18px;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+  transition: opacity 500ms ease;
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.viewer-modal-hint.hidden {
+  opacity: 0;
+}
+
+.viewer-hint-hand {
+  animation: viewer-hand-sway 2.2s ease-in-out infinite;
+  color: var(--color-gold);
+}
+
+@keyframes viewer-hint-float {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
+}
+
+@keyframes viewer-hand-sway {
+  0%, 100% { transform: translateX(-5px) rotate(-14deg); }
+  50% { transform: translateX(5px) rotate(14deg); }
+}
+
+.viewer-modal-close {
+  align-items: center;
+  background: linear-gradient(135deg, #f0d9a0, var(--color-gold) 55%, #a98544);
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  color: #4a1226;
+  cursor: pointer;
+  display: flex;
+  height: 46px;
+  justify-content: center;
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  transition: transform 200ms ease;
+  width: 46px;
+  z-index: 5;
+}
+
+.viewer-modal-close:hover {
+  transform: scale(1.08) rotate(90deg);
+}
+
+.viewer-modal-close:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewer-modal-hint,
+  .viewer-hint-hand { animation: none; }
+  .viewer-modal-hint { transform: translateX(-50%); }
+}
+
+/* =========================================
+   BOTÓN FLOTANTE: LA FLOR
+   ========================================= */
+
+.dynamic-wa {
+  gap: 0;
+  padding: 6px;
+}
+
+.dynamic-wa.expanded {
+  padding: 6px 6px 6px 18px;
+}
+
+.dynamic-wa.expanded .dynamic-wa-text {
+  margin-right: 12px;
+}
+
+.dynamic-wa .dynamic-wa-icon {
+  background: linear-gradient(135deg, #f0399c 0%, #d81b7a 45%, #c9a86a 100%) !important;
+  border: 2px solid rgba(255, 253, 251, 0.85);
+  box-shadow: 0 6px 18px rgba(216, 27, 122, 0.45);
+  color: #fff !important;
+  height: 48px;
+  margin-left: 0;
+  width: 48px;
+}
+
+.dynamic-wa-flower-svg {
+  animation: wa-float 3.4s ease-in-out infinite;
+  fill: rgba(255, 255, 255, 0.28);
+  filter: drop-shadow(0 1px 2px rgba(74, 18, 38, 0.4));
+}
+
+/* Latido sutil pero notorio: dos pulsos suaves con halo fucsia/dorado */
+.dynamic-wa.beating {
+  animation: wa-beat 1.4s ease-in-out;
+}
+
+@keyframes wa-beat {
+  0%, 100% {
+    box-shadow: 0 10px 30px rgba(109, 31, 58, 0.15), 0 0 0 0 rgba(216, 27, 122, 0.45);
+    transform: scale(1);
+  }
+  18% { transform: scale(1.08); }
+  38% {
+    box-shadow: 0 10px 30px rgba(109, 31, 58, 0.2), 0 0 0 14px rgba(216, 27, 122, 0);
+    transform: scale(1);
+  }
+  55% {
+    box-shadow: 0 10px 30px rgba(109, 31, 58, 0.2), 0 0 0 0 rgba(201, 168, 106, 0.5);
+    transform: scale(1.05);
+  }
+  85% {
+    box-shadow: 0 10px 30px rgba(109, 31, 58, 0.2), 0 0 0 16px rgba(201, 168, 106, 0);
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-wa-flower-svg { animation: none; }
 }
